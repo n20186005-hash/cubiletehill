@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" role="img" aria-labelledby="t d">
+<title id="t">Cerro del Cubilete</title><desc id="d">Símbolo de Cristo Rey sobre una cúpula estilizada</desc>
+<rect width="260" height="64" fill="#181713"/>
+<circle cx="32" cy="32" r="28" fill="none" stroke="#a57637" stroke-width="1.6"/>
+<path d="M32 11v25M18 22h28" stroke="#f2eadc" stroke-width="4" stroke-linecap="round"/>
+<path d="M12 46h40M16 46c3-8 9-12 16-12s13 4 16 12" fill="none" stroke="#d2ad6c" stroke-width="3" stroke-linecap="round"/>
+<text x="72" y="30" fill="#f2eadc" font-family="Georgia,serif" font-size="18">Cerro del Cubilete</text>
+<text x="72" y="47" fill="#a57637" font-family="Arial,sans-serif" font-size="8" font-weight="700" letter-spacing="2">SILAO · GUANAJUATO</text>
+</svg>

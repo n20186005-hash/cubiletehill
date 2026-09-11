@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #181713;
+  --ink-soft: #28261f;
+  --bone: #f2eadc;
+  --paper: #fbf6ed;
+  --bronze: #a57637;
+  --bronze-light: #d2ad6c;
+  --clay: #914c35;
+  --sage: #778273;
+  --line: rgba(165, 118, 55, 0.35);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--ink); }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, .display {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+a { color: inherit; }
+::selection { background: var(--bronze-light); color: var(--ink); }
+
+.container-shell { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+.eyebrow { letter-spacing: .18em; text-transform: uppercase; font-size: .73rem; font-weight: 760; }
+.section-rule { border-top: 1px solid var(--line); }
+
+.deco-frame {
+  position: relative;
+  isolation: isolate;
+}
+.deco-frame::before,
+.deco-frame::after {
+  content: "";
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  border-color: var(--bronze-light);
+  opacity: .7;
+  pointer-events: none;
+}
+.deco-frame::before { left: 18px; top: 18px; border-left: 1px solid; border-top: 1px solid; }
+.deco-frame::after { right: 18px; bottom: 18px; border-right: 1px solid; border-bottom: 1px solid; }
+
+.hero-photo {
+  background-image:
+    linear-gradient(180deg, rgba(17,16,13,.22) 0%, rgba(17,16,13,.68) 74%, rgba(17,16,13,.94) 100%),
+    url("https://upload.wikimedia.org/wikipedia/commons/f/fb/Estatua_de_Cristo_Rey_en_el_Cerro_del_Cubilete%2C_Silao%2C_Guanajuato.jpg");
+  background-size: cover;
+  background-position: center 36%;
+}
+
+.gold-grid {
+  background-image:
+    linear-gradient(rgba(210,173,108,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(210,173,108,.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.arch {
+  border-radius: 999px 999px 24px 24px;
+  overflow: hidden;
+}
+
+.quote-mark { font-size: 4.5rem; line-height: .6; color: var(--bronze); font-family: Georgia, serif; }
+
+.info-band { background: var(--ink); color: var(--bone); }
+.bronze-text { color: var(--bronze); }
+
+.map-wrap iframe { width: 100%; min-height: 470px; border: 0; display: block; filter: saturate(.78) contrast(1.03); }
+
+details { border-top: 1px solid rgba(24,23,19,.15); }
+details:last-child { border-bottom: 1px solid rgba(24,23,19,.15); }
+details summary { cursor: pointer; list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+
+@media (max-width: 760px) {
+  .container-shell { width: min(100% - 28px, 1180px); }
+  .hero-photo { background-position: 56% center; }
+  .map-wrap iframe { min-height: 380px; }
+}
