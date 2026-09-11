@@ -1,2 +1,12 @@
 User-agent: *
 Allow: /
+
+# Rastreo completo para el buscador principal y verificación de entidad
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+Sitemap: https://cubiletehill.com/sitemap-index.xml
+Host: https://cubiletehill.com

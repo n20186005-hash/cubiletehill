@@ -2,13 +2,35 @@
 import '../styles/global.css';
 import Logo from '../components/Logo.astro';
 
-const title = 'Cerro del Cubilete | Cristo Rey en Silao, Guanajuato';
-const description = 'Guía independiente para visitar el Cerro del Cubilete y el Santuario de Cristo Rey: cómo llegar, estacionamiento, acceso, horarios orientativos, comida, lugares cercanos y consejos de visita.';
+// --- Entidad geográfica (fuente única de verdad, NAP consistente) ---
+const domain = 'cubiletehill.com';
+const attractionFullName = 'Cerro del Cubilete';
+const attractionShortName = 'Cubilete Hill';
+const cityName = 'Silao de la Victoria';
+const cityShort = 'Silao';
+const stateName = 'Guanajuato';
+const countryName = 'México';
+const countryCode = 'MX';
+const postalCode = '36290';
+const telephone = '+52 472 723 2571';
+const telephoneHref = 'tel:+524727232571';
+const streetAddress = 'Cerro del Cubilete S/N, El Cubilete, La Montaña';
+const plusCode = '2J6J+QJ';
+const mapsShareUrl = 'https://maps.app.goo.gl/AYYQ49U1srAz49sE8';
+const nearbyLandmark1 = 'Parador Turístico Sangre de Cristo';
+const nearbyLandmark2 = 'Parque Guanajuato Bicentenario';
+const govtTourismUrl = 'https://sectur.guanajuato.gob.mx/';
+const govtTourismLabel = 'Guanajuato / México — Portal oficial de turismo';
+const siteRoot = (Astro.site ?? new URL(`https://${domain}`)).href.replace(/\/$/, '');
+
+const title = `${attractionFullName} (${attractionShortName}) — ${cityShort}, ${stateName} | Guía de visita y ubicación`;
+const description = `Cerro del Cubilete (Cubilete Hill), ${cityName}, ${stateName}, ${countryName}: mapa, cómo llegar desde el aeropuerto BJX en taxi, auto o autobús, ${nearbyLandmark1} y consejos de visita.`;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
-const ogImage = Astro.site ? new URL('/og-card.png', Astro.site).href : '/og-card.png';
+const ogImage = `${siteRoot}/og-card.png`;
+const heroImage = `${siteRoot}/images/cerro-cubilete-cristo-rey.jpg`;
 
 const rating = { value: '4.8', count: '16591' };
-const coords = { latitude: 21.01172, longitude: -101.36888 };
+const coords = { latitude: 21.0119341, longitude: -101.3710159 };
 
 const faqs = [
   {
@@ -30,61 +52,112 @@ const faqs = [
   {
     q: '¿Hay estacionamiento en la parte alta?',
     a: 'Hay zonas de estacionamiento y una glorieta superior usada por visitantes. La capacidad y la operación pueden variar en fines de semana y peregrinaciones; llegar temprano ayuda a evitar saturación.'
+  },
+  {
+    q: '¿Dónde se encuentra exactamente el Cerro del Cubilete?',
+    a: 'Se ubica en el municipio de Silao de la Victoria, Guanajuato, México, en la sierra del Bajío, a unos 30 km de la ciudad de Guanajuato y a una altitud aproximada de 2,579 metros sobre el nivel del mar. Su Plus Code es 2J6J+QJ y su ubicación puede consultarse en Google Maps.'
+  },
+  {
+    q: '¿Por qué se le conoce internacionalmente como Cubilete Hill?',
+    a: 'Cubilete Hill es el nombre en inglés con el que se identifica al Cerro del Cubilete en mapas y fuentes internacionales. Designa exactamente el mismo lugar: la elevación que corona el Santuario de Cristo Rey en Silao, Guanajuato.'
+  },
+  {
+    q: '¿El Cerro del Cubilete es lo mismo que el Santuario de Cristo Rey?',
+    a: 'El Cerro del Cubilete es la elevación y el conjunto del sitio; el Santuario de Cristo Rey es el templo y el monumento construido en la cima. Se visitan de forma conjunta y comparten explanada, accesos y estacionamientos.'
+  },
+  {
+    q: '¿La visita es apta para niños o personas mayores?',
+    a: 'La explanada y el interior del santuario son accesibles para la mayoría de visitantes. El trayecto en automóvil incluye curvas y pendientes, por lo que conviene viajar con calma, llevar agua y considerar una capa ligera por el clima de altura.'
+  },
+  {
+    q: '¿Cuál es el aeropuerto más cercano al Cerro del Cubilete?',
+    a: 'El Aeropuerto Internacional de Guanajuato (BJX), también conocido como Aeropuerto del Bajío, está en el municipio de Silao, a unos 35–40 km del cerro, es decir 50–60 minutos en auto. Desde ahí se llega en automóvil rentado, taxi o traslado contratado, porque no hay transporte público directo hasta la cima.'
+  },
+  {
+    q: '¿Se puede llegar en tren al Cerro del Cubilete?',
+    a: 'Actualmente no hay servicio de tren de pasajeros en operación hasta Silao o Guanajuato: la red ferroviaria de la zona se dedica al transporte de carga. El proyecto federal Tren de Pasajeros México–Querétaro sigue en construcción y se anunció una estación para Silao, pero todavía no está disponible para viajeros.'
+  },
+  {
+    q: '¿Cómo llegar en autobús desde Guanajuato, León o Ciudad de México?',
+    a: 'La referencia es la Central de Autobuses de Silao, con líneas nacionales como Primera Plus, ETN o Futura. Desde Guanajuato capital el trayecto es de unos 25 minutos y 16 km, con salidas cada media hora aproximadamente; León funciona como el gran hub del Bajío y la Central de Autobuses del Norte de CDMX tiene corridas directas a Guanajuato y León. Del centro de Silao conviene continuar en taxi, app o traslado hasta la cima.'
   }
 ];
+
+const address = {
+  '@type': 'PostalAddress',
+  streetAddress,
+  postalCode,
+  addressLocality: cityName,
+  addressRegion: stateName,
+  addressCountry: countryCode
+};
+
+const geo = {
+  '@type': 'GeoCoordinates',
+  latitude: coords.latitude,
+  longitude: coords.longitude
+};
+
+const aggregateRating = {
+  '@type': 'AggregateRating',
+  ratingValue: rating.value,
+  reviewCount: rating.count,
+  bestRating: '5'
+};
+
+const attractionId = `${siteRoot}/#attraction`;
 
 const graph = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'TouristAttraction',
-      '@id': canonical ? `${canonical}#cerro-del-cubilete` : '#cerro-del-cubilete',
-      name: 'Cerro del Cubilete',
-      alternateName: 'Cubilete Hill',
+      '@type': 'WebSite',
+      '@id': `${siteRoot}/#website`,
+      url: siteRoot,
+      name: `${attractionFullName} — ${attractionShortName}`,
       description,
-      ...(canonical ? { url: canonical } : {}),
-      ...(Astro.site ? { image: new URL('/og-card.png', Astro.site).href } : {}),
-      telephone: '+52 472 723 2571',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Cerro del Cubilete S/N, El Cubilete, La Montaña',
-        postalCode: '36290',
-        addressLocality: 'Silao de la Victoria',
-        addressRegion: 'Guanajuato',
-        addressCountry: 'MX'
+      inLanguage: 'es-MX'
+    },
+    {
+      '@type': 'TouristAttraction',
+      '@id': attractionId,
+      name: attractionFullName,
+      alternateName: [
+        attractionShortName,
+        `${cityShort} ${attractionFullName}`,
+        `${attractionShortName}, ${cityShort}, ${stateName}`
+      ],
+      description,
+      url: canonical ?? siteRoot,
+      image: [
+        heroImage,
+        ogImage,
+        `${siteRoot}/images/cerro-cubilete-explanada.jpg`,
+        `${siteRoot}/images/cerro-cubilete-santuario.jpg`
+      ],
+      isAccessibleForFree: true,
+      publicAccess: true,
+      touristType: ['Peregrinación religiosa', 'Turismo de naturaleza', 'Turismo cultural'],
+      telephone,
+      address,
+      geo,
+      hasMap: mapsShareUrl,
+      sameAs: [mapsShareUrl, govtTourismUrl],
+      containedInPlace: {
+        '@type': 'City',
+        name: `${cityName}, ${stateName}, ${countryName}`
       },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: coords.latitude,
-        longitude: coords.longitude
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: rating.value,
-        reviewCount: rating.count,
-        bestRating: '5'
-      },
-      isAccessibleForFree: true
+      aggregateRating
     },
     {
       '@type': 'LocalBusiness',
-      '@id': canonical ? `${canonical}#santuario-cristo-rey` : '#santuario-cristo-rey',
+      '@id': `${siteRoot}/#santuario-cristo-rey`,
       name: 'Santuario de Cristo Rey',
-      telephone: '+52 472 723 2571',
-      ...(canonical ? { url: canonical } : {}),
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Cerro del Cubilete S/N, El Cubilete, La Montaña',
-        postalCode: '36290',
-        addressLocality: 'Silao de la Victoria',
-        addressRegion: 'Guanajuato',
-        addressCountry: 'MX'
-      },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: coords.latitude,
-        longitude: coords.longitude
-      },
+      parentOrganization: { '@id': attractionId },
+      telephone,
+      url: canonical ?? siteRoot,
+      address,
+      geo,
       openingHoursSpecification: [
         {
           '@type': 'OpeningHoursSpecification',
@@ -93,17 +166,22 @@ const graph = {
           closes: '20:00'
         }
       ],
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: rating.value,
-        reviewCount: rating.count,
-        bestRating: '5'
-      },
+      aggregateRating,
       priceRange: 'Acceso gratuito'
     },
     {
+      '@type': 'BreadcrumbList',
+      '@id': `${siteRoot}/#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: countryName, item: 'https://www.gob.mx/' },
+        { '@type': 'ListItem', position: 2, name: stateName, item: govtTourismUrl },
+        { '@type': 'ListItem', position: 3, name: cityName },
+        { '@type': 'ListItem', position: 4, name: attractionFullName, item: canonical ?? siteRoot }
+      ]
+    },
+    {
       '@type': 'FAQPage',
-      '@id': canonical ? `${canonical}#preguntas` : '#preguntas',
+      '@id': `${siteRoot}/#preguntas`,
       mainEntity: faqs.map((faq) => ({
         '@type': 'Question',
         name: faq.q,
@@ -114,6 +192,70 @@ const graph = {
 };
 
 const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.599119018432!2d-101.37101588733194!3d21.011934080552354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842b9b813c000001%3A0xc94a13c76d791a07!2sCubilete%20Hill!5e1!3m2!1ses-MX!2smx!4v1789090788873!5m2!1ses-MX!2smx';
+
+const sources = [
+  { label: 'Ficha y ubicación en Google Maps', href: mapsShareUrl, note: 'Cubilete Hill · Silao, Guanajuato · valoración 4.8 (16,591)' },
+  { label: 'Secretaría de Turismo de Guanajuato', href: 'https://sectur.guanajuato.gob.mx/', note: 'Portal oficial .gob.mx de turismo estatal' },
+  { label: 'Gobierno del Estado de Guanajuato', href: 'https://www.guanajuato.gob.mx/', note: 'Información oficial del estado' },
+  { label: 'Gobierno de México', href: 'https://www.gob.mx/', note: 'Portal federal .gob.mx' },
+  { label: 'Visit México', href: 'https://www.visitmexico.com/', note: 'Promoción turística nacional' },
+  { label: 'Wikimedia Commons · fotografías del lugar', href: 'https://commons.wikimedia.org/wiki/Category:Cerro_del_Cubilete', note: 'Imágenes CC BY-SA 4.0 utilizadas en esta guía' }
+];
+
+// --- Accesos y transporte (aeropuertos, terminales y última milla) ---
+type TransportOption = {
+  kind: string;
+  title: string;
+  detail: string;
+  meta: string;
+  href?: string;
+  linkLabel?: string;
+};
+
+const transport: TransportOption[] = [
+  {
+    kind: 'Avión · opción principal',
+    title: 'Aeropuerto Internacional de Guanajuato (BJX)',
+    detail: 'Es la puerta de entrada más cercana al Cubilete y se encuentra en el propio municipio de Silao. Desde la terminal, la vía práctica es automóvil, taxi o traslado contratado; hay arrendadoras de autos en el recinto.',
+    meta: 'BJX · ≈35–40 km · 50–60 min',
+    href: 'https://www.aeropuertosgap.mx/es/guanajuato-3.html',
+    linkLabel: 'Aeropuerto en el sitio oficial del operador'
+  },
+  {
+    kind: 'Avión · alternativas',
+    title: 'Querétaro (QRO), Guadalajara (GDL) y CDMX (MEX)',
+    detail: 'Querétaro queda a unas 2 horas por autopista, Guadalajara a unas 3 horas y la Ciudad de México a 4–5 horas. Son útiles cuando encuentras mejor tarifa, aunque implican más traslado terrestre.',
+    meta: 'QRO ≈150 km · GDL ≈230 km · MEX ≈360 km'
+  },
+  {
+    kind: 'Autobús · opción más usada',
+    title: 'Central de Autobuses de Silao',
+    detail: 'Silao cuenta con central de autobuses con líneas nacionales como Primera Plus, ETN o Futura. Desde la terminal hay que tomar taxi, app o traslado hasta la cima: el autobús no sube al santuario.',
+    meta: '≈25 min y ≈16 km desde Guanajuato capital',
+    href: 'https://www.google.com/maps/search/?api=1&query=Central+de+Autobuses+de+Silao',
+    linkLabel: 'Ubicar la central en Google Maps'
+  },
+  {
+    kind: 'Autobús · desde otras ciudades',
+    title: 'León (Terminal San Jerónimo) y CDMX (Central del Norte)',
+    detail: 'León funciona como el gran hub del Bajío, con salidas frecuentes hacia Silao y Guanajuato capital. Desde la Central de Autobuses del Norte de CDMX hay corridas directas a Guanajuato y León.',
+    meta: 'León ≈50 km · Guanajuato–Silao cada ≈30 min'
+  },
+  {
+    kind: 'Tren · en proyecto, aún no operativo',
+    title: 'Tren de Pasajeros México–Querétaro (estación anunciada en Silao)',
+    detail: 'Hoy no existe servicio de tren de pasajeros en operación hasta el Bajío: la red ferroviaria de la zona se dedica a carga. El proyecto federal México–Querétaro continúa en obra y se anunció una estación para Silao, así que conviene seguir su avance oficial antes de planear un viaje en tren.',
+    meta: 'No operativo · proyecto en construcción',
+    href: 'https://www.proyectosmexico.gob.mx/ppp07-tren-mexico-queretaro/',
+    linkLabel: 'Ficha oficial del proyecto (gob.mx)'
+  },
+  {
+    kind: 'Auto rentado, taxi y apps',
+    title: 'Última milla hasta la cima',
+    detail: 'Rentar auto en el aeropuerto o tomar taxi, Uber, DiDi o traslado privado desde Silao y León es la forma más flexible. El tramo final es carretera de montaña con curvas y pendientes, por lo que conviene calcular 35–45 min desde Silao.',
+    meta: 'Silao ≈30 km · Guanajuato ≈30 km · León ≈50 km'
+  }
+];
 ---
 <!doctype html>
 <html lang="es-MX">
@@ -122,22 +264,38 @@ const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.59911
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#181713" />
     {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <!-- Geolocalización explícita del ente físico (NAP + coordenadas) -->
+    <meta name="geo.region" content="MX-GUA" />
+    <meta name="geo.placename" content={`${cityName}, ${stateName}`} />
+    <meta name="geo.position" content={`${coords.latitude};${coords.longitude}`} />
+    <meta name="ICBM" content={`${coords.latitude}, ${coords.longitude}`} />
+    <!-- Open Graph (vinculación de entidad) -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_MX" />
-    <meta property="og:title" content={title} />
+    <meta property="og:site_name" content={`${attractionFullName} (${attractionShortName})`} />
+    <meta property="og:title" content={`${attractionFullName} (${attractionShortName}) — ${cityShort}, ${stateName}`} />
     <meta property="og:description" content={description} />
     {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={`${attractionFullName} (${attractionShortName}) en ${cityShort}, ${stateName}, ${countryName}`} />
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={`${attractionFullName} (${attractionShortName}) — ${cityShort}, ${stateName}`} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={`${attractionFullName} (${attractionShortName}) en ${cityShort}, ${stateName}`} />
+    <!-- Iconos -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content={attractionFullName} />
+    <meta name="application-name" content={attractionFullName} />
     <script type="application/ld+json" set:html={JSON.stringify(graph)}></script>
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
     <script is:inline>
@@ -167,9 +325,25 @@ const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.59911
         <div class="container-shell relative z-10 pb-16 pt-36 md:pb-24">
           <div class="grid items-end gap-10 md:grid-cols-[1fr_320px]">
             <div>
-              <p class="eyebrow mb-5 text-[#d2ad6c]">Silao · Guanajuato · México</p>
-              <h1 class="max-w-4xl text-[clamp(3.6rem,9vw,8.4rem)] leading-[.78] text-[#f5eee2]">Cerro del<br/><span class="italic text-[#d2ad6c]">Cubilete</span></h1>
-              <p class="mt-8 max-w-2xl text-lg leading-8 text-white/78">Una subida por la sierra del Bajío hacia el monumento de Cristo Rey: arquitectura monumental, horizonte abierto y uno de los paisajes de peregrinación más reconocibles de Guanajuato.</p>
+              <nav aria-label="Ruta de navegación" class="mb-6 text-[.68rem] font-semibold uppercase tracking-[.15em] text-white/55">
+                <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <li><a class="hover:text-[#d2ad6c]" href="#inicio">Inicio</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li><a class="hover:text-[#d2ad6c]" href="https://www.gob.mx/" target="_blank" rel="noopener noreferrer">{countryName}</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li><a class="hover:text-[#d2ad6c]" href={govtTourismUrl} target="_blank" rel="noopener noreferrer">{stateName}</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li>{cityName}</li>
+                  <li aria-hidden="true">/</li>
+                  <li class="text-[#d2ad6c]">{attractionFullName}</li>
+                </ol>
+              </nav>
+              <p class="eyebrow mb-5 text-[#d2ad6c]">Silao de la Victoria · Guanajuato · México</p>
+              <h1 class="max-w-4xl text-[clamp(3.4rem,8.6vw,8rem)] leading-[.8] text-[#f5eee2]">
+                Cerro del<br/><span class="italic text-[#d2ad6c]">Cubilete</span>
+                <span class="mt-5 block text-[clamp(1.05rem,2.2vw,1.75rem)] font-normal not-italic leading-tight tracking-normal text-white/75">(Cubilete Hill) — {cityShort}, {stateName}, {countryName}</span>
+              </h1>
+              <p class="mt-8 max-w-2xl text-lg leading-8 text-white/78">Bienvenido al <strong class="font-semibold text-white">Cerro del Cubilete</strong>, reconocido internacionalmente como <strong class="font-semibold text-white">Cubilete Hill</strong>: la cima de la sierra del Bajío que sostiene el monumento de Cristo Rey y uno de los paisajes de peregrinación más reconocibles de Guanajuato, con arquitectura monumental y horizonte abierto.</p>
             </div>
             <aside class="border-l border-[#d2ad6c]/50 pl-6 text-[#f2eadc]">
               <p class="text-5xl display">4.8<span class="text-xl text-[#d2ad6c]">/5</span></p>
@@ -190,7 +364,7 @@ const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.59911
         <div class="container-shell grid gap-14 md:grid-cols-[.9fr_1.1fr] md:items-start">
           <div class="md:sticky md:top-28">
             <p class="eyebrow bronze-text">Entre el Bajío y el cielo</p>
-            <h2 class="mt-4 max-w-xl text-5xl leading-[.96] md:text-7xl">Un santuario hecho para verse desde lejos.</h2>
+            <h2 class="mt-4 max-w-xl text-5xl leading-[.96] md:text-7xl">Historia y significado del Cerro del Cubilete: un santuario hecho para verse desde lejos.</h2>
             <div class="mt-9 h-px w-28 bg-[#a57637]"></div>
           </div>
           <div class="space-y-8 text-[1.05rem] leading-8 text-[#38352d]">
@@ -213,16 +387,16 @@ const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.59911
           </div>
           <div class="grid gap-4 md:grid-cols-12">
             <figure class="group relative min-h-[540px] overflow-hidden md:col-span-7">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Cristo_Rey_-_Cerro_del_Cubilete_-_Silao%2C_Guanajuato_-_Explanada.jpg" alt="Explanada y monumento de Cristo Rey en el Cerro del Cubilete" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Cristo_Rey_-_Cerro_del_Cubilete_-_Silao%2C_Guanajuato_-_Explanada.jpg" alt="Explanada y monumento de Cristo Rey en el Cerro del Cubilete (Cubilete Hill), Silao, Guanajuato, México" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" />
               <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-6 pb-6 pt-20 text-sm">La explanada · vista monumental</figcaption>
             </figure>
             <div class="grid gap-4 md:col-span-5">
               <figure class="group relative min-h-[260px] overflow-hidden">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Cristo_Rey_en_el_Cerro_del_Cubilete_-_Silao%2C_Guanajuato%2C_M%C3%A9xico.jpg" alt="Cristo Rey visto desde la base del monumento" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.025]" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Cristo_Rey_en_el_Cerro_del_Cubilete_-_Silao%2C_Guanajuato%2C_M%C3%A9xico.jpg" alt="Estatua de Cristo Rey en el Cerro del Cubilete (Cubilete Hill), Silao, Guanajuato" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.025]" />
                 <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-5 pb-5 pt-16 text-sm">La figura · escala vertical</figcaption>
               </figure>
               <figure class="group relative min-h-[260px] overflow-hidden">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Camino_al_Cerro_del_Cubilete_2020_05.jpg" alt="Camino de montaña hacia el Cerro del Cubilete" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Camino_al_Cerro_del_Cubilete_2020_05.jpg" alt="Camino de montaña hacia el Cerro del Cubilete (Cubilete Hill) en Silao, Guanajuato" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" />
                 <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-5 pb-5 pt-16 text-sm">El camino · sierra del Bajío</figcaption>
               </figure>
             </div>
@@ -254,12 +428,13 @@ const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.59911
         <div class="container-shell grid gap-14 lg:grid-cols-[.72fr_1.28fr]">
           <div>
             <p class="eyebrow text-[#d2ad6c]">Cómo llegar</p>
-            <h2 class="mt-4 text-5xl leading-[.98] md:text-6xl">La carretera es parte del viaje.</h2>
+            <h2 class="mt-4 text-5xl leading-[.98] md:text-6xl">Cómo llegar al Cerro del Cubilete: la carretera es parte del viaje.</h2>
             <div class="mt-10 space-y-8 text-white/70">
               <div><p class="eyebrow text-[#d2ad6c]">Desde Silao</p><p class="mt-2 leading-7">Toma la salida hacia el Cerro del Cubilete y continúa por la carretera de montaña. El santuario está aproximadamente a 30 km del área de Silao; el tramo final tiene curvas y pendientes.</p></div>
               <div><p class="eyebrow text-[#d2ad6c]">Desde Guanajuato capital</p><p class="mt-2 leading-7">La cima está también a unos 30 km de la ciudad de Guanajuato. Revisa la ruta antes de entrar a la sierra y evita depender de señal móvil en todo el trayecto.</p></div>
               <div><p class="eyebrow text-[#d2ad6c]">Desde León</p><p class="mt-2 leading-7">La distancia ronda los 50 km. Para una visita de ida y vuelta, conviene salir con combustible suficiente y considerar tráfico extra en fines de semana o peregrinaciones.</p></div>
               <div class="border-l-2 border-[#a57637] pl-5"><p class="font-semibold text-[#f2eadc]">Conduce con precaución.</p><p class="mt-1 text-sm leading-6">Curvas cerradas, niebla, lluvia y tránsito de autobuses o peregrinos pueden cambiar las condiciones del ascenso.</p></div>
+              <p class="text-sm leading-6 text-white/60">Para actualizaciones oficiales e información turística regional, consulta el <a class="font-semibold text-[#d2ad6c] underline decoration-[#a57637] underline-offset-2 hover:text-white" href={govtTourismUrl} target="_blank" rel="noopener noreferrer">{govtTourismLabel}</a>.</p>
             </div>
           </div>
           <div class="map-wrap overflow-hidden border border-[#a57637]/35 bg-black/20">
@@ -268,6 +443,25 @@ const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.59911
               <span>Cerro del Cubilete · Silao, Guanajuato · 2J6J+QJ</span>
               <a class="font-bold text-[#d2ad6c] hover:text-white" href="https://maps.app.goo.gl/AYYQ49U1srAz49sE8" target="_blank" rel="noopener noreferrer">Indicaciones en Google Maps →</a>
             </div>
+          </div>
+          <div class="border-t border-[#a57637]/30 pt-12 lg:col-span-2">
+            <p class="eyebrow text-[#d2ad6c]">Transporte y accesos</p>
+            <h2 class="mt-4 max-w-3xl text-4xl leading-[1.03] md:text-5xl">Cómo llegar al Cerro del Cubilete desde aeropuertos, terminales y ciudades cercanas.</h2>
+            <p class="mt-5 max-w-3xl leading-7 text-white/70">El aeropuerto más cercano es el <strong class="font-semibold text-[#f2eadc]">Aeropuerto Internacional de Guanajuato (BJX)</strong>, ubicado en el municipio de Silao. En autobús, la referencia es la <strong class="font-semibold text-[#f2eadc]">Central de Autobuses de Silao</strong>; en tren, todavía no hay servicio de pasajeros en operación. En todos los casos, el último tramo hasta la cima se recorre en auto, taxi o traslado contratado.</p>
+            <div class="mt-9 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              {transport.map((item) => (
+                <article class="border border-[#a57637]/30 bg-white/[0.03] p-7">
+                  <p class="eyebrow text-[#d2ad6c]">{item.kind}</p>
+                  <h3 class="mt-3 text-2xl leading-tight">{item.title}</h3>
+                  <p class="mt-3 text-sm leading-6 text-white/65">{item.detail}</p>
+                  <p class="mt-4 text-xs font-bold uppercase tracking-[.12em] text-[#d2ad6c]">{item.meta}</p>
+                  {item.href && (
+                    <a class="mt-4 inline-block text-sm font-semibold text-[#d2ad6c] underline decoration-[#a57637] underline-offset-2 hover:text-white" href={item.href} target="_blank" rel="noopener noreferrer">{item.linkLabel}</a>
+                  )}
+                </article>
+              ))}
+            </div>
+            <p class="mt-8 text-sm leading-6 text-white/55">Distancias y tiempos son aproximados y pueden variar por tráfico, clima y días de peregrinación. Confirma horarios de autobús, disponibilidad de taxis y condiciones de la carretera antes de viajar.</p>
           </div>
         </div>
       </section>
@@ -279,13 +473,14 @@ const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.59911
               <p class="eyebrow bronze-text">Qué comer cerca</p>
               <h2 class="mt-4 text-5xl md:text-6xl">Antojitos para bajar de la cima.</h2>
               <p class="mt-6 max-w-xl text-lg leading-8 text-[#575247]">En el acceso y la zona del santuario suelen encontrarse puestos de comida sencilla y recuerdos. Para una comida más completa, Silao ofrece más opciones antes o después del ascenso.</p>
+              <p class="mt-5 max-w-xl text-lg leading-8 text-[#575247]">Al visitar el <strong class="font-medium text-[#181713]">Cerro del Cubilete</strong>, conviene aprovechar referencias cercanas del corredor serrano como el <strong class="font-medium text-[#181713]">{nearbyLandmark1}</strong> y el <strong class="font-medium text-[#181713]">{nearbyLandmark2}</strong>.</p>
               <div class="mt-8 grid gap-3 sm:grid-cols-2">
                 <div class="border border-[#a57637]/35 p-5"><h3 class="text-2xl">Gorditas y quesadillas</h3><p class="mt-2 text-sm leading-6 text-[#625c50]">Una opción práctica de antojito para un día de carretera.</p></div>
                 <div class="border border-[#a57637]/35 p-5"><h3 class="text-2xl">Tacos y café de olla</h3><p class="mt-2 text-sm leading-6 text-[#625c50]">Busca negocios con rotación visible y horarios confirmados el mismo día.</p></div>
               </div>
             </div>
             <div class="bg-[#181713] p-8 text-[#f2eadc] md:p-10">
-              <p class="eyebrow text-[#d2ad6c]">Lugares para combinar</p>
+              <h2 class="eyebrow text-[#d2ad6c]">Lugares y atracciones cerca del Cerro del Cubilete</h2>
               <div class="mt-7 space-y-8">
                 <article><p class="text-sm text-[#d2ad6c]">≈ 4 km</p><h3 class="mt-1 text-3xl">Parador Turístico Sangre de Cristo</h3><p class="mt-2 leading-7 text-white/60">Una parada cercana en el corredor serrano, útil para completar la ruta del Cubilete.</p></article>
                 <article class="border-t border-white/10 pt-8"><p class="text-sm text-[#d2ad6c]">Corredor Silao–Guanajuato</p><h3 class="mt-1 text-3xl">Parque Guanajuato Bicentenario</h3><p class="mt-2 leading-7 text-white/60">Recinto cultural y de exposiciones que puede integrarse a una jornada por la zona.</p></article>
@@ -327,6 +522,26 @@ const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.59911
         </div>
       </section>
 
+      <section id="fuentes" class="bg-[#f2eadc] py-20 md:py-28">
+        <div class="container-shell">
+          <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+            <div>
+              <p class="eyebrow bronze-text">Fuentes y verificación</p>
+              <h2 class="mt-4 text-5xl leading-[.98] md:text-6xl">Datos abiertos y enlaces oficiales.</h2>
+              <p class="mt-6 max-w-sm leading-7 text-[#625c50]">Esta guía es informativa e independiente. La ubicación, el contacto y el contexto del <strong class="font-medium text-[#181713]">Cerro del Cubilete</strong> se contrastan con fuentes públicas y con portales oficiales de turismo.</p>
+            </div>
+            <ul class="grid gap-px bg-[#a57637]/25 sm:grid-cols-2">
+              {sources.map((source) => (
+                <li class="bg-[#f2eadc] p-6">
+                  <a class="text-lg font-semibold text-[#181713] underline decoration-[#a57637] underline-offset-4 hover:text-[#914c35]" href={source.href} target="_blank" rel="noopener noreferrer">{source.label}</a>
+                  <p class="mt-2 text-sm leading-6 text-[#625c50]">{source.note}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section class="bg-[#181713] py-14 text-[#f2eadc]">
         <div class="container-shell grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
           <div><p class="eyebrow text-[#d2ad6c]">Tu siguiente paso</p><h2 class="mt-2 text-4xl">Guarda la ruta antes de subir.</h2></div>
@@ -337,12 +552,28 @@ const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.59911
 
     <footer class="bg-[#11110f] py-10 text-white/55">
       <div class="container-shell flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-        <div><Logo light /><p class="mt-5 max-w-xl text-xs leading-5">Sitio informativo independiente, no oficial y no afiliado al Santuario de Cristo Rey, a Google ni al Gobierno de Guanajuato. Verifica horarios, accesos y condiciones directamente con los operadores correspondientes antes de viajar.</p></div>
+        <div>
+          <Logo light />
+          <address class="mt-6 not-italic text-xs leading-6 text-white/60">
+            <p class="text-sm font-semibold text-[#f2eadc]">{attractionFullName} ({attractionShortName})</p>
+            <p>{streetAddress}</p>
+            <p>{postalCode} {cityName}, {stateName}, {countryName}</p>
+            <p>Plus Code: {plusCode} · <a class="underline decoration-[#a57637] underline-offset-2 hover:text-white" href={telephoneHref}>{telephone}</a></p>
+          </address>
+          <p class="mt-5 max-w-xl text-xs leading-5">Sitio informativo independiente, no oficial y no afiliado al Santuario de Cristo Rey, a Google ni al Gobierno de Guanajuato. Verifica horarios, accesos y condiciones directamente con los operadores correspondientes antes de viajar.</p>
+        </div>
         <div class="max-w-md text-xs leading-5 md:text-right">
           <p>Fotos: <a class="underline decoration-[#a57637] underline-offset-2" href="https://commons.wikimedia.org/wiki/File:Estatua_de_Cristo_Rey_en_el_Cerro_del_Cubilete,_Silao,_Guanajuato.jpg" target="_blank" rel="noopener noreferrer">Juan Carlos Fonseca Mata</a> e <a class="underline decoration-[#a57637] underline-offset-2" href="https://commons.wikimedia.org/wiki/File:Camino_al_Cerro_del_Cubilete_2020_05.jpg" target="_blank" rel="noopener noreferrer">Isaacvp</a> · Wikimedia Commons · <a class="underline decoration-[#a57637] underline-offset-2" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.</p>
           <p class="mt-2">Datos de planificación sujetos a cambio. Sin fechas de “última actualización” ni valores temporales inventados.</p>
         </div>
       </div>
     </footer>
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

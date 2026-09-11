@@ -1,0 +1,26 @@
+{
+  "name": "Cerro del Cubilete (Cubilete Hill) — Silao, Guanajuato",
+  "short_name": "Cubilete",
+  "description": "Guía de visita del Cerro del Cubilete, también conocido como Cubilete Hill, en Silao de la Victoria, Guanajuato, México.",
+  "lang": "es-MX",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#181713",
+  "theme_color": "#181713",
+  "categories": ["travel", "navigation", "lifestyle"],
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/favicon-16.png", "sizes": "16x16", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "shortcuts": [
+    { "name": "Cómo llegar", "short_name": "Llegar", "url": "/#llegar" },
+    { "name": "Preguntas frecuentes", "short_name": "FAQ", "url": "/#faq" },
+    { "name": "Fuentes oficiales", "short_name": "Fuentes", "url": "/#fuentes" }
+  ]
+}

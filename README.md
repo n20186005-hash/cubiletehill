@@ -14,11 +14,20 @@ Sitio estático de una sola página en español (México), construido con Astro 
 
 ## Dominio: un único punto de configuración
 
-El sitio lee exclusivamente `PUBLIC_SITE_URL` en `astro.config.ts` y lo asigna a `site` de Astro.
+El dominio por defecto es `https://cubiletehill.com`, definido en `astro.config.ts` y asignado a `site` de Astro.
 
-- Si `PUBLIC_SITE_URL` está vacío o no existe, el proyecto sigue construyéndose.
-- En ese modo se omiten canonical y `og:url`, los recursos sociales pueden usar rutas relativas y `@astrojs/sitemap` no se habilita.
-- Cuando exista dominio definitivo, define `PUBLIC_SITE_URL` con el URL HTTPS completo y vuelve a construir. Canonical, Open Graph, JSON-LD y sitemap se derivan de `Astro.site`.
+- Puede sobrescribirse con la variable de entorno `PUBLIC_SITE_URL` (URL HTTPS completo) sin tocar el código.
+- Canonical, Open Graph, JSON-LD, robots y sitemap se derivan de `Astro.site`.
+- Con dominio definido, `@astrojs/sitemap` genera `sitemap-0.xml` y `sitemap-index.xml`.
+
+## SEO de entidad y PWA
+
+- **NAP consistente**: nombre, dirección y teléfono del `Cerro del Cubilete` (Cubilete Hill) aparecen en cabecera, cuerpo y pie (`<address>`) con un único origen de datos en `src/pages/index.astro`.
+- **JSON-LD** (`@graph`): `WebSite`, `TouristAttraction` (con `@id`, `alternateName`, `image`, `geo`, `sameAs`), `LocalBusiness`, `BreadcrumbList` y `FAQPage`.
+- **TDK + OG**: título con `全称 + (域名含义) + ciudad`, meta description, canonical, `og:image:alt` y metadatos geográficos (`geo.region`, `geo.position`, `ICBM`).
+- **Fuentes (E-E-A-T)**: sección `#fuentes` con enlaces oficiales `.gob.mx` y `.org`.
+- **Transporte y accesos**: bloque dentro de `#llegar` con el aeropuerto BJX, la Central de Autobuses de Silao, los hubs de León y CDMX, el estado real del Tren de Pasajeros México–Querétaro (ficha oficial en `proyectosmexico.gob.mx`) y la última milla hasta la cima.
+- **PWA**: `public/manifest.webmanifest` + `public/sw.js` (cache del shell y modo offline), registrado desde la propia página.
 
 ## Desarrollo y verificación
 

@@ -2,17 +2,23 @@
 
 ## Verificaciones realizadas en este entorno
 
-- No existe `pnpm-workspace.yaml` (proyecto de un solo paquete).
+- `pnpm-workspace.yaml` existe solo para declarar `onlyBuiltDependencies` (`esbuild`, `workerd`); no define paquetes de workspace.
 - Escaneo del código fuente: no aparecen `example.com`, `localhost` ni `chrome-extension://`.
 - No se define `lastmod` manualmente.
 - El único script remoto es el cargador oficial de GA4 solicitado (`googletagmanager.com`).
-- `PUBLIC_SITE_URL` se lee una sola vez en `astro.config.ts`; canonical, `og:url`, JSON-LD y sitemap dependen de `Astro.site`.
+- `astro.config.ts` fija `https://cubiletehill.com` como `site` por defecto y permite sobreescribirlo con `PUBLIC_SITE_URL`; canonical, `og:url`, JSON-LD, robots y sitemap dependen de `Astro.site`.
 - Logo, favicon SVG, favicon 16/32, Apple touch icon 180 y tarjeta Open Graph son recursos locales.
+- PWA: `public/manifest.webmanifest` y `public/sw.js` se copian a `dist/`.
 
-## Limitaciones del entorno de empaquetado
+## Resultado de la cadena de verificación
 
-Este entorno no tiene salida de red hacia el registro npm y solo dispone de Node.js 22.16.0. El proyecto fija Node.js 24.21.0, por lo que aquí no fue posible ejecutar de forma real la cadena requerida `corepack pnpm install --frozen-lockfile → pnpm check → pnpm build`.
+Ejecutada con Node.js 24.14.0 y pnpm 12.3.4 (la versión fijada del proyecto es Node.js 24.21.0):
 
-Por la misma limitación, no se generó un `pnpm-lock.yaml` inventado o no verificable. Tampoco fue posible descargar los binarios de las fotografías de Wikimedia Commons al ZIP; el sitio usa directamente las URLs de las fotografías reales con su atribución CC BY-SA 4.0.
+- `pnpm install`: correcto (310 paquetes). Requirió aprobar los scripts de `esbuild` y `workerd` con `pnpm approve-builds --all`.
+- `pnpm check`: 0 errores, 0 advertencias, 1 hint preexistente (`is:inline` en el bloque JSON-LD).
+- `pnpm build`: correcto. Genera `dist/index.html`, `dist/sitemap-0.xml`, `dist/sitemap-index.xml` y los activos de `public/`.
+- JSON-LD del HTML construido validado: 5 nodos (`WebSite`, `TouristAttraction`, `LocalBusiness`, `BreadcrumbList`, `FAQPage`).
 
-Para considerar el paquete como validado de producción, debe generarse el lockfile con pnpm 12.3.4 en Node.js 24.21.0, repetir la instalación congelada y ejecutar `pnpm check` y `pnpm build` en un entorno con acceso al registro npm. Este archivo deja constancia explícita de que esas pruebas no se simularon.
+## Fotografías
+
+El sitio usa directamente las URLs reales de Wikimedia Commons con su atribución CC BY-SA 4.0 (véase `CREDITOS_FOTOS.md`). Las copias locales en `public/images/` se emplean para el nodo `image` del JSON-LD y como recursos de la propia página.
