@@ -55,7 +55,7 @@ a { color: inherit; }
 .hero-photo {
   background-image:
     linear-gradient(180deg, rgba(17,16,13,.22) 0%, rgba(17,16,13,.68) 74%, rgba(17,16,13,.94) 100%),
-    url("https://upload.wikimedia.org/wikipedia/commons/f/fb/Estatua_de_Cristo_Rey_en_el_Cerro_del_Cubilete%2C_Silao%2C_Guanajuato.jpg");
+    url("/images/cerro-cubilete-explanada.jpg");
   background-size: cover;
   background-position: center 36%;
 }
