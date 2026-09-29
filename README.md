@@ -48,6 +48,14 @@ pnpm deploy
 
 `wrangler.jsonc` publica `./dist` como Workers Assets. No hay base de datos, autenticación, CMS ni servidor de aplicación.
 
+## Redirecciones y canonical (acción en Cloudflare)
+
+Los datos de Search Console muestran impresiones repartidas entre `http://www.cubiletehill.com/`, `http://cubiletehill.com/` y `https://cubiletehill.com/`. Workers Assets no admite redirecciones de nivel de dominio en `_redirects`, por lo que la consolidación se hace en el panel de Cloudflare:
+
+- **Always Use HTTPS** (SSL/TLS → Edge Certificates) para forzar `http → https`.
+- **Redirect Rules** para enviar `www` → `apex` (`https://cubiletehill.com`) con 301.
+- El `canonical`, `og:url`, JSON-LD, `robots.txt` (`Host: https://cubiletehill.com`) y el sitemap ya apuntan al apex HTTPS, de modo que, una vez aplicadas las reglas, Google consolidará la autoridad en una sola URL.
+
 ## GA4
 
 El identificador configurado es `G-HXM22WWPKP` mediante el script oficial de Google Tag Manager / gtag.

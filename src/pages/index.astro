@@ -23,13 +23,13 @@ const govtTourismUrl = 'https://sectur.guanajuato.gob.mx/';
 const govtTourismLabel = 'Guanajuato / México — Portal oficial de turismo';
 const siteRoot = (Astro.site ?? new URL(`https://${domain}`)).href.replace(/\/$/, '');
 
-const title = `${attractionFullName} (${attractionShortName}) — ${cityShort}, ${stateName} | Guía de visita y ubicación`;
-const description = `Cerro del Cubilete (Cubilete Hill), ${cityName}, ${stateName}, ${countryName}: mapa, cómo llegar desde el aeropuerto BJX en taxi, auto o autobús, ${nearbyLandmark1} y consejos de visita.`;
+const title = `${attractionFullName} (${attractionShortName}), ${cityShort} · Altitud 2.579 m, clima y cómo llegar a Cristo Rey`;
+const description = `Cerro del Cubilete (Cubilete Hill) en ${cityName}, ${stateName}: altitud de 2.579 m, clima y mejor época, horario del Santuario de Cristo Rey, cómo llegar desde el aeropuerto BJX y consejos de visita.`;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const ogImage = `${siteRoot}/og-card.png`;
 const heroImage = `${siteRoot}/images/cerro-cubilete-cristo-rey.jpg`;
 
-const rating = { value: '4.8', count: '16591' };
+const rating = { value: '4.8', count: '16615' };
 const coords = { latitude: 21.0119341, longitude: -101.3710159 };
 
 const faqs = [
@@ -80,6 +80,10 @@ const faqs = [
   {
     q: '¿Cómo llegar en autobús desde Guanajuato, León o Ciudad de México?',
     a: 'La referencia es la Central de Autobuses de Silao, con líneas nacionales como Primera Plus, ETN o Futura. Desde Guanajuato capital el trayecto es de unos 25 minutos y 16 km, con salidas cada media hora aproximadamente; León funciona como el gran hub del Bajío y la Central de Autobuses del Norte de CDMX tiene corridas directas a Guanajuato y León. Del centro de Silao conviene continuar en taxi, app o traslado hasta la cima.'
+  },
+  {
+    q: '¿Cuál es el clima en el Cerro del Cubilete?',
+    a: 'El cerro se encuentra a 2,579 m sobre el nivel del mar, en la sierra del Bajío, con clima semiseco templado de altura. La temporada seca (octubre a abril) suele ofrecer cielos despejados y mejor visibilidad; la de lluvias (junio a septiembre) concentra chubascos por la tarde. Las mañanas y noches pueden estar frescas incluso en verano, por lo que conviene llevar una capa ligera, protección solar y agua.'
   }
 ];
 
@@ -199,7 +203,8 @@ const sources = [
   { label: 'Gobierno del Estado de Guanajuato', href: 'https://www.guanajuato.gob.mx/', note: 'Información oficial del estado' },
   { label: 'Gobierno de México', href: 'https://www.gob.mx/', note: 'Portal federal .gob.mx' },
   { label: 'Visit México', href: 'https://www.visitmexico.com/', note: 'Promoción turística nacional' },
-  { label: 'Wikimedia Commons · fotografías del lugar', href: 'https://commons.wikimedia.org/wiki/Category:Cerro_del_Cubilete', note: 'Imágenes CC BY-SA 4.0 utilizadas en esta guía' }
+  { label: 'Wikimedia Commons · fotografías del lugar', href: 'https://commons.wikimedia.org/wiki/Category:Cerro_del_Cubilete', note: 'Imágenes CC BY-SA 4.0 utilizadas en esta guía' },
+  { label: 'Open-Meteo · pronóstico del clima', href: 'https://open-meteo.com/', note: 'Fuente de datos meteorológicos del widget de pronóstico en vivo' }
 ];
 
 // --- Accesos y transporte (aeropuertos, terminales y última milla) ---
@@ -313,6 +318,7 @@ const transport: TransportOption[] = [
           <a class="transition hover:text-[#d2ad6c]" href="#historia">Historia</a>
           <a class="transition hover:text-[#d2ad6c]" href="#planea">Planea</a>
           <a class="transition hover:text-[#d2ad6c]" href="#llegar">Cómo llegar</a>
+          <a class="transition hover:text-[#d2ad6c]" href="#clima">Clima</a>
           <a class="transition hover:text-[#d2ad6c]" href="#alrededores">Alrededores</a>
           <a class="transition hover:text-[#d2ad6c]" href="#faq">FAQ</a>
         </nav>
@@ -347,7 +353,7 @@ const transport: TransportOption[] = [
             </div>
             <aside class="border-l border-[#d2ad6c]/50 pl-6 text-[#f2eadc]">
               <p class="text-5xl display">4.8<span class="text-xl text-[#d2ad6c]">/5</span></p>
-              <p class="mt-1 text-sm text-white/60">16,591 reseñas en el dato proporcionado</p>
+              <p class="mt-1 text-sm text-white/60">16,615 reseñas en el dato proporcionado</p>
               <div class="mt-7 grid grid-cols-2 gap-y-5 text-sm">
                 <div><p class="eyebrow text-[#d2ad6c]">Altitud</p><p class="mt-1 text-lg">2,579 m</p></div>
                 <div><p class="eyebrow text-[#d2ad6c]">Acceso</p><p class="mt-1 text-lg">Gratuito</p></div>
@@ -466,6 +472,30 @@ const transport: TransportOption[] = [
         </div>
       </section>
 
+      <section id="clima" class="bg-[#181713] py-24 text-[#f2eadc] md:py-32">
+        <div class="container-shell grid gap-14 lg:grid-cols-[.72fr_1.28fr]">
+          <div>
+            <p class="eyebrow text-[#d2ad6c]">Clima y altura</p>
+            <h2 class="mt-4 text-5xl leading-[.98] md:text-6xl">Clima en el Cerro del Cubilete: qué temperatura esperar a 2.579 m.</h2>
+            <div class="mt-10 space-y-7 text-white/70">
+              <p>El cerro se sitúa a <strong class="font-semibold text-[#f2eadc]">2.579 metros sobre el nivel del mar</strong>, en la sierra del Bajío. Por la altitud, las mañanas y las noches pueden estar frescas incluso en pleno verano; conviene llevar una chaqueta o capa ligera además del protector solar y el agua.</p>
+              <p>El clima es <strong class="font-semibold text-[#f2eadc]">semiseco templado de altura</strong>. La temporada seca (octubre a abril) suele ofrecer cielos despejados y mejor visibilidad para el mirador. La temporada de lluvias (junio a septiembre) concentra chubascos por la tarde, así que conviene subir temprano.</p>
+              <p>Durante el día la temperatura puede ser agradable, pero cambia con rapidez entre sol, viento y sombra en la explanada. Revisa el pronóstico del día antes de salir y, si viajas en peregrinación o festividad, anticipa mayor afluencia y frío al amanecer.</p>
+            </div>
+            <p class="mt-8 text-sm leading-6 text-white/55">El pronóstico en vivo se obtiene de Open-Meteo y puede no cargar si el navegador no tiene conexión.</p>
+          </div>
+          <div class="border border-[#a57637]/35 bg-white/[0.03] p-7 md:p-9">
+            <div class="flex items-center justify-between">
+              <p class="eyebrow text-[#d2ad6c]">Pronóstico en vivo</p>
+              <span class="text-xs font-semibold uppercase tracking-[.12em] text-white/45">Open-Meteo</span>
+            </div>
+            <div id="weather-root" class="mt-6">
+              <p class="text-sm text-white/50">Cargando pronóstico…</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="alrededores" class="bg-[#f2eadc] py-24 md:py-32">
         <div class="container-shell">
           <div class="grid gap-12 lg:grid-cols-2">
@@ -574,6 +604,53 @@ const transport: TransportOption[] = [
           navigator.serviceWorker.register('/sw.js').catch(() => {});
         });
       }
+    </script>
+    <script is:inline>
+      (function () {
+        var root = document.getElementById('weather-root');
+        if (!root) return;
+        var wmo = {
+          0:['Despejado','☀️'],1:['Mayormente despejado','🌤️'],2:['Parcialmente nublado','⛅'],3:['Nublado','☁️'],
+          45:['Niebla','🌫️'],48:['Niebla con escarcha','🌫️'],
+          51:['Llovizna ligera','🌦️'],53:['Llovizna','🌦️'],55:['Llovizna intensa','🌧️'],
+          56:['Llovizna helada','🌧️'],57:['Llovizna helada intensa','🌧️'],
+          61:['Lluvia ligera','🌦️'],63:['Lluvia','🌧️'],65:['Lluvia intensa','🌧️'],
+          66:['Lluvia helada','🌧️'],67:['Lluvia helada intensa','🌧️'],
+          71:['Nieve ligera','🌨️'],73:['Nieve','🌨️'],75:['Nieve intensa','❄️'],77:['Granizo menudo','🌨️'],
+          80:['Chubascos','🌦️'],81:['Chubascos','🌧️'],82:['Chubascos intensos','⛈️'],
+          85:['Nieve dispersa','🌨️'],86:['Nieve dispersa intensa','❄️'],
+          95:['Tormenta','⛈️'],96:['Tormenta con granizo','⛈️'],99:['Tormenta con granizo intensa','⛈️']
+        };
+        function label(c){ return wmo[c] || ['—','🌡️']; }
+        var dias = ['dom','lun','mar','mié','jue','vie','sáb'];
+        var url = 'https://api.open-meteo.com/v1/forecast?latitude=21.0119&longitude=-101.3710&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America/Mexico_City&forecast_days=7&wind_speed_unit=kmh';
+        fetch(url).then(function(r){ return r.json(); }).then(function(d){
+          var cur = d.current; var lc = label(cur.weather_code);
+          var html = '<div class="flex items-end justify-between gap-6 border-b border-[#a57637]/25 pb-6">';
+          html += '<div><p class="text-6xl display leading-none">' + Math.round(cur.temperature_2m) + '°</p>';
+          html += '<p class="mt-2 text-lg">' + lc[1] + ' ' + lc[0] + '</p></div>';
+          html += '<div class="text-right text-sm text-white/65 space-y-1">';
+          html += '<p>Sensación: ' + Math.round(cur.apparent_temperature) + '°</p>';
+          html += '<p>Humedad: ' + cur.relative_humidity_2m + '%</p>';
+          html += '<p>Viento: ' + Math.round(cur.wind_speed_10m) + ' km/h</p></div></div>';
+          html += '<div class="mt-6 grid grid-cols-7 gap-1 text-center">';
+          var dd = d.daily;
+          for (var i = 0; i < dd.time.length; i++) {
+            var dt = new Date(dd.time[i] + 'T00:00:00');
+            var dl = label(dd.weather_code[i]);
+            html += '<div class="px-1">';
+            html += '<p class="text-[.68rem] uppercase tracking-[.08em] text-white/45">' + (i === 0 ? 'hoy' : dias[dt.getDay()]) + '</p>';
+            html += '<p class="my-2 text-xl">' + dl[1] + '</p>';
+            html += '<p class="text-sm font-semibold">' + Math.round(dd.temperature_2m_max[i]) + '°</p>';
+            html += '<p class="text-xs text-white/50">' + Math.round(dd.temperature_2m_min[i]) + '°</p>';
+            html += '</div>';
+          }
+          html += '</div>';
+          root.innerHTML = html;
+        }).catch(function(){
+          root.innerHTML = '<p class="text-sm text-white/55">No se pudo cargar el pronóstico en este momento. Revisa el clima antes de subir al cerro.</p>';
+        });
+      })();
     </script>
   </body>
 </html>
