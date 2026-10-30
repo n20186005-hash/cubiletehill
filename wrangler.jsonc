@@ -1,8 +1,10 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "cerro-del-cubilete",
-  "compatibility_date": "2026-09-11",
+  "name": "cubiletehill",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-10",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true
   }
 }

@@ -9,7 +9,7 @@ const site = configuredSite || DEFAULT_SITE_URL;
 export default defineConfig({
   site,
   trailingSlash: 'ignore',
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: page => !/\/404\/?$/.test(page) })],
   vite: {
     plugins: [tailwindcss()],
   },

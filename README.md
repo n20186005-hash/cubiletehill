@@ -1,65 +1,28 @@
-# Cerro del Cubilete — sitio turístico
+# Cerro del Cubilete — guía independiente
 
-Sitio estático de una sola página en español (México), construido con Astro + Tailwind CSS + TypeScript y preparado para desplegarse como sitio estático mediante Cloudflare Workers Assets.
+Guía turística y de divulgación cultural sin fines de lucro, en español de México. No representa al santuario ni vende entradas. Sitio estático Astro con Cloudflare Workers Assets.
 
-## Requisitos fijados
+## Entorno y comprobación
 
-- Node.js 24.21.0 (ver `.node-version` y `engines`)
-- pnpm 12.3.4 (ver `packageManager` y `engines`)
-- Astro 7.3.2
-- TypeScript 6.0.3
-- `@astrojs/check` 0.9.10
-- Tailwind CSS / Vite plugin 4.3.3
-- Wrangler 4.130.0
+Node 24.21.0, pnpm 12.3.4 y todas las dependencias conservan las versiones exactas del lockfile.
 
-## Dominio: un único punto de configuración
-
-El dominio por defecto es `https://cubiletehill.com`, definido en `astro.config.ts` y asignado a `site` de Astro.
-
-- Puede sobrescribirse con la variable de entorno `PUBLIC_SITE_URL` (URL HTTPS completo) sin tocar el código.
-- Canonical, Open Graph, JSON-LD, robots y sitemap se derivan de `Astro.site`.
-- Con dominio definido, `@astrojs/sitemap` genera `sitemap-0.xml` y `sitemap-index.xml`.
-
-## SEO de entidad y PWA
-
-- **NAP consistente**: nombre, dirección y teléfono del `Cerro del Cubilete` (Cubilete Hill) aparecen en cabecera, cuerpo y pie (`<address>`) con un único origen de datos en `src/pages/index.astro`.
-- **JSON-LD** (`@graph`): `WebSite`, `TouristAttraction` (con `@id`, `alternateName`, `image`, `geo`, `sameAs`), `LocalBusiness`, `BreadcrumbList` y `FAQPage`.
-- **TDK + OG**: título con `全称 + (域名含义) + ciudad`, meta description, canonical, `og:image:alt` y metadatos geográficos (`geo.region`, `geo.position`, `ICBM`).
-- **Fuentes (E-E-A-T)**: sección `#fuentes` con enlaces oficiales `.gob.mx` y `.org`.
-- **Transporte y accesos**: bloque dentro de `#llegar` con el aeropuerto BJX, la Central de Autobuses de Silao, los hubs de León y CDMX, el estado real del Tren de Pasajeros México–Querétaro (ficha oficial en `proyectosmexico.gob.mx`) y la última milla hasta la cima.
-- **PWA**: `public/manifest.webmanifest` + `public/sw.js` (cache del shell y modo offline), registrado desde la propia página.
-
-## Desarrollo y verificación
-
-```bash
-corepack enable
-CI=1 corepack pnpm install --frozen-lockfile
+```sh
+pnpm install --frozen-lockfile
 pnpm check
 pnpm build
+npx wrangler deploy --dry-run
 ```
 
-## Despliegue en Cloudflare Workers
+El Worker existente se llama `cubiletehill`. `src/worker.js` se ejecuta antes de Assets: consolida HTTP/www al apex HTTPS conservando ruta y consulta, redirige los alias index y devuelve 404/noindex real para rutas desconocidas y alias de error, incluido HEAD. No se agregan dominios o bindings externos. El sitemap incluye únicamente la portada. La actualización de `sw.js` retira las antiguas cachés del sitio sin devolver la portada para errores.
 
-Después de autenticar Wrangler:
+## Contenido y fuentes
 
-```bash
-pnpm deploy
-```
+La página distingue el cerro del Santuario de Cristo Rey. La portada del operador publica 06:00–20:00 para el recinto; el dato de Maps pertenece a la ficha de la montaña y no se convierte en horario estructurado. Las fuentes y su fecha de consulta se muestran en la página. Los datos de opiniones son una instantánea atribuida de terceros, no reseñas propias ni una valoración estructurada de esta guía. No se publican tarifas, frecuencias, accesibilidad continua o servicios ferroviarios sin confirmación.
 
-`wrangler.jsonc` publica `./dist` como Workers Assets. No hay base de datos, autenticación, CMS ni servidor de aplicación.
+La fotografía histórica del camino se sirve localmente como WebP con fuente, autor, licencia, fecha y cambios junto a su uso. La portada es una ilustración abstracta original identificada como tal. Véase `CREDITOS_FOTOS.md`. Las imágenes históricas no muestran el estado actual de accesos.
 
-## Redirecciones y canonical (acción en Cloudflare)
+Se conserva el identificador público de Google Analytics. El pie informa de Analytics, Google Maps y Open-Meteo; no se promete consentimiento previo ni ausencia de terceros. No hay formularios, cuentas, reservas o almacenamiento propio de preferencias.
 
-Los datos de Search Console muestran impresiones repartidas entre `http://www.cubiletehill.com/`, `http://cubiletehill.com/` y `https://cubiletehill.com/`. Workers Assets no admite redirecciones de nivel de dominio en `_redirects`, por lo que la consolidación se hace en el panel de Cloudflare:
+## Estado de validación
 
-- **Always Use HTTPS** (SSL/TLS → Edge Certificates) para forzar `http → https`.
-- **Redirect Rules** para enviar `www` → `apex` (`https://cubiletehill.com`) con 301.
-- El `canonical`, `og:url`, JSON-LD, `robots.txt` (`Host: https://cubiletehill.com`) y el sitemap ya apuntan al apex HTTPS, de modo que, una vez aplicadas las reglas, Google consolidará la autoridad en una sola URL.
-
-## GA4
-
-El identificador configurado es `G-HXM22WWPKP` mediante el script oficial de Google Tag Manager / gtag.
-
-## Fotografías
-
-Las tres fotografías de contenido son imágenes reales alojadas en Wikimedia Commons bajo CC BY-SA 4.0. Se mantienen como URLs de origen por una limitación de red del entorno de empaquetado actual; véase `CREDITOS_FOTOS.md`.
+Véase `VALIDATION_NOTES.md`. Las verificaciones locales no demuestran publicación ni funcionamiento de los dominios de producción. La activación y la revisión visual del candidato requieren una aceptación independiente.

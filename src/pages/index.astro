@@ -1,8 +1,7 @@
 ---
 import '../styles/global.css';
 import Logo from '../components/Logo.astro';
-
-// --- Entidad geográfica (fuente única de verdad, NAP consistente) ---
+import PhotoCredit from '../components/PhotoCredit.astro';
 const domain = 'cubiletehill.com';
 const attractionFullName = 'Cerro del Cubilete';
 const attractionShortName = 'Cubilete Hill';
@@ -10,257 +9,155 @@ const cityName = 'Silao de la Victoria';
 const cityShort = 'Silao';
 const stateName = 'Guanajuato';
 const countryName = 'México';
-const countryCode = 'MX';
-const postalCode = '36290';
-const telephone = '+52 472 723 2571';
-const telephoneHref = 'tel:+524727232571';
-const streetAddress = 'Cerro del Cubilete S/N, El Cubilete, La Montaña';
-const plusCode = '2J6J+QJ';
+const govtTourismUrl = 'https://guanajuato.mx/';
+const govtTourismLabel = 'Información turística de Guanajuato';
 const mapsShareUrl = 'https://maps.app.goo.gl/AYYQ49U1srAz49sE8';
-const nearbyLandmark1 = 'Parador Turístico Sangre de Cristo';
-const nearbyLandmark2 = 'Parque Guanajuato Bicentenario';
-const govtTourismUrl = 'https://sectur.guanajuato.gob.mx/';
-const govtTourismLabel = 'Guanajuato / México — Portal oficial de turismo';
+const sanctuaryUrl = 'https://santuariodecristorey.org/';
+const contactUrl = 'https://santuariodecristorey.org/contacto-electronico/';
 const siteRoot = (Astro.site ?? new URL(`https://${domain}`)).href.replace(/\/$/, '');
-
-const title = `${attractionFullName} (${attractionShortName}), ${cityShort} · Altitud 2.579 m, clima y cómo llegar a Cristo Rey`;
-const description = `Cerro del Cubilete (Cubilete Hill) en ${cityName}, ${stateName}: altitud de 2.579 m, clima y mejor época, horario del Santuario de Cristo Rey, cómo llegar desde el aeropuerto BJX y consejos de visita.`;
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const title = 'Cerro del Cubilete: horario de Cristo Rey, altitud y cómo llegar';
+const description = 'Planea la visita al Cerro del Cubilete en Silao, Guanajuato: distingue el horario del Santuario de Cristo Rey, consulta la ubicación, altitud y opciones de transporte.';
+const canonical = new URL('/', Astro.site ?? siteRoot).href;
 const ogImage = `${siteRoot}/og-card.png`;
-const heroImage = `${siteRoot}/images/cerro-cubilete-cristo-rey.jpg`;
-
-const rating = { value: '4.8', count: '16615' };
-const coords = { latitude: 21.0119341, longitude: -101.3710159 };
-
+const landscapeImage = `${siteRoot}/images/cerro-cubilete-camino.webp`;
+const coords = { latitude: 21.0119341, longitude: -101.3684356 };
 const faqs = [
   {
-    q: '¿La entrada al Cerro del Cubilete y al Santuario de Cristo Rey tiene costo?',
-    a: 'El acceso al monumento y al santuario se reporta como gratuito. Transporte, alimentos, recuerdos y, cuando aplique, servicios de estacionamiento se pagan por separado. En fechas de peregrinación conviene confirmar condiciones antes de salir.'
+    "q": "¿Cuál es el horario del Cerro del Cubilete y del Santuario de Cristo Rey?",
+    "a": "La web del Santuario de Cristo Rey publica apertura de 06:00 a 20:00. Es una referencia del recinto religioso, no un horario garantizado para toda la montaña ni cada camino. La ficha de Google Maps de Cubilete Hill consultada el 29 de octubre de 2026 muestra apertura el viernes a las 08:00. Como son fichas y ámbitos distintos, confirma con el santuario antes de salir; no uses el horario de misas como horario de visita."
   },
   {
-    q: '¿Cuál es el horario para visitar?',
-    a: 'Servicios de mapas publican actualmente un horario diario de 06:00 a 20:00 para el Santuario de Cristo Rey. Los horarios litúrgicos y los accesos pueden cambiar en celebraciones religiosas, por lo que es recomendable confirmarlos con el santuario.'
+    "q": "¿Dónde está el Cerro del Cubilete y qué altitud tiene?",
+    "a": "Está en Silao de la Victoria, Guanajuato, México. La promoción turística de Guanajuato indica una altitud aproximada de 2.579 metros sobre el nivel del mar. El enlace del mapa corresponde a la ficha de la montaña; no señala por sí solo un estacionamiento o una entrada accesible."
   },
   {
-    q: '¿Cuánto tiempo conviene dedicar a la visita?',
-    a: 'Para conocer la explanada, contemplar el monumento, entrar al santuario y disfrutar del paisaje, una visita de 1.5 a 2.5 horas suele ser práctica. Reserva más tiempo si asistirás a misa, viajarás en peregrinación o quieres recorrer el entorno con calma.'
+    "q": "¿El Cerro del Cubilete es lo mismo que Cristo Rey?",
+    "a": "El cerro es la montaña; el Santuario Votivo Nacional de Cristo Rey y su monumento están en la cima. Sus accesos y servicios tienen condiciones propias: una ficha del cerro no sustituye la información del recinto religioso."
   },
   {
-    q: '¿Se puede subir en automóvil?',
-    a: 'Sí. El acceso final es una carretera de montaña con curvas y pendientes. Maneja con precaución, especialmente con lluvia, niebla o tráfico de peregrinos, y evita detenerte fuera de zonas permitidas.'
+    "q": "¿Cuánto cuesta la visita?",
+    "a": "No hemos confirmado una tarifa vigente del recinto en las fuentes del santuario consultadas. Pregunta por las condiciones de entrada y por cualquier servicio aparte. Transporte, alimentos y estacionamiento pueden tener costos independientes; esta guía no vende entradas ni excursiones."
   },
   {
-    q: '¿Hay estacionamiento en la parte alta?',
-    a: 'Hay zonas de estacionamiento y una glorieta superior usada por visitantes. La capacidad y la operación pueden variar en fines de semana y peregrinaciones; llegar temprano ayuda a evitar saturación.'
+    "q": "¿Cómo llegar desde Silao, Guanajuato o León?",
+    "a": "Planifica la ruta hacia el Santuario de Cristo Rey en la cima, siguiendo los accesos señalizados. El camino incluye curvas y pendientes. Comprueba el estado de la carretera y acuerda el regreso con tu conductor; un punto del mapa no garantiza llegar en vehículo hasta la puerta."
   },
   {
-    q: '¿Dónde se encuentra exactamente el Cerro del Cubilete?',
-    a: 'Se ubica en el municipio de Silao de la Victoria, Guanajuato, México, en la sierra del Bajío, a unos 30 km de la ciudad de Guanajuato y a una altitud aproximada de 2,579 metros sobre el nivel del mar. Su Plus Code es 2J6J+QJ y su ubicación puede consultarse en Google Maps.'
+    "q": "¿Hay autobús hasta el Cubilete?",
+    "a": "Ecocubilete menciona corridas desde las terminales de Silao y Guanajuato, pero la información de tarifa está fechada en 2022. No hemos confirmado horarios, precio ni punto final actuales. Pregunta en la terminal por la Corrida al Cubilete y verifica dónde te dejará y cómo volverás antes de comprar."
   },
   {
-    q: '¿Por qué se le conoce internacionalmente como Cubilete Hill?',
-    a: 'Cubilete Hill es el nombre en inglés con el que se identifica al Cerro del Cubilete en mapas y fuentes internacionales. Designa exactamente el mismo lugar: la elevación que corona el Santuario de Cristo Rey en Silao, Guanajuato.'
+    "q": "¿Hay estacionamiento y acceso sin escalones?",
+    "a": "No hemos confirmado cupos, tarifas ni un itinerario continuo sin escalones. Si necesitas reducir caminatas o evitar pendientes, consulta con el santuario el punto de descenso, las rampas disponibles y el acceso al templo para tu fecha. El nuevo arco de acceso se encuentra al inicio de un recorrido de unos 800 metros al santuario, según el Gobierno de Guanajuato; no es una garantía de accesibilidad."
   },
   {
-    q: '¿El Cerro del Cubilete es lo mismo que el Santuario de Cristo Rey?',
-    a: 'El Cerro del Cubilete es la elevación y el conjunto del sitio; el Santuario de Cristo Rey es el templo y el monumento construido en la cima. Se visitan de forma conjunta y comparten explanada, accesos y estacionamientos.'
+    "q": "¿Cuánto tiempo reservar?",
+    "a": "Como orientación de esta guía, reserva unas dos horas para una visita tranquila a la explanada y el recinto, además del transporte. Una misa, una peregrinación, la caminata final o las esperas pueden ampliar ese tiempo; no es una duración oficial."
   },
   {
-    q: '¿La visita es apta para niños o personas mayores?',
-    a: 'La explanada y el interior del santuario son accesibles para la mayoría de visitantes. El trayecto en automóvil incluye curvas y pendientes, por lo que conviene viajar con calma, llevar agua y considerar una capa ligera por el clima de altura.'
+    "q": "¿Cómo llegar desde el aeropuerto del Bajío (BJX)?",
+    "a": "El operador GAP publica servicios de taxis y UNEBUS en el Aeropuerto Internacional de Guanajuato. Confirma el destino del autobús y, para llegar a la cima, acuerda los transbordos o un traslado con regreso. El directorio del aeropuerto no acredita un autobús directo al santuario."
   },
   {
-    q: '¿Cuál es el aeropuerto más cercano al Cerro del Cubilete?',
-    a: 'El Aeropuerto Internacional de Guanajuato (BJX), también conocido como Aeropuerto del Bajío, está en el municipio de Silao, a unos 35–40 km del cerro, es decir 50–60 minutos en auto. Desde ahí se llega en automóvil rentado, taxi o traslado contratado, porque no hay transporte público directo hasta la cima.'
-  },
-  {
-    q: '¿Se puede llegar en tren al Cerro del Cubilete?',
-    a: 'Actualmente no hay servicio de tren de pasajeros en operación hasta Silao o Guanajuato: la red ferroviaria de la zona se dedica al transporte de carga. El proyecto federal Tren de Pasajeros México–Querétaro sigue en construcción y se anunció una estación para Silao, pero todavía no está disponible para viajeros.'
-  },
-  {
-    q: '¿Cómo llegar en autobús desde Guanajuato, León o Ciudad de México?',
-    a: 'La referencia es la Central de Autobuses de Silao, con líneas nacionales como Primera Plus, ETN o Futura. Desde Guanajuato capital el trayecto es de unos 25 minutos y 16 km, con salidas cada media hora aproximadamente; León funciona como el gran hub del Bajío y la Central de Autobuses del Norte de CDMX tiene corridas directas a Guanajuato y León. Del centro de Silao conviene continuar en taxi, app o traslado hasta la cima.'
-  },
-  {
-    q: '¿Cuál es el clima en el Cerro del Cubilete?',
-    a: 'El cerro se encuentra a 2,579 m sobre el nivel del mar, en la sierra del Bajío, con clima semiseco templado de altura. La temporada seca (octubre a abril) suele ofrecer cielos despejados y mejor visibilidad; la de lluvias (junio a septiembre) concentra chubascos por la tarde. Las mañanas y noches pueden estar frescas incluso en verano, por lo que conviene llevar una capa ligera, protección solar y agua.'
+    "q": "¿Qué llevar por la altura y el clima?",
+    "a": "Lleva agua, protección solar, calzado que sujete bien y una capa para el viento o el frío. Revisa el pronóstico y las condiciones del camino antes de salir. La niebla o la lluvia pueden reducir la visibilidad; no cuentes con vistas despejadas por el mes de tu viaje."
   }
 ];
-
-const address = {
-  '@type': 'PostalAddress',
-  streetAddress,
-  postalCode,
-  addressLocality: cityName,
-  addressRegion: stateName,
-  addressCountry: countryCode
-};
-
-const geo = {
-  '@type': 'GeoCoordinates',
-  latitude: coords.latitude,
-  longitude: coords.longitude
-};
-
-const aggregateRating = {
-  '@type': 'AggregateRating',
-  ratingValue: rating.value,
-  reviewCount: rating.count,
-  bestRating: '5'
-};
-
-const attractionId = `${siteRoot}/#attraction`;
-
+const sources = [
+  {
+    "label": "Santuario de Cristo Rey · apertura",
+    "href": "https://santuariodecristorey.org/",
+    "note": "La portada publica 06:00–20:00 para el santuario; consultada el 29 de octubre de 2026."
+  },
+  {
+    "label": "Santuario · misas",
+    "href": "https://santuariodecristorey.org/servicio-liturgico-y-espirituales/horario-de-misas/",
+    "note": "El horario litúrgico es distinto del acceso de visitantes. La portada y esta página no enumeran las mismas misas dominicales; confirma tu celebración."
+  },
+  {
+    "label": "Santuario · historia",
+    "href": "https://santuariodecristorey.org/historia/",
+    "note": "Construcción del monumento actual desde 1944; bendición de la estatua en 1950."
+  },
+  {
+    "label": "Santuario · contacto",
+    "href": "https://santuariodecristorey.org/contacto-electronico/",
+    "note": "Canal publicado por el propio recinto para confirmar visita y servicios."
+  },
+  {
+    "label": "Guanajuato · orientación turística",
+    "href": "https://guanajuato.mx/blog/imperdibles/visita-cristo-rey-en-semana-santa-una-experiencia-espiritual-en-el-cerro-del-cubilete/",
+    "note": "Publicación del 10 de marzo de 2026: ubicación, altura y accesos por carretera."
+  },
+  {
+    "label": "Gobierno de Guanajuato · nuevo acceso",
+    "href": "https://boletines.guanajuato.gob.mx/2026/08/29/entrega-gobierno-de-la-gente-nuevo-arco-y-explanada-en-la-subida-al-cerro-del-cubilete/",
+    "note": "Entrega del arco y explanada el 29 de agosto de 2026; recorrido aproximado de 800 m al santuario."
+  },
+  {
+    "label": "Ecocubilete · transporte",
+    "href": "https://ecocubilete.net/bosque/ubicacion-del-bosque/",
+    "note": "Menciona corridas al Cubilete; tarifa fechada en 2022, no utilizada como precio vigente."
+  },
+  {
+    "label": "GAP · transporte del aeropuerto",
+    "href": "https://aeropuertosgap.com.mx/es/guanajuato/servicios/transportacion-terrestre.html",
+    "note": "Directorio del operador aeroportuario: taxis y UNEBUS; confirma recorridos directamente."
+  },
+  {
+    "label": "Ficha de Cubilete Hill en Google Maps",
+    "href": "https://maps.app.goo.gl/AYYQ49U1srAz49sE8",
+    "note": "4,8/5 y 16.661 opiniones; consulta del 29 de octubre de 2026. Datos de terceros, no opiniones de esta guía."
+  },
+  {
+    "label": "Open-Meteo · datos meteorológicos",
+    "href": "https://open-meteo.com/",
+    "note": "Pronóstico orientativo del punto del mapa; no es un parte de accesibilidad o carreteras."
+  }
+];
+const transport = [
+  {
+    "kind": "Desde Silao",
+    "title": "Ascenso hacia Cristo Rey",
+    "detail": "Elige el acceso señalizado hacia el santuario, revisa el recorrido completo y acuerda la vuelta antes de subir. Evita confundir el pin de la montaña con una puerta o zona de estacionamiento.",
+    "meta": "Carretera de montaña · curvas y pendientes"
+  },
+  {
+    "kind": "Desde Guanajuato o León",
+    "title": "Calcula el trayecto según tu salida",
+    "detail": "La promoción turística de Guanajuato describe accesos por carretera desde ambas ciudades. Consulta la ruta del día y añade margen para tráfico, lluvia o peregrinaciones; no usamos un tiempo fijo como garantía.",
+    "meta": "Comprueba el acceso antes de viajar",
+    "href": "https://guanajuato.mx/blog/imperdibles/visita-cristo-rey-en-semana-santa-una-experiencia-espiritual-en-el-cerro-del-cubilete/",
+    "linkLabel": "Orientación turística de Guanajuato"
+  },
+  {
+    "kind": "Autobús",
+    "title": "Pregunta por la Corrida al Cubilete",
+    "detail": "Ecocubilete menciona viajes desde las terminales de Silao y Guanajuato. Su referencia de tarifa es de 2022: confirma la operación actual, punto de bajada y último regreso en la terminal.",
+    "meta": "Sin frecuencia ni tarifa vigente confirmadas",
+    "href": "https://ecocubilete.net/bosque/ubicacion-del-bosque/",
+    "linkLabel": "Leer la referencia de Ecocubilete"
+  },
+  {
+    "kind": "Aeropuerto BJX",
+    "title": "Traslado desde el Aeropuerto de Guanajuato",
+    "detail": "GAP publica taxis y UNEBUS. Verifica el destino y las conexiones: esa oferta no demuestra una conexión directa a la cima. Para un traslado contratado, acuerda por adelantado regreso y punto de encuentro.",
+    "meta": "Directorio del operador aeroportuario",
+    "href": "https://aeropuertosgap.com.mx/es/guanajuato/servicios/transportacion-terrestre.html",
+    "linkLabel": "Ver transporte terrestre de GAP"
+  }
+];
 const graph = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'WebSite',
-      '@id': `${siteRoot}/#website`,
-      url: siteRoot,
-      name: `${attractionFullName} — ${attractionShortName}`,
-      description,
-      inLanguage: 'es-MX'
-    },
-    {
-      '@type': 'TouristAttraction',
-      '@id': attractionId,
-      name: attractionFullName,
-      alternateName: [
-        attractionShortName,
-        `${cityShort} ${attractionFullName}`,
-        `${attractionShortName}, ${cityShort}, ${stateName}`
-      ],
-      description,
-      url: canonical ?? siteRoot,
-      image: [
-        heroImage,
-        ogImage,
-        `${siteRoot}/images/cerro-cubilete-explanada.jpg`,
-        `${siteRoot}/images/cerro-cubilete-santuario.jpg`
-      ],
-      isAccessibleForFree: true,
-      publicAccess: true,
-      touristType: ['Peregrinación religiosa', 'Turismo de naturaleza', 'Turismo cultural'],
-      telephone,
-      address,
-      geo,
-      hasMap: mapsShareUrl,
-      sameAs: [mapsShareUrl, govtTourismUrl],
-      containedInPlace: {
-        '@type': 'City',
-        name: `${cityName}, ${stateName}, ${countryName}`
-      },
-      aggregateRating
-    },
-    {
-      '@type': 'LocalBusiness',
-      '@id': `${siteRoot}/#santuario-cristo-rey`,
-      name: 'Santuario de Cristo Rey',
-      parentOrganization: { '@id': attractionId },
-      telephone,
-      url: canonical ?? siteRoot,
-      address,
-      geo,
-      openingHoursSpecification: [
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
-          opens: '06:00',
-          closes: '20:00'
-        }
-      ],
-      aggregateRating,
-      priceRange: 'Acceso gratuito'
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': `${siteRoot}/#breadcrumb`,
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: countryName, item: 'https://www.gob.mx/' },
-        { '@type': 'ListItem', position: 2, name: stateName, item: govtTourismUrl },
-        { '@type': 'ListItem', position: 3, name: cityName },
-        { '@type': 'ListItem', position: 4, name: attractionFullName, item: canonical ?? siteRoot }
-      ]
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': `${siteRoot}/#preguntas`,
-      mainEntity: faqs.map((faq) => ({
-        '@type': 'Question',
-        name: faq.q,
-        acceptedAnswer: { '@type': 'Answer', text: faq.a }
-      }))
-    }
+    { '@type': 'WebSite', '@id': `${siteRoot}/#website`, url: siteRoot, name: 'Cerro del Cubilete · guía independiente', description, inLanguage: 'es-MX' },
+    { '@type': 'TouristAttraction', '@id': `${siteRoot}/#attraction`, name: attractionFullName, alternateName: attractionShortName, url: canonical, description, image: landscapeImage, address: { '@type': 'PostalAddress', addressLocality: cityName, addressRegion: stateName, addressCountry: 'MX' }, geo: { '@type': 'GeoCoordinates', ...coords }, hasMap: mapsShareUrl },
+    { '@type': 'Place', '@id': `${siteRoot}/#sanctuary`, name: 'Santuario Votivo Nacional de Cristo Rey', url: sanctuaryUrl, containedInPlace: { '@id': `${siteRoot}/#attraction` } },
+    { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: attractionFullName, item: canonical }] },
+    { '@type': 'FAQPage', mainEntity: faqs.map(faq => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } })) }
   ]
 };
-
-const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6624.599119018432!2d-101.37101588733194!3d21.011934080552354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842b9b813c000001%3A0xc94a13c76d791a07!2sCubilete%20Hill!5e1!3m2!1ses-MX!2smx!4v1789090788873!5m2!1ses-MX!2smx';
-
-const sources = [
-  { label: 'Ficha y ubicación en Google Maps', href: mapsShareUrl, note: 'Cubilete Hill · Silao, Guanajuato · valoración 4.8 (16,591)' },
-  { label: 'Secretaría de Turismo de Guanajuato', href: 'https://sectur.guanajuato.gob.mx/', note: 'Portal oficial .gob.mx de turismo estatal' },
-  { label: 'Gobierno del Estado de Guanajuato', href: 'https://www.guanajuato.gob.mx/', note: 'Información oficial del estado' },
-  { label: 'Gobierno de México', href: 'https://www.gob.mx/', note: 'Portal federal .gob.mx' },
-  { label: 'Visit México', href: 'https://www.visitmexico.com/', note: 'Promoción turística nacional' },
-  { label: 'Wikimedia Commons · fotografías del lugar', href: 'https://commons.wikimedia.org/wiki/Category:Cerro_del_Cubilete', note: 'Imágenes CC BY-SA 4.0 utilizadas en esta guía' },
-  { label: 'Open-Meteo · pronóstico del clima', href: 'https://open-meteo.com/', note: 'Fuente de datos meteorológicos del widget de pronóstico en vivo' }
-];
-
-// --- Accesos y transporte (aeropuertos, terminales y última milla) ---
-type TransportOption = {
-  kind: string;
-  title: string;
-  detail: string;
-  meta: string;
-  href?: string;
-  linkLabel?: string;
-};
-
-const transport: TransportOption[] = [
-  {
-    kind: 'Avión · opción principal',
-    title: 'Aeropuerto Internacional de Guanajuato (BJX)',
-    detail: 'Es la puerta de entrada más cercana al Cubilete y se encuentra en el propio municipio de Silao. Desde la terminal, la vía práctica es automóvil, taxi o traslado contratado; hay arrendadoras de autos en el recinto.',
-    meta: 'BJX · ≈35–40 km · 50–60 min',
-    href: 'https://www.aeropuertosgap.mx/es/guanajuato-3.html',
-    linkLabel: 'Aeropuerto en el sitio oficial del operador'
-  },
-  {
-    kind: 'Avión · alternativas',
-    title: 'Querétaro (QRO), Guadalajara (GDL) y CDMX (MEX)',
-    detail: 'Querétaro queda a unas 2 horas por autopista, Guadalajara a unas 3 horas y la Ciudad de México a 4–5 horas. Son útiles cuando encuentras mejor tarifa, aunque implican más traslado terrestre.',
-    meta: 'QRO ≈150 km · GDL ≈230 km · MEX ≈360 km'
-  },
-  {
-    kind: 'Autobús · opción más usada',
-    title: 'Central de Autobuses de Silao',
-    detail: 'Silao cuenta con central de autobuses con líneas nacionales como Primera Plus, ETN o Futura. Desde la terminal hay que tomar taxi, app o traslado hasta la cima: el autobús no sube al santuario.',
-    meta: '≈25 min y ≈16 km desde Guanajuato capital',
-    href: 'https://www.google.com/maps/search/?api=1&query=Central+de+Autobuses+de+Silao',
-    linkLabel: 'Ubicar la central en Google Maps'
-  },
-  {
-    kind: 'Autobús · desde otras ciudades',
-    title: 'León (Terminal San Jerónimo) y CDMX (Central del Norte)',
-    detail: 'León funciona como el gran hub del Bajío, con salidas frecuentes hacia Silao y Guanajuato capital. Desde la Central de Autobuses del Norte de CDMX hay corridas directas a Guanajuato y León.',
-    meta: 'León ≈50 km · Guanajuato–Silao cada ≈30 min'
-  },
-  {
-    kind: 'Tren · en proyecto, aún no operativo',
-    title: 'Tren de Pasajeros México–Querétaro (estación anunciada en Silao)',
-    detail: 'Hoy no existe servicio de tren de pasajeros en operación hasta el Bajío: la red ferroviaria de la zona se dedica a carga. El proyecto federal México–Querétaro continúa en obra y se anunció una estación para Silao, así que conviene seguir su avance oficial antes de planear un viaje en tren.',
-    meta: 'No operativo · proyecto en construcción',
-    href: 'https://www.proyectosmexico.gob.mx/ppp07-tren-mexico-queretaro/',
-    linkLabel: 'Ficha oficial del proyecto (gob.mx)'
-  },
-  {
-    kind: 'Auto rentado, taxi y apps',
-    title: 'Última milla hasta la cima',
-    detail: 'Rentar auto en el aeropuerto o tomar taxi, Uber, DiDi o traslado privado desde Silao y León es la forma más flexible. El tramo final es carretera de montaña con curvas y pendientes, por lo que conviene calcular 35–45 min desde Silao.',
-    meta: 'Silao ≈30 km · Guanajuato ≈30 km · León ≈50 km'
-  }
-];
+const mapSrc = `https://www.google.com/maps?q=${coords.latitude},${coords.longitude}&z=15&output=embed`;
 ---
 <!doctype html>
 <html lang="es-MX">
@@ -272,6 +169,9 @@ const transport: TransportOption[] = [
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#181713" />
     {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="alternate" hreflang="es-MX" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="preload" as="image" href="/images/cubilete-abstract.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <!-- Geolocalización explícita del ente físico (NAP + coordenadas) -->
     <meta name="geo.region" content="MX-GUA" />
@@ -301,7 +201,7 @@ const transport: TransportOption[] = [
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content={attractionFullName} />
     <meta name="application-name" content={attractionFullName} />
-    <script type="application/ld+json" set:html={JSON.stringify(graph)}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(graph)}></script>
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -324,11 +224,12 @@ const transport: TransportOption[] = [
         </nav>
         <a href="https://maps.app.goo.gl/AYYQ49U1srAz49sE8" rel="noopener noreferrer" target="_blank" class="border border-[#a57637] px-4 py-2 text-[.7rem] font-bold uppercase tracking-[.12em] text-[#f2eadc] transition hover:bg-[#a57637] hover:text-[#181713]">Abrir mapa</a>
       </div>
+      <details class="mobile-nav md:hidden"><summary>Secciones de la guía</summary><nav aria-label="Navegación móvil"><a href="#planea">Horario y visita</a><a href="#llegar">Cómo llegar</a><a href="#historia">Historia</a><a href="#clima">Clima</a><a href="#faq">Preguntas</a><a href="#fuentes">Fuentes</a></nav></details>
     </header>
 
     <main id="inicio">
-      <section class="hero-photo deco-frame gold-grid relative flex min-h-[92svh] items-end overflow-hidden text-white">
-        <div class="container-shell relative z-10 pb-16 pt-36 md:pb-24">
+      <section class="hero-photo deco-frame relative flex min-h-[92svh] items-end overflow-hidden text-white">
+        <div class="container-shell relative z-10 pb-16 pt-44 md:pt-36 md:pb-24">
           <div class="grid items-end gap-10 md:grid-cols-[1fr_320px]">
             <div>
               <nav aria-label="Ruta de navegación" class="mb-6 text-[.68rem] font-semibold uppercase tracking-[.15em] text-white/55">
@@ -349,20 +250,21 @@ const transport: TransportOption[] = [
                 Cerro del<br/><span class="italic text-[#d2ad6c]">Cubilete</span>
                 <span class="mt-5 block text-[clamp(1.05rem,2.2vw,1.75rem)] font-normal not-italic leading-tight tracking-normal text-white/75">(Cubilete Hill) — {cityShort}, {stateName}, {countryName}</span>
               </h1>
-              <p class="mt-8 max-w-2xl text-lg leading-8 text-white/78">Bienvenido al <strong class="font-semibold text-white">Cerro del Cubilete</strong>, reconocido internacionalmente como <strong class="font-semibold text-white">Cubilete Hill</strong>: la cima de la sierra del Bajío que sostiene el monumento de Cristo Rey y uno de los paisajes de peregrinación más reconocibles de Guanajuato, con arquitectura monumental y horizonte abierto.</p>
+              <p class="mt-8 max-w-2xl text-lg leading-8 text-white/78">El <strong class="font-semibold text-white">Cerro del Cubilete</strong> es la montaña de Silao donde se encuentra el <strong class="font-semibold text-white">Santuario de Cristo Rey</strong>. Consulta qué horario corresponde al recinto, cómo organizar el ascenso y qué confirmar antes de viajar.</p>
             </div>
             <aside class="border-l border-[#d2ad6c]/50 pl-6 text-[#f2eadc]">
               <p class="text-5xl display">4.8<span class="text-xl text-[#d2ad6c]">/5</span></p>
-              <p class="mt-1 text-sm text-white/60">16,615 reseñas en el dato proporcionado</p>
+              <p class="mt-1 text-sm text-white/60"><a href={mapsShareUrl} target="_blank" rel="noopener noreferrer" class="underline">16.661 opiniones en Google Maps</a><br/>Consulta: 29 de octubre de 2026</p>
               <div class="mt-7 grid grid-cols-2 gap-y-5 text-sm">
                 <div><p class="eyebrow text-[#d2ad6c]">Altitud</p><p class="mt-1 text-lg">2,579 m</p></div>
-                <div><p class="eyebrow text-[#d2ad6c]">Acceso</p><p class="mt-1 text-lg">Gratuito</p></div>
+                <div><p class="eyebrow text-[#d2ad6c]">Ubicación</p><p class="mt-1 text-lg">Silao, Guanajuato</p></div>
                 <div><p class="eyebrow text-[#d2ad6c]">Horario*</p><p class="mt-1 text-lg">06:00–20:00</p></div>
-                <div><p class="eyebrow text-[#d2ad6c]">Plus Code</p><p class="mt-1 text-lg">2J6J+QJ</p></div>
+                <div><p class="eyebrow text-[#d2ad6c]">Visita</p><p class="mt-1 text-lg">Confirma el acceso</p></div>
               </div>
-              <p class="mt-5 text-xs leading-5 text-white/50">*Horario publicado en servicios de mapas; puede variar en celebraciones religiosas.</p>
+              <p class="mt-5 text-xs leading-5 text-white/50">*La <a href={sanctuaryUrl} target="_blank" rel="noopener noreferrer" class="underline">web del santuario</a> publica 06:00–20:00. Maps muestra viernes 08:00 para la ficha de la montaña. Son referencias distintas; confirma antes de salir. Consultadas el 29 de octubre de 2026.</p>
             </aside>
           </div>
+          <p class="hero-credit mt-8 text-xs">Ilustración abstracta original de montaña; no es una fotografía ni representa un acceso real.</p>
         </div>
       </section>
 
@@ -375,7 +277,7 @@ const transport: TransportOption[] = [
           </div>
           <div class="space-y-8 text-[1.05rem] leading-8 text-[#38352d]">
             <p class="text-2xl leading-9 display">En la cima del Cerro del Cubilete, el Santuario de Cristo Rey convierte la llegada en una experiencia de escala: primero la montaña, luego la explanada y, finalmente, la figura de brazos abiertos sobre la cúpula.</p>
-            <p>La devoción en este cerro se remonta a las primeras décadas del siglo XX. El monumento actual comenzó a construirse en la década de 1940 y se convirtió en la quinta gran representación de Cristo levantada en el lugar, según la historia del propio santuario.</p>
+            <p>La devoción en este cerro se remonta a las primeras décadas del siglo XX. Según la <a href="https://santuariodecristorey.org/historia/" target="_blank" rel="noopener noreferrer" class="underline">historia del santuario</a>, el monumento actual comenzó a construirse en 1944 y la estatua fue bendecida en 1950. Es el quinto de los monumentos de esta devoción descritos por el recinto, no el quinto levantado en esta misma cima.</p>
             <p>La cima se encuentra a unos <strong>2,579 metros sobre el nivel del mar</strong>. Desde allí, en días despejados, la vista se extiende sobre las sierras y llanuras del centro de Guanajuato. El ascenso forma parte de la visita: carretera de montaña, cambios de paisaje y una llegada que se abre de golpe hacia la explanada.</p>
             <blockquote class="mt-12 border-y border-[#a57637]/40 py-9">
               <span class="quote-mark">“</span>
@@ -388,24 +290,11 @@ const transport: TransportOption[] = [
       <section class="bg-[#181713] py-16 text-[#f2eadc] md:py-24" aria-label="Galería fotográfica">
         <div class="container-shell">
           <div class="mb-9 flex items-end justify-between gap-6">
-            <div><p class="eyebrow text-[#d2ad6c]">Miradas del Cubilete</p><h2 class="mt-2 text-4xl md:text-5xl">La cima en tres escalas</h2></div>
-            <p class="hidden max-w-sm text-right text-sm leading-6 text-white/50 md:block">Fotografías reales de Wikimedia Commons. Consulta los créditos CC BY-SA 4.0 al pie.</p>
+            <div><p class="eyebrow text-[#d2ad6c]">Miradas del Cubilete</p><h2 class="mt-2 text-4xl md:text-5xl">Una mirada histórica al camino</h2></div>
+            <p class="hidden max-w-sm text-right text-sm leading-6 text-white/50 md:block">Fotografía de Wikimedia Commons. Autoría y licencia junto a la imagen. No muestra las condiciones actuales del camino.</p>
           </div>
-          <div class="grid gap-4 md:grid-cols-12">
-            <figure class="group relative min-h-[540px] overflow-hidden md:col-span-7">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Cristo_Rey_-_Cerro_del_Cubilete_-_Silao%2C_Guanajuato_-_Explanada.jpg" alt="Explanada y monumento de Cristo Rey en el Cerro del Cubilete (Cubilete Hill), Silao, Guanajuato, México" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" />
-              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-6 pb-6 pt-20 text-sm">La explanada · vista monumental</figcaption>
-            </figure>
-            <div class="grid gap-4 md:col-span-5">
-              <figure class="group relative min-h-[260px] overflow-hidden">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Cristo_Rey_en_el_Cerro_del_Cubilete_-_Silao%2C_Guanajuato%2C_M%C3%A9xico.jpg" alt="Estatua de Cristo Rey en el Cerro del Cubilete (Cubilete Hill), Silao, Guanajuato" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.025]" />
-                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-5 pb-5 pt-16 text-sm">La figura · escala vertical</figcaption>
-              </figure>
-              <figure class="group relative min-h-[260px] overflow-hidden">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Camino_al_Cerro_del_Cubilete_2020_05.jpg" alt="Camino de montaña hacia el Cerro del Cubilete (Cubilete Hill) en Silao, Guanajuato" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" />
-                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-5 pb-5 pt-16 text-sm">El camino · sierra del Bajío</figcaption>
-              </figure>
-            </div>
+          <div class="photo-gallery">
+            <figure class="photo-figure"><img src="/images/cerro-cubilete-camino.webp" width="1600" height="900" alt="Camino empedrado hacia el Cubilete con autobuses a distancia, fotografiado en 2020" loading="lazy" decoding="async" /><figcaption><p>El camino de ascenso · fotografía histórica</p><PhotoCredit /></figcaption></figure>
           </div>
         </div>
       </section>
@@ -416,16 +305,16 @@ const transport: TransportOption[] = [
           <div class="mt-4 grid gap-10 lg:grid-cols-[.82fr_1.18fr]">
             <h2 class="text-5xl leading-[.98] md:text-7xl">Lo útil antes de empezar la subida.</h2>
             <div class="grid gap-px bg-[#a57637]/25 sm:grid-cols-2">
-              <article class="bg-[#fbf6ed] p-7 md:p-9"><p class="eyebrow bronze-text">01 · Entrada / costo</p><h3 class="mt-3 text-3xl">Acceso gratuito</h3><p class="mt-4 leading-7 text-[#575247]">La visita al monumento y santuario se reporta sin costo de entrada. Presupuesta aparte comida, recuerdos, transporte y cualquier servicio de estacionamiento que opere ese día.</p></article>
-              <article class="bg-[#fbf6ed] p-7 md:p-9"><p class="eyebrow bronze-text">02 · Mejor momento</p><h3 class="mt-3 text-3xl">Mañana, con margen</h3><p class="mt-4 leading-7 text-[#575247]">Salir temprano suele ayudar a encontrar menos tráfico, temperaturas más amables y mejor margen ante niebla o cambios del clima. En peregrinaciones y fiestas religiosas, anticipa mayor afluencia.</p></article>
-              <article class="bg-[#fbf6ed] p-7 md:p-9"><p class="eyebrow bronze-text">03 · Duración sugerida</p><h3 class="mt-3 text-3xl">1.5–2.5 horas</h3><p class="mt-4 leading-7 text-[#575247]">Tiempo práctico para explanada, monumento, interior del santuario y vistas. Si asistirás a misa o quieres permanecer con calma, reserva media jornada.</p></article>
-              <article class="bg-[#fbf6ed] p-7 md:p-9"><p class="eyebrow bronze-text">04 · Estacionamiento</p><h3 class="mt-3 text-3xl">En la parte alta</h3><p class="mt-4 leading-7 text-[#575247]">Hay zonas de estacionamiento próximas a la cima. La capacidad puede reducirse en días de mucha afluencia; no dependas de encontrar espacio inmediato y sigue la señalización local.</p></article>
+              <article class="bg-[#fbf6ed] p-7 md:p-9"><p class="eyebrow bronze-text">01 · Entrada / costo</p><h3 class="mt-3 text-3xl">Confirma las condiciones</h3><p class="mt-4 leading-7 text-[#575247]">No hemos confirmado una tarifa vigente en las fuentes del santuario consultadas. Pregunta por el acceso al recinto y presupuesta aparte transporte, comida y servicios que utilices.</p></article>
+              <article class="bg-[#fbf6ed] p-7 md:p-9"><p class="eyebrow bronze-text">02 · Horario del santuario</p><h3 class="mt-3 text-3xl">06:00–20:00, según su web</h3><p class="mt-4 leading-7 text-[#575247]">La portada oficial publica este horario del recinto. La ficha de la montaña en Maps muestra apertura el viernes a las 08:00. No son garantías equivalentes: confirma tu visita y consulta las misas por separado.</p></article>
+              <article class="bg-[#fbf6ed] p-7 md:p-9"><p class="eyebrow bronze-text">03 · Duración sugerida</p><h3 class="mt-3 text-3xl">Unas dos horas</h3><p class="mt-4 leading-7 text-[#575247]">Orientación de esta guía, además del transporte. Añade margen si asistirás a misa, caminarás desde el arco o viajas en una peregrinación; no es una duración oficial.</p></article>
+              <article class="bg-[#fbf6ed] p-7 md:p-9"><p class="eyebrow bronze-text">04 · Estacionamiento</p><h3 class="mt-3 text-3xl">Consulta dónde bajar</h3><p class="mt-4 leading-7 text-[#575247]">No hemos confirmado cupos, tarifas ni acceso continuo sin escalones. Pregunta por el punto de descenso y las rampas si necesitas reducir caminatas. El Gobierno estatal sitúa el nuevo arco al comienzo de unos 800 m hacia el santuario.</p></article>
             </div>
           </div>
           <div class="mt-12 grid gap-5 rounded-sm bg-[#914c35] p-7 text-[#fff8ec] md:grid-cols-[auto_1fr_auto] md:items-center md:p-9">
             <div class="text-4xl">↗</div>
             <div><p class="eyebrow text-[#edc991]">Antes de salir</p><p class="mt-1 text-lg">Confirma horarios litúrgicos y avisos especiales directamente con el Santuario de Cristo Rey.</p></div>
-            <a class="w-fit border border-white/50 px-5 py-3 text-xs font-bold uppercase tracking-[.13em] hover:bg-white hover:text-[#914c35]" href="tel:+524727232571">+52 472 723 2571</a>
+            <a class="w-fit border border-white/50 px-5 py-3 text-xs font-bold uppercase tracking-[.13em] hover:bg-white hover:text-[#914c35]" href={contactUrl} target="_blank" rel="noopener noreferrer">Contacto oficial</a>
           </div>
         </div>
       </section>
@@ -436,9 +325,9 @@ const transport: TransportOption[] = [
             <p class="eyebrow text-[#d2ad6c]">Cómo llegar</p>
             <h2 class="mt-4 text-5xl leading-[.98] md:text-6xl">Cómo llegar al Cerro del Cubilete: la carretera es parte del viaje.</h2>
             <div class="mt-10 space-y-8 text-white/70">
-              <div><p class="eyebrow text-[#d2ad6c]">Desde Silao</p><p class="mt-2 leading-7">Toma la salida hacia el Cerro del Cubilete y continúa por la carretera de montaña. El santuario está aproximadamente a 30 km del área de Silao; el tramo final tiene curvas y pendientes.</p></div>
-              <div><p class="eyebrow text-[#d2ad6c]">Desde Guanajuato capital</p><p class="mt-2 leading-7">La cima está también a unos 30 km de la ciudad de Guanajuato. Revisa la ruta antes de entrar a la sierra y evita depender de señal móvil en todo el trayecto.</p></div>
-              <div><p class="eyebrow text-[#d2ad6c]">Desde León</p><p class="mt-2 leading-7">La distancia ronda los 50 km. Para una visita de ida y vuelta, conviene salir con combustible suficiente y considerar tráfico extra en fines de semana o peregrinaciones.</p></div>
+              <div><p class="eyebrow text-[#d2ad6c]">Desde Silao</p><p class="mt-2 leading-7">Toma la salida hacia el Cerro del Cubilete y continúa por la carretera de montaña. Comprueba el acceso señalado y el punto final permitido para vehículos; el tramo final tiene curvas y pendientes.</p></div>
+              <div><p class="eyebrow text-[#d2ad6c]">Desde Guanajuato capital</p><p class="mt-2 leading-7">La promoción turística de Guanajuato describe la llegada por carretera. Revisa la ruta y los avisos antes de entrar a la sierra, y guarda las indicaciones para el regreso.</p></div>
+              <div><p class="eyebrow text-[#d2ad6c]">Desde León</p><p class="mt-2 leading-7">Planifica la conexión con Silao y el ascenso completo. Acuerda un punto de encuentro y el regreso con tu conductor; en peregrinaciones pueden cambiar las condiciones de circulación.</p></div>
               <div class="border-l-2 border-[#a57637] pl-5"><p class="font-semibold text-[#f2eadc]">Conduce con precaución.</p><p class="mt-1 text-sm leading-6">Curvas cerradas, niebla, lluvia y tránsito de autobuses o peregrinos pueden cambiar las condiciones del ascenso.</p></div>
               <p class="text-sm leading-6 text-white/60">Para actualizaciones oficiales e información turística regional, consulta el <a class="font-semibold text-[#d2ad6c] underline decoration-[#a57637] underline-offset-2 hover:text-white" href={govtTourismUrl} target="_blank" rel="noopener noreferrer">{govtTourismLabel}</a>.</p>
             </div>
@@ -446,14 +335,14 @@ const transport: TransportOption[] = [
           <div class="map-wrap overflow-hidden border border-[#a57637]/35 bg-black/20">
             <iframe src={mapSrc} title="Mapa de Cerro del Cubilete en Silao, Guanajuato" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
             <div class="flex flex-wrap items-center justify-between gap-3 border-t border-[#a57637]/25 p-5 text-sm text-white/60">
-              <span>Cerro del Cubilete · Silao, Guanajuato · 2J6J+QJ</span>
+              <span>Ficha de la montaña · Silao, Guanajuato</span>
               <a class="font-bold text-[#d2ad6c] hover:text-white" href="https://maps.app.goo.gl/AYYQ49U1srAz49sE8" target="_blank" rel="noopener noreferrer">Indicaciones en Google Maps →</a>
             </div>
           </div>
           <div class="border-t border-[#a57637]/30 pt-12 lg:col-span-2">
             <p class="eyebrow text-[#d2ad6c]">Transporte y accesos</p>
             <h2 class="mt-4 max-w-3xl text-4xl leading-[1.03] md:text-5xl">Cómo llegar al Cerro del Cubilete desde aeropuertos, terminales y ciudades cercanas.</h2>
-            <p class="mt-5 max-w-3xl leading-7 text-white/70">El aeropuerto más cercano es el <strong class="font-semibold text-[#f2eadc]">Aeropuerto Internacional de Guanajuato (BJX)</strong>, ubicado en el municipio de Silao. En autobús, la referencia es la <strong class="font-semibold text-[#f2eadc]">Central de Autobuses de Silao</strong>; en tren, todavía no hay servicio de pasajeros en operación. En todos los casos, el último tramo hasta la cima se recorre en auto, taxi o traslado contratado.</p>
+            <p class="mt-5 max-w-3xl leading-7 text-white/70">Organiza por separado la llegada a Silao y el tramo de montaña. Comprueba el destino final de tu transporte, las caminatas necesarias y el regreso; no damos por confirmadas frecuencias, tarifas ni un servicio ferroviario al santuario.</p>
             <div class="mt-9 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {transport.map((item) => (
                 <article class="border border-[#a57637]/30 bg-white/[0.03] p-7">
@@ -467,7 +356,7 @@ const transport: TransportOption[] = [
                 </article>
               ))}
             </div>
-            <p class="mt-8 text-sm leading-6 text-white/55">Distancias y tiempos son aproximados y pueden variar por tráfico, clima y días de peregrinación. Confirma horarios de autobús, disponibilidad de taxis y condiciones de la carretera antes de viajar.</p>
+            <p class="mt-8 text-sm leading-6 text-white/55">El nuevo arco y explanada se entregaron el 29 de agosto de 2026. El Gobierno estatal describe unos 800 m desde ese acceso hacia el santuario. La obra no certifica una ruta sin escalones ni que todos los vehículos puedan subir hasta la puerta.</p>
           </div>
         </div>
       </section>
@@ -479,7 +368,7 @@ const transport: TransportOption[] = [
             <h2 class="mt-4 text-5xl leading-[.98] md:text-6xl">Clima en el Cerro del Cubilete: qué temperatura esperar a 2.579 m.</h2>
             <div class="mt-10 space-y-7 text-white/70">
               <p>El cerro se sitúa a <strong class="font-semibold text-[#f2eadc]">2.579 metros sobre el nivel del mar</strong>, en la sierra del Bajío. Por la altitud, las mañanas y las noches pueden estar frescas incluso en pleno verano; conviene llevar una chaqueta o capa ligera además del protector solar y el agua.</p>
-              <p>El clima es <strong class="font-semibold text-[#f2eadc]">semiseco templado de altura</strong>. La temporada seca (octubre a abril) suele ofrecer cielos despejados y mejor visibilidad para el mirador. La temporada de lluvias (junio a septiembre) concentra chubascos por la tarde, así que conviene subir temprano.</p>
+              <p>La altitud es una referencia del cerro, no la altura de la estatua. El viento, la niebla o la lluvia pueden cambiar la experiencia del ascenso y ocultar el panorama. Comprueba el pronóstico de tu fecha y las indicaciones locales; una estación del año no asegura cielo despejado.</p>
               <p>Durante el día la temperatura puede ser agradable, pero cambia con rapidez entre sol, viento y sombra en la explanada. Revisa el pronóstico del día antes de salir y, si viajas en peregrinación o festividad, anticipa mayor afluencia y frío al amanecer.</p>
             </div>
             <p class="mt-8 text-sm leading-6 text-white/55">El pronóstico en vivo se obtiene de Open-Meteo y puede no cargar si el navegador no tiene conexión.</p>
@@ -503,18 +392,17 @@ const transport: TransportOption[] = [
               <p class="eyebrow bronze-text">Qué comer cerca</p>
               <h2 class="mt-4 text-5xl md:text-6xl">Antojitos para bajar de la cima.</h2>
               <p class="mt-6 max-w-xl text-lg leading-8 text-[#575247]">En el acceso y la zona del santuario suelen encontrarse puestos de comida sencilla y recuerdos. Para una comida más completa, Silao ofrece más opciones antes o después del ascenso.</p>
-              <p class="mt-5 max-w-xl text-lg leading-8 text-[#575247]">Al visitar el <strong class="font-medium text-[#181713]">Cerro del Cubilete</strong>, conviene aprovechar referencias cercanas del corredor serrano como el <strong class="font-medium text-[#181713]">{nearbyLandmark1}</strong> y el <strong class="font-medium text-[#181713]">{nearbyLandmark2}</strong>.</p>
+              <p class="mt-5 max-w-xl text-lg leading-8 text-[#575247]">No dependas de encontrar un puesto abierto en la cima. Lleva agua y organiza la comida según tus necesidades y el regreso previsto.</p>
               <div class="mt-8 grid gap-3 sm:grid-cols-2">
                 <div class="border border-[#a57637]/35 p-5"><h3 class="text-2xl">Gorditas y quesadillas</h3><p class="mt-2 text-sm leading-6 text-[#625c50]">Una opción práctica de antojito para un día de carretera.</p></div>
                 <div class="border border-[#a57637]/35 p-5"><h3 class="text-2xl">Tacos y café de olla</h3><p class="mt-2 text-sm leading-6 text-[#625c50]">Busca negocios con rotación visible y horarios confirmados el mismo día.</p></div>
               </div>
             </div>
             <div class="bg-[#181713] p-8 text-[#f2eadc] md:p-10">
-              <h2 class="eyebrow text-[#d2ad6c]">Lugares y atracciones cerca del Cerro del Cubilete</h2>
+              <h2 class="eyebrow text-[#d2ad6c]">Completa el día sin improvisar</h2>
               <div class="mt-7 space-y-8">
-                <article><p class="text-sm text-[#d2ad6c]">≈ 4 km</p><h3 class="mt-1 text-3xl">Parador Turístico Sangre de Cristo</h3><p class="mt-2 leading-7 text-white/60">Una parada cercana en el corredor serrano, útil para completar la ruta del Cubilete.</p></article>
-                <article class="border-t border-white/10 pt-8"><p class="text-sm text-[#d2ad6c]">Corredor Silao–Guanajuato</p><h3 class="mt-1 text-3xl">Parque Guanajuato Bicentenario</h3><p class="mt-2 leading-7 text-white/60">Recinto cultural y de exposiciones que puede integrarse a una jornada por la zona.</p></article>
-                <article class="border-t border-white/10 pt-8"><p class="text-sm text-[#d2ad6c]">En la misma sierra</p><h3 class="mt-1 text-3xl">Paisaje del Área de Preservación</h3><p class="mt-2 leading-7 text-white/60">El propio entorno del cerro ofrece panoramas secos, caminos rurales y una lectura distinta del Bajío fuera de la explanada.</p></article>
+                <article><h3 class="mt-1 text-3xl">Silao, antes o después</h3><p class="mt-2 leading-7 text-white/60">Deja margen para comer y conectar con tu siguiente transporte. Confirma los horarios de cada negocio; esta guía no recomienda un establecimiento concreto.</p></article>
+                <article class="border-t border-white/10 pt-8"><h3 class="mt-1 text-3xl">El entorno de la montaña</h3><p class="mt-2 leading-7 text-white/60">Respeta cierres y accesos habilitados. La visita al santuario no autoriza entrar en predios, bosques o caminos laterales; organiza cualquier recorrido adicional con su responsable.</p></article>
               </div>
             </div>
           </div>
@@ -558,7 +446,7 @@ const transport: TransportOption[] = [
             <div>
               <p class="eyebrow bronze-text">Fuentes y verificación</p>
               <h2 class="mt-4 text-5xl leading-[.98] md:text-6xl">Datos abiertos y enlaces oficiales.</h2>
-              <p class="mt-6 max-w-sm leading-7 text-[#625c50]">Esta guía es informativa e independiente. La ubicación, el contacto y el contexto del <strong class="font-medium text-[#181713]">Cerro del Cubilete</strong> se contrastan con fuentes públicas y con portales oficiales de turismo.</p>
+              <p class="mt-6 max-w-sm leading-7 text-[#625c50]">Esta guía turística y de divulgación cultural es independiente y sin fines de lucro. La ubicación, el contacto y el contexto del <strong class="font-medium text-[#181713]">Cerro del Cubilete</strong> se contrastan con las fuentes indicadas. Consulta de estas referencias y Maps: 29 de octubre de 2026. Los datos de mapas no sustituyen al operador.</p>
             </div>
             <ul class="grid gap-px bg-[#a57637]/25 sm:grid-cols-2">
               {sources.map((source) => (
@@ -575,7 +463,7 @@ const transport: TransportOption[] = [
       <section class="bg-[#181713] py-14 text-[#f2eadc]">
         <div class="container-shell grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
           <div><p class="eyebrow text-[#d2ad6c]">Tu siguiente paso</p><h2 class="mt-2 text-4xl">Guarda la ruta antes de subir.</h2></div>
-          <div class="flex flex-wrap gap-3"><a class="bg-[#d2ad6c] px-6 py-3 text-xs font-bold uppercase tracking-[.12em] text-[#181713]" href="https://maps.app.goo.gl/AYYQ49U1srAz49sE8" target="_blank" rel="noopener noreferrer">Ver en Google Maps</a><a class="border border-white/30 px-6 py-3 text-xs font-bold uppercase tracking-[.12em]" href="tel:+524727232571">Llamar al santuario</a></div>
+          <div class="flex flex-wrap gap-3"><a class="bg-[#d2ad6c] px-6 py-3 text-xs font-bold uppercase tracking-[.12em] text-[#181713]" href="https://maps.app.goo.gl/AYYQ49U1srAz49sE8" target="_blank" rel="noopener noreferrer">Ver en Google Maps</a><a class="border border-white/30 px-6 py-3 text-xs font-bold uppercase tracking-[.12em]" href={contactUrl} target="_blank" rel="noopener noreferrer">Consultar al santuario</a></div>
         </div>
       </section>
     </main>
@@ -586,15 +474,15 @@ const transport: TransportOption[] = [
           <Logo light />
           <address class="mt-6 not-italic text-xs leading-6 text-white/60">
             <p class="text-sm font-semibold text-[#f2eadc]">{attractionFullName} ({attractionShortName})</p>
-            <p>{streetAddress}</p>
-            <p>{postalCode} {cityName}, {stateName}, {countryName}</p>
-            <p>Plus Code: {plusCode} · <a class="underline decoration-[#a57637] underline-offset-2 hover:text-white" href={telephoneHref}>{telephone}</a></p>
+            <p>{cityName}, {stateName}, {countryName}</p>
+            <p><a class="underline" href={contactUrl} target="_blank" rel="noopener noreferrer">Contacto publicado por el santuario</a></p>
           </address>
-          <p class="mt-5 max-w-xl text-xs leading-5">Sitio informativo independiente, no oficial y no afiliado al Santuario de Cristo Rey, a Google ni al Gobierno de Guanajuato. Verifica horarios, accesos y condiciones directamente con los operadores correspondientes antes de viajar.</p>
+          <p class="mt-5 max-w-xl text-xs leading-5">Guía turística y de divulgación cultural sin fines de lucro, independiente, no oficial y no afiliada al Santuario de Cristo Rey, a Google ni al Gobierno de Guanajuato. Verifica horarios, accesos y condiciones directamente con los operadores correspondientes antes de viajar.</p>
         </div>
         <div class="max-w-md text-xs leading-5 md:text-right">
-          <p>Fotos: <a class="underline decoration-[#a57637] underline-offset-2" href="https://commons.wikimedia.org/wiki/File:Estatua_de_Cristo_Rey_en_el_Cerro_del_Cubilete,_Silao,_Guanajuato.jpg" target="_blank" rel="noopener noreferrer">Juan Carlos Fonseca Mata</a> e <a class="underline decoration-[#a57637] underline-offset-2" href="https://commons.wikimedia.org/wiki/File:Camino_al_Cerro_del_Cubilete_2020_05.jpg" target="_blank" rel="noopener noreferrer">Isaacvp</a> · Wikimedia Commons · <a class="underline decoration-[#a57637] underline-offset-2" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.</p>
-          <p class="mt-2">Datos de planificación sujetos a cambio. Sin fechas de “última actualización” ni valores temporales inventados.</p>
+          <p>Foto del camino: <a class="underline" href="https://commons.wikimedia.org/wiki/File:Camino_al_Cerro_del_Cubilete_2020_05.jpg" target="_blank" rel="noopener noreferrer">Isaacvp · Wikimedia Commons</a> · <a class="underline" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. La portada utiliza una ilustración abstracta original.</p>
+          <p class="mt-3">Privacidad: esta página carga Google Analytics para estadísticas de uso; el mapa usa Google Maps y el pronóstico solicita datos a Open-Meteo. Estos proveedores reciben datos de conexión. No hay formularios, cuentas ni reservas. Consulta <a class="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">la privacidad de Google</a> y <a class="underline" href="https://open-meteo.com/en/terms" target="_blank" rel="noopener noreferrer">Open-Meteo</a>.</p>
+          <p class="mt-2">Revisión de las fuentes citadas: 29 de octubre de 2026. Las fotografías son históricas y no acreditan condiciones actuales.</p>
         </div>
       </div>
     </footer>
@@ -623,8 +511,9 @@ const transport: TransportOption[] = [
         };
         function label(c){ return wmo[c] || ['—','🌡️']; }
         var dias = ['dom','lun','mar','mié','jue','vie','sáb'];
-        var url = 'https://api.open-meteo.com/v1/forecast?latitude=21.0119&longitude=-101.3710&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America/Mexico_City&forecast_days=7&wind_speed_unit=kmh';
-        fetch(url).then(function(r){ return r.json(); }).then(function(d){
+        var url = 'https://api.open-meteo.com/v1/forecast?latitude=21.0119341&longitude=-101.3684356&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America/Mexico_City&forecast_days=7&wind_speed_unit=kmh';
+        fetch(url).then(function(r){ if (!r.ok) throw new Error("weather-http"); return r.json(); }).then(function(d){
+          if (!d.current || !d.daily || !["temperature_2m", "relative_humidity_2m", "apparent_temperature", "weather_code", "wind_speed_10m"].every(function(k){ return Number.isFinite(d.current[k]); }) || !Array.isArray(d.daily.time) || d.daily.time.length === 0 || !["weather_code", "temperature_2m_max", "temperature_2m_min"].every(function(k){ return Array.isArray(d.daily[k]) && d.daily[k].length === d.daily.time.length && d.daily[k].every(Number.isFinite); })) throw new Error("weather-data");
           var cur = d.current; var lc = label(cur.weather_code);
           var html = '<div class="flex items-end justify-between gap-6 border-b border-[#a57637]/25 pb-6">';
           html += '<div><p class="text-6xl display leading-none">' + Math.round(cur.temperature_2m) + '°</p>';
@@ -633,7 +522,7 @@ const transport: TransportOption[] = [
           html += '<p>Sensación: ' + Math.round(cur.apparent_temperature) + '°</p>';
           html += '<p>Humedad: ' + cur.relative_humidity_2m + '%</p>';
           html += '<p>Viento: ' + Math.round(cur.wind_speed_10m) + ' km/h</p></div></div>';
-          html += '<div class="mt-6 grid grid-cols-7 gap-1 text-center">';
+          html += '<div class="weather-days mt-6">';
           var dd = d.daily;
           for (var i = 0; i < dd.time.length; i++) {
             var dt = new Date(dd.time[i] + 'T00:00:00');
