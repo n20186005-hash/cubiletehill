@@ -19,7 +19,7 @@ El Worker existente se llama `cubiletehill`. `src/worker.js` se ejecuta antes de
 
 La página distingue el cerro del Santuario de Cristo Rey. La portada del operador publica 06:00–20:00 para el recinto; el dato de Maps pertenece a la ficha de la montaña y no se convierte en horario estructurado. Las fuentes y su fecha de consulta se muestran en la página. Los datos de opiniones son una instantánea atribuida de terceros, no reseñas propias ni una valoración estructurada de esta guía. No se publican tarifas, frecuencias, accesibilidad continua o servicios ferroviarios sin confirmación.
 
-La fotografía histórica del camino se sirve localmente como WebP con fuente, autor, licencia, fecha y cambios junto a su uso. La portada es una ilustración abstracta original identificada como tal. Véase `CREDITOS_FOTOS.md`. Las imágenes históricas no muestran el estado actual de accesos.
+La fotografía histórica del camino se sirve localmente como WebP con fuente, autor, licencia, fecha y cambios junto a su uso. La portada usa una fotografía de la ficha pública de Google Maps, servida localmente como WebP comprimido, con enlace a la ficha y aviso de que no se acredita autoría, fecha ni condiciones actuales. Véase `CREDITOS_FOTOS.md`. Las imágenes históricas no muestran el estado actual de accesos.
 
 Se conserva el identificador público de Google Analytics. El pie informa de Analytics, Google Maps y Open-Meteo; no se promete consentimiento previo ni ausencia de terceros. No hay formularios, cuentas, reservas o almacenamiento propio de preferencias.
 
