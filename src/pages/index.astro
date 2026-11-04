@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Logo from '../components/Logo.astro';
 import PhotoCredit from '../components/PhotoCredit.astro';
 import HeroFacts from '../components/HeroFacts.astro';
-import { albumMapsUrl } from '../data/site';
+import { albumMapsUrl, accessWorksUrl } from '../data/site';
 import { galleryPhotos } from '../data/gallery';
 const domain = 'cubiletehill.com';
 const attractionFullName = 'Cerro del Cubilete';
@@ -341,6 +341,37 @@ const mapSrc = `https://www.google.com/maps?q=${coords.latitude},${coords.longit
       </section>
 
       <HeroFacts />
+
+      <section id="gestion" class="section-rule bg-[#fbf6ed] py-20 md:py-28">
+        <div class="container-shell grid gap-12 lg:grid-cols-[1.08fr_.92fr] lg:items-start">
+          <div>
+            <p class="eyebrow bronze-text">Gestión y titularidad</p>
+            <h2 class="mt-4 max-w-2xl text-4xl leading-[1.02] md:text-6xl">Sobre el Cerro del Cubilete: quién gestiona el lugar</h2>
+            <div class="mt-9 grid gap-5 text-[1.02rem] leading-8 text-[#38352d]">
+              <p>El <strong class="font-semibold text-[#181713]">Cerro del Cubilete</strong> está en el municipio de Silao de la Victoria, Guanajuato, y <strong class="font-semibold text-[#181713]">no es administrado por esta guía</strong>. El Santuario Votivo Nacional de Cristo Rey atiende el recinto religioso de la cima: su web oficial publica el horario de visita, las misas y el contacto. La carretera, los accesos y cada servicio dependen de autoridades y operadores distintos.</p>
+              <p>El lugar no funciona como un parque con una sola administración. El Gobierno de Guanajuato documentó en 2026 la entrega del nuevo arco y la explanada de llegada, mientras que el santuario publica sus propias condiciones de visita. Recinto, carretera, estacionamiento y servicios tienen responsables separados; un punto en el mapa no acredita quién abre una puerta ni quién mantiene un camino.</p>
+              <p>No publicamos una tarifa vigente ni un horario único como dato propio: la web del santuario indica 06:00–20:00 para el recinto y la ficha de Google Maps muestra otra referencia para la montaña. Confirma antes de viajar con el santuario y los operadores correspondientes; aquí solo reunimos fuentes públicas para orientar la visita.</p>
+            </div>
+          </div>
+          <aside class="bg-[#181713] p-8 text-[#f2eadc] md:p-10" aria-label="Responsables y fuentes oficiales">
+            <p class="eyebrow text-[#d2ad6c]">Responsables y fuentes</p>
+            <dl class="mt-6 grid gap-6">
+              <div class="border-t border-white/15 pt-5">
+                <dt class="text-sm font-bold text-[#d2ad6c]">Recinto religioso</dt>
+                <dd class="mt-2 text-sm leading-6 text-white/75">Santuario Votivo Nacional de Cristo Rey. Publica horario, misas y contacto; es el canal para confirmar la visita. <a class="underline decoration-[#d2ad6c] underline-offset-2" href={sanctuaryUrl} target="_blank" rel="noopener noreferrer">Sitio oficial →</a></dd>
+              </div>
+              <div class="border-t border-white/15 pt-5">
+                <dt class="text-sm font-bold text-[#d2ad6c]">Accesos y obra pública</dt>
+                <dd class="mt-2 text-sm leading-6 text-white/75">Gobierno de Guanajuato. Documentó en 2026 el arco y la explanada; carretera y estacionamiento se confirman aparte. <a class="underline decoration-[#d2ad6c] underline-offset-2" href={accessWorksUrl} target="_blank" rel="noopener noreferrer">Boletín oficial →</a></dd>
+              </div>
+              <div class="border-t border-white/15 pt-5">
+                <dt class="text-sm font-bold text-[#d2ad6c]">Esta guía</dt>
+                <dd class="mt-2 text-sm leading-6 text-white/75">Independiente, sin fines de lucro y no oficial. No está afiliada al santuario, a Google ni al Gobierno de Guanajuato, y no gestiona el cerro ni el santuario.</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </section>
 
       <section id="historia" class="bg-[#f2eadc] py-24 md:py-32">
         <div class="container-shell grid gap-14 md:grid-cols-[.9fr_1.1fr] md:items-start">
