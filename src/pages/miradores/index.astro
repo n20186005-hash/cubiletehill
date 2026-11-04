@@ -1,0 +1,61 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+
+const title = 'Miradores y vistas desde el Cerro del Cubilete | Cubilete Hill';
+const description = 'Desde la cima, en días despejados, la vista se extiende sobre la sierra y las llanuras del Bajío. La visibilidad depende del clima.';
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/miradores/"
+  eyebrow="Miradores"
+  heading="Miradores y vistas desde el Cerro del Cubilete"
+  intro="El Cerro del Cubilete es una de las cimas más conocidas del Bajío por su elevación y su posición en la sierra. En días despejados, la vista desde la explanada se abre sobre las sierras y llanuras de Guanajuato; la visibilidad, eso sí, depende del clima."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">Vista amplia de la sierra</h2>
+      <p class="mt-4 text-[#4a453b]">La explanada del santuario es el punto donde el paisaje se percibe en gran escala: primero la montaña, luego la llegada y, al final, el horizonte abierto sobre el altiplano.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Sin promesas de plataforma</p>
+      <h2 class="mt-3 text-3xl">La visibilidad va y viene</h2>
+      <p class="mt-4 text-[#4a453b]">No afirmamos un mirador de puesta o de amanecer señalado y verificado. La niebla, el viento o la lluvia pueden ocultar el panorama; en días claros la experiencia es muy distinta.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Qué hacer con las vistas</h2>
+    <p>A unos 21° de latitud norte y cerca de <a class="underline decoration-[#a57637] underline-offset-2" href="/altitud/">2.579 m de altitud</a>, la cima ofrece un contraste fuerte entre la explanada del recinto y el paisaje abierto. El valor de la vista está en esa escala, no en un punto fotográfico etiquetado de antemano.</p>
+    <p>Para aprovecharla, revisa el pronóstico del día y evita las horas de más niebla o lluvia si buscas panorámica. La <a class="underline decoration-[#a57637] underline-offset-2" href="/mejor-hora-para-visitar/">luz de la mañana y del atardecer</a> suele ser la más favorecedora cuando el cielo está despejado.</p>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card">
+      <h2 class="text-3xl">Si buscas <a class="underline decoration-[#a57637] underline-offset-2" href="/consejos-para-fotografiar/">buenas fotos</a></h2>
+      <ul class="guide-list mt-4">
+        <li>Revisa el pronóstico y prioriza días despejados.</li>
+        <li>Lleva una capa: en la cima el viento enfría rápido.</li>
+        <li>Respeta los espacios de oración y los accesos habilitados.</li>
+      </ul>
+    </article>
+    <article class="guide-card">
+      <h2 class="text-3xl">No des por hecho</h2>
+      <ul class="guide-list mt-4">
+        <li>Que habrá vista despejada por el mes del año.</li>
+        <li>Que existe una plataforma de observación señalada.</li>
+        <li>Que el <a class="underline decoration-[#a57637] underline-offset-2" href="/clima/">clima</a> de abajo es igual en la cima.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/ubicacion/"><strong class="block text-2xl">Ubicación</strong><span class="mt-3 block text-sm text-[#5d564b]">Dónde queda la montaña en Guanajuato.</span></a>
+      <a class="guide-card block" href="/mapa/"><strong class="block text-2xl">Mapa</strong><span class="mt-3 block text-sm text-[#5d564b]">Guarda la referencia antes de subir.</span></a>
+      <a class="guide-card block" href="/clima/"><strong class="block text-2xl">Clima</strong><span class="mt-3 block text-sm text-[#5d564b]">Cómo afecta la altura a la visita.</span></a>
+    </div>
+  </section>
+</GuideLayout>

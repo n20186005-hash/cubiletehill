@@ -13,7 +13,7 @@ pnpm build
 npx wrangler deploy --dry-run
 ```
 
-El Worker existente se llama `cubiletehill`. `src/worker.js` se ejecuta antes de Assets: consolida HTTP/www al apex HTTPS conservando ruta y consulta, redirige los alias index y devuelve 404/noindex real para rutas desconocidas y alias de error, incluido HEAD. No se agregan dominios o bindings externos. El sitemap incluye únicamente la portada. La actualización de `sw.js` retira las antiguas cachés del sitio sin devolver la portada para errores.
+El Worker existente se llama `cubiletehill`. `src/worker.js` se ejecuta antes de Assets: consolida HTTP/www al apex HTTPS conservando ruta y consulta, redirige los alias index y devuelve 404/noindex real para rutas desconocidas y alias de error, incluido HEAD. No se agregan dominios o bindings externos. El sitemap incluye la portada y las guías por tema, y excluye la página 404. La actualización de `sw.js` retira las antiguas cachés del sitio sin devolver la portada para errores.
 
 ## Contenido y fuentes
 

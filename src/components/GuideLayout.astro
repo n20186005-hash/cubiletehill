@@ -1,0 +1,179 @@
+---
+import '../styles/global.css';
+import Logo from './Logo.astro';
+import HeroFacts from './HeroFacts.astro';
+import {
+  domain,
+  attractionFullName,
+  attractionShortName,
+  cityShort,
+  stateName,
+  countryName,
+  mapsShareUrl,
+  quickLinks
+} from '../data/site';
+import { GUIDE_FAQS } from '../data/faqs';
+
+type Props = {
+  title: string;
+  description: string;
+  path: string;
+  eyebrow: string;
+  heading: string;
+  intro: string;
+};
+
+const { title, description, path, eyebrow, heading, intro } = Astro.props;
+const faqs = GUIDE_FAQS[path] ?? [];
+const siteRoot = (Astro.site ?? new URL(`https://${domain}`)).href.replace(/\/$/, '');
+const canonical = new URL(path, Astro.site ?? siteRoot).href;
+const ogImage = `${siteRoot}/og-card.png`;
+
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteRoot}/#website`,
+      url: siteRoot,
+      name: `${attractionFullName} (${attractionShortName})`,
+      inLanguage: 'es-MX'
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      isPartOf: { '@id': `${siteRoot}/#website` },
+      about: {
+        '@type': 'TouristAttraction',
+        name: attractionFullName
+      },
+      inLanguage: 'es-MX'
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: attractionFullName, item: siteRoot },
+        { '@type': 'ListItem', position: 2, name: heading, item: canonical }
+      ]
+    }
+  ]
+};
+
+if (faqs.length > 0) {
+  (graph['@graph'] as any[]).push({
+    '@type': 'FAQPage',
+    '@id': `${canonical}#faq`,
+    url: canonical,
+    inLanguage: 'es-MX',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a }
+    }))
+  });
+}
+---
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#181713" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es-MX" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content={`${attractionFullName} (${attractionShortName})`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(graph)}></script>
+  </head>
+  <body>
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#181713]/90 text-white backdrop-blur-md">
+      <div class="container-shell flex min-h-18 items-center justify-between gap-6">
+        <Logo light compact />
+        <nav class="hidden items-center gap-7 text-[.72rem] font-bold uppercase tracking-[.13em] md:flex" aria-label="Navegación principal">
+          <a class="transition hover:text-[#d2ad6c]" href="/">Inicio</a>
+          {quickLinks.map((link) => (
+            <a class="transition hover:text-[#d2ad6c]" href={link.href}>{link.label}</a>
+          ))}
+        </nav>
+        <a href={mapsShareUrl} rel="noopener noreferrer" target="_blank" class="border border-[#a57637] px-4 py-2 text-[.7rem] font-bold uppercase tracking-[.12em] text-[#f2eadc] transition hover:bg-[#a57637] hover:text-[#181713]">Abrir mapa</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="guide-hero">
+        <div class="container-shell">
+          <nav aria-label="Ruta de navegación" class="guide-breadcrumbs">
+            <a href="/">Inicio</a>
+            <span>/</span>
+            <span>{heading}</span>
+          </nav>
+          <p class="eyebrow text-[#d2ad6c]">{eyebrow}</p>
+          <h1 class="mt-4 max-w-4xl text-[clamp(2.8rem,7vw,5.6rem)] leading-[.92] text-[#f5eee2]">{heading}</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-white/78">{intro}</p>
+          <p class="mt-6 text-sm text-white/52">{attractionFullName} · {cityShort}, {stateName}, {countryName}</p>
+        </div>
+      </section>
+
+      <HeroFacts />
+
+      <div class="guide-main">
+        <div class="container-shell">
+          <slot />
+        </div>
+      </div>
+
+      {faqs.length > 0 && (
+        <section class="guide-faq mt-16 border-t border-[#a57637]/20 pt-12">
+          <div class="container-shell">
+            <p class="eyebrow bronze-text">Preguntas frecuentes</p>
+            <h2 class="mt-3 max-w-3xl text-[clamp(1.9rem,4vw,2.9rem)] leading-tight text-[#f5eee2]">Dudas comunes sobre esta guía</h2>
+            <div class="mt-7 space-y-3">
+              {faqs.map((item) => (
+                <details class="group border border-[#a57637]/35 bg-[#fbf6ed] px-6 py-4" name="guide-faq">
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold text-[#2b2620]">
+                    <span>{item.q}</span>
+                    <span class="shrink-0 text-2xl leading-none text-[#a57637] transition-transform duration-200 group-open:rotate-45">+</span>
+                  </summary>
+                  <p class="mt-3 leading-7 text-[#4a453b]">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </main>
+
+    <footer class="bg-[#11110f] py-10 text-white/55">
+      <div class="container-shell flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <div>
+          <Logo light />
+          <p class="mt-6 max-w-xl text-xs leading-5">Guía independiente y sin fines de lucro sobre {attractionFullName}. Verifica horarios, accesos y condiciones directamente con el santuario, Maps o los operadores correspondientes.</p>
+        </div>
+        <div class="max-w-md text-xs leading-5 md:text-right">
+          <p>Ruta principal: <a class="underline decoration-[#a57637] underline-offset-2" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">Google Maps</a>.</p>
+          <p class="mt-2">Esta página forma parte de la guía de {attractionFullName} en {stateName}.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

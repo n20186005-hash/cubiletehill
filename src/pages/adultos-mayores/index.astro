@@ -1,0 +1,63 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+import { contactUrl } from '../../data/site';
+
+const title = 'Visitar Cristo Rey con adultos mayores | Cubilete Hill';
+const description = 'Recomendaciones para visitar con adultos mayores: reducir caminatas, confirmar descenso y rampas, y prever el clima de altura.';
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/adultos-mayores/"
+  eyebrow="Adultos mayores"
+  heading="Visitar Cristo Rey con adultos mayores"
+  intro="Con adultos mayores, la visita al Cubilete conviene planearla para reducir esfuerzo: menos caminata, más descanso y certeza sobre dónde puede bajar el vehículo. La altura y el viento exigen precaución adicional."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">Menos caminata, más certeza</h2>
+      <p class="mt-4 text-[#4a453b]">Confirma con el <a class="underline decoration-[#a57637] underline-offset-2" href={contactUrl} target="_blank" rel="noopener noreferrer">santuario</a> el punto de descenso permitido y si hay rampas hacia el templo. No asumas una ruta continua sin escalones: no la confirmamos en nuestras fuentes.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Clima de altura</p>
+      <h2 class="mt-3 text-3xl">Frío, viento y cansancio</h2>
+      <p class="mt-4 text-[#4a453b]">A <a class="underline decoration-[#a57637] underline-offset-2" href="/altitud/">2.579 m</a>, el cuerpo se esfuerza más. Lleva una capa, agua y calzado seguro, y evita las horas de más frío o de más calor extremo.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Cómo reducir el esfuerzo</h2>
+    <p>La clave es separar el viaje hasta el pie de la montaña de la caminata final. Si la persona mayor no debe caminar mucho, acuerda el punto de descenso más cercano al <a class="underline decoration-[#a57637] underline-offset-2" href="/santuario/">recinto</a> y verifica con el santuario si ese <a class="underline decoration-[#a57637] underline-offset-2" href="/carretera-y-acceso/">acceso</a> está habilitado el día de tu visita.</p>
+    <p>Deja margen amplio en el regreso. En días de afluencia, el <a class="underline decoration-[#a57637] underline-offset-2" href="/estacionamiento/">estacionamiento</a> y la circulación pueden demorar; una visita sin prisa es más segura y menos agotadora.</p>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card">
+      <h2 class="text-3xl">Recomendaciones</h2>
+      <ul class="guide-list mt-4">
+        <li>Confirma descenso y rampas con el santuario.</li>
+        <li>Lleva capa, agua y calzado con agarre.</li>
+        <li>Evita las horas de frío o calor extremo.</li>
+        <li>Planifica el regreso con holgura.</li>
+      </ul>
+    </article>
+    <article class="guide-card">
+      <h2 class="text-3xl">No des por hecho</h2>
+      <ul class="guide-list mt-4">
+        <li>Que el <a class="underline decoration-[#a57637] underline-offset-2" href="/en-coche/">vehículo</a> llega hasta la puerta.</li>
+        <li>Que no hay escalones en el recorrido.</li>
+        <li>Que el <a class="underline decoration-[#a57637] underline-offset-2" href="/clima/">clima</a> es igual que en el valle.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/accesibilidad/"><strong class="block text-2xl">Accesibilidad</strong><span class="mt-3 block text-sm text-[#5d564b]">Movilidad y rampas en la cima.</span></a>
+      <a class="guide-card block" href="/antes-de-visitar/"><strong class="block text-2xl">Antes de visitar</strong><span class="mt-3 block text-sm text-[#5d564b]">Lista de comprobación previa.</span></a>
+      <a class="guide-card block" href="/servicios-para-visitantes/"><strong class="block text-2xl">Servicios</strong><span class="mt-3 block text-sm text-[#5d564b]">Baños, descanso y atención.</span></a>
+    </div>
+  </section>
+</GuideLayout>

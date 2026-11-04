@@ -1,0 +1,69 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+import { accessWorksUrl, contactUrl, mapsShareUrl, sanctuaryUrl } from '../../data/site';
+
+const title = 'Qué saber antes de visitar el Cerro del Cubilete | Cubilete Hill';
+const description = 'Lista práctica de comprobaciones antes de subir: horarios, acceso, clima, estacionamiento y regreso, sin dar por hecho ningún dato del día.';
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/antes-de-visitar/"
+  eyebrow="Antes de subir"
+  heading="Qué saber antes de visitar el Cerro del Cubilete"
+  intro="El cerro es la montaña; el Santuario de Cristo Rey está en la cima. Antes de salir, conviene separar lo que sabemos de lo que debes confirmar el mismo día: horario, acceso, clima y regreso no son lo mismo."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">Confirma antes de salir</h2>
+      <p class="mt-4 text-[#4a453b]">Revisa el horario del <a class="underline decoration-[#a57637] underline-offset-2" href={sanctuaryUrl} target="_blank" rel="noopener noreferrer">santuario</a>, guarda la <a class="underline decoration-[#a57637] underline-offset-2" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">ubicación del cerro</a> y acuerda el regreso con tu conductor. No des por hecho el acceso ni la caminata final.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Dato reciente</p>
+      <h2 class="mt-3 text-3xl">Nuevo arco y explanada</h2>
+      <p class="mt-4 text-[#4a453b]">El <a class="underline decoration-[#a57637] underline-offset-2" href={accessWorksUrl} target="_blank" rel="noopener noreferrer">Gobierno de Guanajuato</a> informó en agosto de 2026 un nuevo arco de acceso y una explanada, con unos 800 m hacia el santuario. La obra no certifica una ruta sin escalones.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Tu lista de comprobación</h2>
+    <p>Antes de la última curva, verifica lo que cambia con el tiempo: horario del recinto, <a class="underline decoration-[#a57637] underline-offset-2" href="/horarios-de-misa/">misas</a> o <a class="underline decoration-[#a57637] underline-offset-2" href="/peregrinaciones/">peregrinaciones</a>, estado de la <a class="underline decoration-[#a57637] underline-offset-2" href="/carretera-y-acceso/">carretera</a>, <a class="underline decoration-[#a57637] underline-offset-2" href="/clima/">clima</a> en la cima y punto de regreso. Cada uno se confirma por su propia vía.</p>
+    <p>Lo que no confirmes, pregúntalo. Si tu visita depende de una hora, un costo o un acceso concreto, usa el canal de contacto del santuario en lugar de una referencia de terceros.</p>
+  </section>
+
+  <section class="mt-10 guide-card-dark">
+    <h2 class="text-3xl">Cinco puntos a confirmar</h2>
+    <ol class="guide-list mt-4 text-white/76">
+      <li>Horario del santuario y, si aplica, <a class="underline decoration-[#a57637] underline-offset-2" href="/horarios-de-misa/">horario de misa</a>.</li>
+      <li>Estado de la carretera y condiciones del clima en altura.</li>
+      <li>Punto de descenso o <a class="underline decoration-[#a57637] underline-offset-2" href="/estacionamiento/">estacionamiento</a> disponible ese día.</li>
+      <li>Tiempo y forma de regreso, sobre todo sin auto propio.</li>
+      <li>Avisos por festividad, <a class="underline decoration-[#a57637] underline-offset-2" href="/peregrinaciones/">peregrinación</a> o cierre temporal.</li>
+    </ol>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card">
+      <h2 class="text-3xl">Lleva contigo</h2>
+      <ul class="guide-list mt-4">
+        <li>Agua, protección solar y una capa para el frío o el viento.</li>
+        <li>Calzado que sujete bien para la caminata final.</li>
+        <li>El mapa abierto y la batería del teléfono cargada.</li>
+      </ul>
+    </article>
+    <article class="guide-card">
+      <h2 class="text-3xl">Confirma con la fuente</h2>
+      <p class="mt-4 text-[#4a453b]">Cualquier duda sensible al tiempo, escríbele al santuario por su <a class="underline decoration-[#a57637] underline-offset-2" href={contactUrl} target="_blank" rel="noopener noreferrer">canal oficial</a>. Esta guía no sustituye la información del recinto.</p>
+    </article>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/horarios/"><strong class="block text-2xl">Horarios</strong><span class="mt-3 block text-sm text-[#5d564b]">El marco del recinto es 06:00–20:00.</span></a>
+      <a class="guide-card block" href="/estacionamiento/"><strong class="block text-2xl">Estacionamiento</strong><span class="mt-3 block text-sm text-[#5d564b]">Consulta dónde bajar y las rampas.</span></a>
+      <a class="guide-card block" href="/transporte-publico/"><strong class="block text-2xl">Transporte público</strong><span class="mt-3 block text-sm text-[#5d564b]">Verifica punto de bajada y regreso.</span></a>
+    </div>
+  </section>
+</GuideLayout>

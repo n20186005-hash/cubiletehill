@@ -2,6 +2,9 @@
 import '../styles/global.css';
 import Logo from '../components/Logo.astro';
 import PhotoCredit from '../components/PhotoCredit.astro';
+import HeroFacts from '../components/HeroFacts.astro';
+import { albumMapsUrl } from '../data/site';
+import { galleryPhotos } from '../data/gallery';
 const domain = 'cubiletehill.com';
 const attractionFullName = 'Cerro del Cubilete';
 const attractionShortName = 'Cubilete Hill';
@@ -15,12 +18,80 @@ const mapsShareUrl = 'https://maps.app.goo.gl/AYYQ49U1srAz49sE8';
 const sanctuaryUrl = 'https://santuariodecristorey.org/';
 const contactUrl = 'https://santuariodecristorey.org/contacto-electronico/';
 const siteRoot = (Astro.site ?? new URL(`https://${domain}`)).href.replace(/\/$/, '');
-const title = 'Cerro del Cubilete: horario de Cristo Rey, altitud y cómo llegar';
-const description = 'Planea la visita al Cerro del Cubilete en Silao, Guanajuato: distingue el horario del Santuario de Cristo Rey, consulta la ubicación, altitud y opciones de transporte.';
+const title = 'Cerro del Cubilete: Horarios, Cómo Llegar y Cristo Rey | Guanajuato';
+const description = 'Guía para visitar el Cerro del Cubilete en Silao, Guanajuato. Consulta horarios del Santuario de Cristo Rey, cómo llegar, ubicación, altitud y consejos de visita.';
 const canonical = new URL('/', Astro.site ?? siteRoot).href;
 const ogImage = `${siteRoot}/og-card.png`;
 const landscapeImage = `${siteRoot}/images/cerro-cubilete-camino.webp`;
 const coords = { latitude: 21.0119341, longitude: -101.3684356 };
+const guideGroups = [
+  {
+    label: 'Horarios y visita',
+    pages: [
+      { href: '/horarios/', eyebrow: 'Horario', title: 'Horarios del Cubilete', desc: 'Qué horario corresponde al santuario y qué debes volver a confirmar antes de viajar.' },
+      { href: '/horarios-de-misa/', eyebrow: 'Liturgia', title: 'Horarios de misa', desc: 'Separa la visita general de las celebraciones religiosas del santuario.' },
+      { href: '/precio-de-entrada/', eyebrow: 'Costo', title: 'Precio de entrada', desc: 'No confirmamos una tarifa vigente; separa transporte, comida y servicios.' },
+      { href: '/cuanto-tiempo-se-necesita/', eyebrow: 'Duración', title: 'Cuánto tiempo se necesita', desc: 'Unas dos horas en la cima, además del transporte, como orientación.' },
+      { href: '/mejor-hora-para-visitar/', eyebrow: 'Momento', title: 'Mejor hora para visitar', desc: 'Organiza la hora según el clima, la luz y tu tipo de visita.' },
+      { href: '/antes-de-visitar/', eyebrow: 'Previo', title: 'Antes de visitar', desc: 'Lista de comprobaciones previas a la subida sin dar nada por hecho.' }
+    ]
+  },
+  {
+    label: 'Cómo llegar y acceso',
+    pages: [
+      { href: '/como-llegar/', eyebrow: 'Ruta', title: 'Cómo llegar', desc: 'Organiza la llegada desde Silao, Guanajuato, León o el aeropuerto.' },
+      { href: '/desde-silao/', eyebrow: 'Salida', title: 'Desde Silao', desc: 'El punto de partida más cercano al cerro.' },
+      { href: '/desde-guanajuato/', eyebrow: 'Salida', title: 'Desde Guanajuato', desc: 'Cómo plantear una excursión desde la capital con margen.' },
+      { href: '/desde-leon/', eyebrow: 'Salida', title: 'Desde León', desc: 'Qué prever si sales desde León y quieres volver el mismo día.' },
+      { href: '/en-coche/', eyebrow: 'Carretera', title: 'Subir en coche', desc: 'Consejos para conducir en la sierra y no improvisar el acceso final.' },
+      { href: '/transporte-publico/', eyebrow: 'Transporte', title: 'Transporte público', desc: 'Verifica corrida, punto de bajada y regreso antes de comprar.' },
+      { href: '/estacionamiento/', eyebrow: 'Estacionamiento', title: 'Estacionamiento', desc: 'Dónde bajar y qué confirmar sobre cupo y rampas.' },
+      { href: '/carretera-y-acceso/', eyebrow: 'Acceso', title: 'Carretera y acceso', desc: 'Curvas, pendiente y precauciones de la subida.' }
+    ]
+  },
+  {
+    label: 'Ubicación y paisaje',
+    pages: [
+      { href: '/ubicacion/', eyebrow: 'Mapa', title: 'Dónde está', desc: 'Guarda la referencia geográfica correcta del cerro antes de subir.' },
+      { href: '/altitud/', eyebrow: 'Altura', title: 'Altitud del cerro', desc: 'Qué significa la referencia de 2.579 m y cómo afecta la visita.' },
+      { href: '/mapa/', eyebrow: 'Mapa', title: 'Mapa y accesos', desc: 'Distingue el pin de la montaña del acceso al santuario.' },
+      { href: '/miradores/', eyebrow: 'Vistas', title: 'Miradores', desc: 'Qué esperar de las vistas en la cima según el clima.' },
+      { href: '/clima/', eyebrow: 'Clima', title: 'Clima', desc: 'Qué llevar según la temporada y la altura.' }
+    ]
+  },
+  {
+    label: 'Historia y fe',
+    pages: [
+      { href: '/cristo-rey/', eyebrow: 'Cristo Rey', title: 'Cristo Rey', desc: 'Historia y significado del monumento en la cima.' },
+      { href: '/santuario/', eyebrow: 'Recinto', title: 'Santuario', desc: 'El recinto religioso en la cima y su horario propio.' },
+      { href: '/historia/', eyebrow: 'Historia', title: 'Historia', desc: 'De la devoción temprana al monumento actual.' },
+      { href: '/arquitectura/', eyebrow: 'Diseño', title: 'Arquitectura', desc: 'Base, cúpula y la figura de Cristo con los brazos abiertos.' },
+      { href: '/guerra-cristera/', eyebrow: 'Contexto', title: 'Guerra Cristera', desc: 'Contexto histórico neutral y fuentes verificables.' },
+      { href: '/peregrinaciones/', eyebrow: 'Fe', title: 'Peregrinaciones', desc: 'Cómo organizar una visita de fe con respeto.' }
+    ]
+  },
+  {
+    label: 'Tipos de visitante',
+    pages: [
+      { href: '/visita-en-familia/', eyebrow: 'Familia', title: 'Visita en familia', desc: 'Ritmo, descansos e hidratación sin convertir el santuario en parque.' },
+      { href: '/adultos-mayores/', eyebrow: 'Adultos mayores', title: 'Adultos mayores', desc: 'Reduce caminatas, confirma descenso y rampas.' },
+      { href: '/accesibilidad/', eyebrow: 'Accesibilidad', title: 'Accesibilidad', desc: 'No confirmamos ruta continua sin escalones; pregunta al santuario.' },
+      { href: '/medio-dia/', eyebrow: 'Itinerario', title: 'Itinerario de medio día', desc: 'Una propuesta realista saliendo desde Silao.' },
+      { href: '/un-dia-desde-guanajuato/', eyebrow: 'Excursión', title: 'Un día desde Guanajuato', desc: 'Excursión completa desde la capital con margen.' },
+      { href: '/consejos-para-fotografiar/', eyebrow: 'Fotos', title: 'Consejos para fotografiar', desc: 'Mejor luz y cuidados sin arriesgar el acceso.' }
+    ]
+  },
+  {
+    label: 'Alrededor del cerro',
+    pages: [
+      { href: '/donde-comer/', eyebrow: 'Comida', title: 'Dónde comer', desc: 'Puestos en el acceso y opciones en Silao.' },
+      { href: '/servicios-para-visitantes/', eyebrow: 'Servicios', title: 'Servicios', desc: 'Baños, tiendas y descanso que conviene confirmar.' },
+      { href: '/lugares-cercanos/', eyebrow: 'Región', title: 'Lugares cercanos', desc: 'Silao, Parque Bicentenario y la ruta regional.' },
+      { href: '/ruta-silao/', eyebrow: 'Ruta', title: 'Ruta Silao', desc: 'Une la ciudad con el ascenso en un día.' },
+      { href: '/ruta-guanajuato/', eyebrow: 'Ruta', title: 'Ruta Guanajuato', desc: 'Une la capital con el Cubilete.' }
+    ]
+  }
+];
 const faqs = [
   {
     "q": "¿Cuál es el horario del Cerro del Cubilete y del Santuario de Cristo Rey?",
@@ -107,7 +178,7 @@ const sources = [
   {
     "label": "Ficha de Cubilete Hill en Google Maps",
     "href": "https://maps.app.goo.gl/AYYQ49U1srAz49sE8",
-    "note": "4,8/5 y 16.661 opiniones; consulta del 29 de octubre de 2026. Datos de terceros, no opiniones de esta guía."
+    "note": "4,8/5 y 16.671 opiniones; consulta del 4 de noviembre de 2026. Datos de terceros, no opiniones de esta guía."
   },
   {
     "label": "Open-Meteo · datos meteorológicos",
@@ -219,12 +290,13 @@ const mapSrc = `https://www.google.com/maps?q=${coords.latitude},${coords.longit
           <a class="transition hover:text-[#d2ad6c]" href="#planea">Planea</a>
           <a class="transition hover:text-[#d2ad6c]" href="#llegar">Cómo llegar</a>
           <a class="transition hover:text-[#d2ad6c]" href="#clima">Clima</a>
+          <a class="transition hover:text-[#d2ad6c]" href="#album">Álbum</a>
           <a class="transition hover:text-[#d2ad6c]" href="#alrededores">Alrededores</a>
           <a class="transition hover:text-[#d2ad6c]" href="#faq">FAQ</a>
         </nav>
         <a href="https://maps.app.goo.gl/AYYQ49U1srAz49sE8" rel="noopener noreferrer" target="_blank" class="border border-[#a57637] px-4 py-2 text-[.7rem] font-bold uppercase tracking-[.12em] text-[#f2eadc] transition hover:bg-[#a57637] hover:text-[#181713]">Abrir mapa</a>
       </div>
-      <details class="mobile-nav md:hidden"><summary>Secciones de la guía</summary><nav aria-label="Navegación móvil"><a href="#planea">Horario y visita</a><a href="#llegar">Cómo llegar</a><a href="#historia">Historia</a><a href="#clima">Clima</a><a href="#faq">Preguntas</a><a href="#fuentes">Fuentes</a></nav></details>
+      <details class="mobile-nav md:hidden"><summary>Secciones de la guía</summary><nav aria-label="Navegación móvil"><a href="#planea">Horario y visita</a><a href="#llegar">Cómo llegar</a><a href="#historia">Historia</a><a href="#clima">Clima</a><a href="#album">Álbum</a><a href="#faq">Preguntas</a><a href="#fuentes">Fuentes</a></nav></details>
     </header>
 
     <main id="inicio">
@@ -254,7 +326,7 @@ const mapSrc = `https://www.google.com/maps?q=${coords.latitude},${coords.longit
             </div>
             <aside class="border-l border-[#d2ad6c]/50 pl-6 text-[#f2eadc]">
               <p class="text-5xl display">4.8<span class="text-xl text-[#d2ad6c]">/5</span></p>
-              <p class="mt-1 text-sm text-white/60"><a href={mapsShareUrl} target="_blank" rel="noopener noreferrer" class="underline">16.661 opiniones en Google Maps</a><br/>Consulta: 29 de octubre de 2026</p>
+              <p class="mt-1 text-sm text-white/60"><a href={mapsShareUrl} target="_blank" rel="noopener noreferrer" class="underline">16.671 opiniones en Google Maps</a><br/>Consulta: 4 de noviembre de 2026</p>
               <div class="mt-7 grid grid-cols-2 gap-y-5 text-sm">
                 <div><p class="eyebrow text-[#d2ad6c]">Altitud</p><p class="mt-1 text-lg">2,579 m</p></div>
                 <div><p class="eyebrow text-[#d2ad6c]">Ubicación</p><p class="mt-1 text-lg">Silao, Guanajuato</p></div>
@@ -267,6 +339,8 @@ const mapSrc = `https://www.google.com/maps?q=${coords.latitude},${coords.longit
           <p class="hero-credit mt-8 text-xs">Ilustración abstracta original de montaña; no es una fotografía ni representa un acceso real.</p>
         </div>
       </section>
+
+      <HeroFacts />
 
       <section id="historia" class="bg-[#f2eadc] py-24 md:py-32">
         <div class="container-shell grid gap-14 md:grid-cols-[.9fr_1.1fr] md:items-start">
@@ -299,6 +373,32 @@ const mapSrc = `https://www.google.com/maps?q=${coords.latitude},${coords.longit
         </div>
       </section>
 
+      <section id="album" class="bg-[#181713] py-20 text-[#f2eadc] md:py-28" aria-label="Álbum de fotografías del Cerro del Cubilete">
+        <div class="container-shell">
+          <div class="mb-9 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p class="eyebrow text-[#d2ad6c]">Álbum fotográfico</p>
+              <h2 class="mt-2 text-4xl md:text-5xl">Fotografías del Cerro del Cubilete</h2>
+            </div>
+            <p class="max-w-md text-sm leading-6 album-note">Imágenes de la ficha pública de Google Maps. Son fotografías de terceros: esta guía no es su autora, no confirma su fecha ni asegura que muestren las condiciones actuales de accesos o servicios.</p>
+          </div>
+          <div class="album-grid">
+            {galleryPhotos.map((photo) => (
+              <figure class="album-item">
+                <a href={albumMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={`${photo.title}: abrir la ficha de Google Maps`}>
+                  <img src={photo.src} width="1200" height="900" alt={photo.alt} loading="lazy" decoding="async" />
+                </a>
+                <figcaption>{photo.title}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <div class="mt-10 flex flex-wrap items-center justify-between gap-5 border-t border-[#a57637]/30 pt-8">
+            <p class="album-note max-w-xl">Las imágenes se enlazan a la ficha pública de Google Maps; esta guía no reclama derechos sobre ellas ni las usa como prueba del estado actual del camino.</p>
+            <a class="w-fit border border-[#d2ad6c] px-6 py-3 text-xs font-bold uppercase tracking-[.12em] text-[#f2eadc] transition hover:bg-[#d2ad6c] hover:text-[#181713]" href={albumMapsUrl} target="_blank" rel="noopener noreferrer">Ver el álbum en Google Maps →</a>
+          </div>
+        </div>
+      </section>
+
       <section id="planea" class="bg-[#fbf6ed] py-24 md:py-32">
         <div class="container-shell">
           <p class="eyebrow bronze-text">Planea tu visita</p>
@@ -315,6 +415,32 @@ const mapSrc = `https://www.google.com/maps?q=${coords.latitude},${coords.longit
             <div class="text-4xl">↗</div>
             <div><p class="eyebrow text-[#edc991]">Antes de salir</p><p class="mt-1 text-lg">Confirma horarios litúrgicos y avisos especiales directamente con el Santuario de Cristo Rey.</p></div>
             <a class="w-fit border border-white/50 px-5 py-3 text-xs font-bold uppercase tracking-[.13em] hover:bg-white hover:text-[#914c35]" href={contactUrl} target="_blank" rel="noopener noreferrer">Contacto oficial</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-[#f2eadc] py-20 md:py-24">
+        <div class="container-shell">
+          <p class="eyebrow bronze-text">Guías por tema</p>
+          <div class="mt-4 flex items-end justify-between gap-6">
+            <h2 class="max-w-3xl text-5xl leading-[.98] md:text-6xl">Páginas útiles para resolver una duda concreta antes de subir.</h2>
+            <p class="hidden max-w-sm text-sm leading-6 text-[#625c50] md:block">Estas páginas amplían el contenido del inicio y están pensadas para responder búsquedas específicas sin repetir lo mismo en cada URL.</p>
+          </div>
+          <div class="mt-10 space-y-12">
+            {guideGroups.map((group) => (
+              <div>
+                <p class="eyebrow bronze-text">{group.label}</p>
+                <div class="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  {group.pages.map((page) => (
+                    <a class="border border-[#a57637]/35 bg-[#fbf6ed] p-6 transition hover:border-[#a57637] hover:bg-white" href={page.href}>
+                      <p class="eyebrow bronze-text">{page.eyebrow}</p>
+                      <h3 class="mt-3 text-3xl">{page.title}</h3>
+                      <p class="mt-3 text-sm leading-6 text-[#625c50]">{page.desc}</p>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

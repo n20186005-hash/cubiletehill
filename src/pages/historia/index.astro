@@ -1,0 +1,69 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+import { sanctuaryUrl } from '../../data/site';
+
+const title = 'Historia del Cerro del Cubilete y el Santuario de Cristo Rey | Cubilete Hill';
+const description = 'De la devoción temprana del siglo XX a la construcción del monumento actual desde 1944 y su bendición en 1950.';
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/historia/"
+  eyebrow="Historia"
+  heading="Historia del Cerro del Cubilete y el Santuario de Cristo Rey"
+  intro="La cercanía del Cerro del Cubilete con la fe local es anterior al monumento actual. La historia que respaldamos comienza con una devoción del siglo XX y llega a la construcción del monumento de hoy, iniciada en 1944 y bendecida en 1950 según el santuario."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">Del siglo XX a 1950</h2>
+      <p class="mt-4 text-[#4a453b]">La <a class="underline decoration-[#a57637] underline-offset-2" href={sanctuaryUrl} target="_blank" rel="noopener noreferrer">web del santuario</a> sitúa la construcción del monumento actual en 1944 y la bendición de la estatua en 1950. El recinto lo describe como el quinto de los monumentos de esta devoción.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Cuidado con las fechas</p>
+      <h2 class="mt-3 text-3xl">No una, sino varias etapas</h2>
+      <p class="mt-4 text-[#4a453b]">No trates el monumento actual como si fuera el primer Cristo levantado en esta cima. La devoción, los monumentos previos y el recinto actual son momentos distintos de una misma historia.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Por qué importa separar las etapas</h2>
+    <p>Confundir las fechas lleva a errores comunes: decir que la devoción comenzó en 1944, o que el Cristo de hoy es el original. La <a class="underline decoration-[#a57637] underline-offset-2" href="/santuario/">historia documentada del santuario</a> distingue la devoción temprana del siglo XX de la construcción del monumento actual, bendecido en 1950.</p>
+    <p>Si investigas a fondo, conviene seguir las fuentes del propio recinto y de instituciones con respaldo histórico. Esta guía solo repasa lo verificable para ayudarte a planear la visita, no para sustituir la investigación documental.</p>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card">
+      <h2 class="text-3xl">Línea de tiempo respaldada</h2>
+      <ul class="guide-list mt-4">
+        <li>Devoción a Cristo Rey vinculada al cerro desde el siglo XX.</li>
+        <li>Monumento actual: construcción iniciada en 1944.</li>
+        <li>Estatua bendecida en 1950, según el santuario.</li>
+        <li>Quinto monumento de esta devoción descrito por el recinto.</li>
+      </ul>
+    </article>
+    <article class="guide-card">
+      <h2 class="text-3xl">Dónde profundizar</h2>
+      <ul class="guide-list mt-4">
+        <li>Sección de historia en la web del <a class="underline decoration-[#a57637] underline-offset-2" href={sanctuaryUrl} target="_blank" rel="noopener noreferrer">santuario</a>.</li>
+        <li>La página de <a class="underline decoration-[#a57637] underline-offset-2" href="/cristo-rey/">Cristo Rey</a> de esta guía.</li>
+        <li>La página de <a class="underline decoration-[#a57637] underline-offset-2" href="/arquitectura/">arquitectura</a> del monumento.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-card-dark">
+    <p class="eyebrow text-[#d2ad6c]">Contexto mayor</p>
+    <h2 class="mt-3 text-3xl">Religión e historia de México</h2>
+    <p class="mt-4 text-white/76">El monumento forma parte de una historia religiosa y social más amplia. Para ese contexto, revisa la página de la <a class="underline decoration-[#a57637] underline-offset-2" href="/guerra-cristera/">Guerra Cristera</a> y fuentes académicas o institucionales con respaldo.</p>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/cristo-rey/"><strong class="block text-2xl">Cristo Rey</strong><span class="mt-3 block text-sm text-[#5d564b]">El monumento y su significado.</span></a>
+      <a class="guide-card block" href="/arquitectura/"><strong class="block text-2xl">Arquitectura</strong><span class="mt-3 block text-sm text-[#5d564b]">Diseño del monumento.</span></a>
+      <a class="guide-card block" href="/guerra-cristera/"><strong class="block text-2xl">Guerra Cristera</strong><span class="mt-3 block text-sm text-[#5d564b]">El contexto histórico mayor.</span></a>
+    </div>
+  </section>
+</GuideLayout>

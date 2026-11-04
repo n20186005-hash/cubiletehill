@@ -1,0 +1,66 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+import { contactUrl, mapsShareUrl, massScheduleUrl, sanctuaryUrl } from '../../data/site';
+
+const title = 'Santuario de Cristo Rey: guía para visitantes | Cubilete Hill';
+const description = 'El Santuario Votivo Nacional de Cristo Rey es el recinto religioso en la cima. Consulta horarios, misas y accesos antes de tu visita.';
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/santuario/"
+  eyebrow="Santuario"
+  heading="Santuario de Cristo Rey: guía para visitantes"
+  intro="El Santuario Votivo Nacional de Cristo Rey es el recinto religioso situado en la cima del Cerro del Cubilete. No es lo mismo que la montaña: tiene su propio horario, sus celebraciones y sus condiciones de acceso, que conviene confirmar antes de llegar."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">El recinto en la cima</h2>
+      <p class="mt-4 text-[#4a453b]">La <a class="underline decoration-[#a57637] underline-offset-2" href={sanctuaryUrl} target="_blank" rel="noopener noreferrer">web oficial del santuario</a> publica apertura de 06:00 a 20:00 como referencia del recinto. Esa franja no garantiza por sí sola el acceso a toda la montaña ni a cada servicio del día.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Visita de fe</p>
+      <h2 class="mt-3 text-3xl">Horario de misa aparte</h2>
+      <p class="mt-4 text-[#4a453b]">Las celebraciones tienen su propia página y deben consultarse por separado. No uses el horario de misa como horario de visita general.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Cómo organizar la visita al santuario</h2>
+    <p>El santuario es un lugar de oración. Quien llega como visitante turístico y quien llega en <a class="underline decoration-[#a57637] underline-offset-2" href="/peregrinaciones/">peregrinación</a> comparten la misma cima, pero sus necesidades difieren: unos buscan la explanada y la vista, otros una celebración o un acto. Separar ambas intenciones ayuda a no saturar ni malinterpretar la información.</p>
+    <p>Antes de salir, revisa el horario general, la página de misas y cualquier aviso especial del recinto. La <a class="underline decoration-[#a57637] underline-offset-2" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">ubicación del cerro</a> sirve para llegar, pero el acceso final en vehículo y el estacionamiento se confirman con el santuario.</p>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card">
+      <h2 class="text-3xl">Qué consultar antes</h2>
+      <ul class="guide-list mt-4">
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href="/horarios/">Horario general</a> del recinto en su web oficial.</li>
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href={massScheduleUrl} target="_blank" rel="noopener noreferrer">Horario de misas</a> y celebraciones.</li>
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href="/carretera-y-acceso/">Acceso vehicular</a> y punto de descenso del día.</li>
+        <li>Avisos por festividad o peregrinación.</li>
+      </ul>
+    </article>
+    <article class="guide-card-dark">
+      <p class="eyebrow text-[#d2ad6c]">Respeto en el recinto</p>
+      <h2 class="mt-3 text-3xl">No es un escenario</h2>
+      <p class="mt-4 text-white/76">Reduce la voz en los espacios de oración y durante celebraciones. Sigue los accesos habilitados y respeta cierres o indicaciones del personal.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-card-dark">
+    <p class="eyebrow text-[#d2ad6c]">Duda concreta</p>
+    <h2 class="mt-3 text-3xl">Pregunta al recinto</h2>
+    <p class="mt-4 text-white/76">Cualquier duda sobre horarios, accesos o celebraciones, usa el <a class="underline decoration-[#a57637] underline-offset-2" href={contactUrl} target="_blank" rel="noopener noreferrer">canal de contacto del santuario</a>. Esta guía es independiente y no sustituye su información.</p>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/cristo-rey/"><strong class="block text-2xl">Cristo Rey</strong><span class="mt-3 block text-sm text-[#5d564b]">Historia y significado del monumento.</span></a>
+      <a class="guide-card block" href="/horarios-de-misa/"><strong class="block text-2xl">Horarios de misa</strong><span class="mt-3 block text-sm text-[#5d564b]">Celebraciones aparte de la visita general.</span></a>
+      <a class="guide-card block" href="/historia/"><strong class="block text-2xl">Historia</strong><span class="mt-3 block text-sm text-[#5d564b]">El cerro y el santuario en el tiempo.</span></a>
+    </div>
+  </section>
+</GuideLayout>

@@ -1,0 +1,60 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+import { accessWorksUrl, mapsShareUrl } from '../../data/site';
+
+const title = 'Cómo llegar al Cerro del Cubilete desde Silao | Cubilete Hill';
+const description = 'Silao de la Victoria es el punto de partida más cercano al Cerro del Cubilete. Organiza el último tramo hacia el santuario y confirma el regreso.';
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/desde-silao/"
+  eyebrow="Desde Silao"
+  heading="Cómo llegar al Cerro del Cubilete desde Silao"
+  intro="Silao de la Victoria es el municipio donde se encuentra el cerro, así que suele ser el punto de partida más directo. La clave es organizar el último tramo hacia el santuario y no confundir el pin de la montaña con una entrada o zona de estacionamiento."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">Silao es la base natural</h2>
+      <p class="mt-4 text-[#4a453b]">Desde la ciudad de Silao toma la salida señalizada hacia el Cerro del Cubilete y continúa por la carretera de montaña. El tramo final tiene curvas y pendientes; comprueba el acceso permitido para tu vehículo.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Antes de salir</p>
+      <h2 class="mt-3 text-3xl">Confirma el regreso</h2>
+      <p class="mt-4 text-[#4a453b]">Abre la <a class="underline decoration-[#a57637] underline-offset-2" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">ubicación del cerro en Maps</a> y acuerda con tu conductor o grupo dónde termina el servicio ese día y cómo volverás.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Por qué conviene salir de Silao</h2>
+    <p>Al estar el cerro dentro del municipio, Silao reduce la distancia del tramo de montaña comparado con salir de <a class="underline decoration-[#a57637] underline-offset-2" href="/desde-guanajuato/">Guanajuato</a> o <a class="underline decoration-[#a57637] underline-offset-2" href="/desde-leon/">León</a>. Aun así, la última subida es de <a class="underline decoration-[#a57637] underline-offset-2" href="/carretera-y-acceso/">carretera serrana</a>, con cambios de paisaje y menos servicios que en la ciudad.</p>
+    <p>Si vienes sin auto, Silao es también donde suelen concentrarse las opciones de <a class="underline decoration-[#a57637] underline-offset-2" href="/transporte-publico/">transporte local</a>. Confirmar allí el último tramo y el regreso es más sencillo que intentarlo desde otra ciudad.</p>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card">
+      <h2 class="text-3xl">Lo que conviene confirmar</h2>
+      <ul class="guide-list mt-4">
+        <li>Estado de la carretera y condiciones del clima.</li>
+        <li>Punto de descenso o estacionamiento disponible ese día.</li>
+        <li>Hora y forma de regreso a Silao.</li>
+        <li>Si habrá misas, peregrinaciones o afluencia extraordinaria.</li>
+      </ul>
+    </article>
+    <article class="guide-card-dark">
+      <p class="eyebrow text-[#d2ad6c]">Dato reciente</p>
+      <h2 class="mt-3 text-3xl">Nuevo arco y explanada</h2>
+      <p class="mt-4 text-white/76">El <a class="underline decoration-[#a57637] underline-offset-2" href={accessWorksUrl} target="_blank" rel="noopener noreferrer">Gobierno de Guanajuato</a> informó en agosto de 2026 un nuevo arco de acceso y una explanada, con unos 800 m hacia el santuario. No garantiza una ruta sin escalones ni acceso para todos los vehículos.</p>
+    </article>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/como-llegar/"><strong class="block text-2xl">Cómo llegar</strong><span class="mt-3 block text-sm text-[#5d564b]">Visión general de salidas y accesos.</span></a>
+      <a class="guide-card block" href="/estacionamiento/"><strong class="block text-2xl">Estacionamiento</strong><span class="mt-3 block text-sm text-[#5d564b]">Dónde bajar y qué confirmar.</span></a>
+      <a class="guide-card block" href="/en-coche/"><strong class="block text-2xl">En coche propio</strong><span class="mt-3 block text-sm text-[#5d564b]">Consejos para la carretera de montaña.</span></a>
+    </div>
+  </section>
+</GuideLayout>

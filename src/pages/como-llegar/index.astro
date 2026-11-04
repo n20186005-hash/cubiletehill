@@ -1,0 +1,80 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+import { accessWorksUrl, airportTransportUrl, ecocubileteUrl, govtTourismUrl, mapsShareUrl } from '../../data/site';
+
+const title = 'Cómo llegar al Cerro del Cubilete | Cubilete Hill';
+const description = 'Guía práctica para llegar al Cerro del Cubilete desde Silao, Guanajuato, León o el aeropuerto del Bajío, sin confundir la montaña con el santuario.';
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/como-llegar/"
+  eyebrow="Cómo llegar"
+  heading="Cómo llegar al Cerro del Cubilete"
+  intro="La forma de llegar al Cubilete depende de tu punto de salida y de si tu objetivo es la montaña, el santuario o una misa concreta. Lo importante es organizar el trayecto completo: salida, ascenso, punto final, caminata y regreso."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">La referencia práctica es Silao</h2>
+      <p class="mt-4 text-[#4a453b]">Desde Silao suele organizarse el último tramo hacia el santuario. Si vienes desde otra ciudad, primero piensa cómo llegarás a Silao o a la zona de ascenso, y luego cómo resolverás la subida y la vuelta.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Antes de salir</p>
+      <h2 class="mt-3 text-3xl">Guarda el mapa y confirma el regreso</h2>
+      <p class="mt-4 text-[#4a453b]">Abre la <a class="underline decoration-[#a57637] underline-offset-2" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">ubicación del cerro en Google Maps</a> y comprueba con tu conductor, taxi o acompañantes dónde termina exactamente el servicio de ese día.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Opciones para organizar la subida</h2>
+    <p>Si viajas en coche propio, puedes controlar mejor horarios y paradas. Si vienes sin auto, la clave es confirmar el último tramo: no toda referencia de transporte al Cubilete garantiza que te deje en la misma zona ni que tenga regreso sencillo.</p>
+    <p>La guía turística de Guanajuato, el directorio del aeropuerto y algunas referencias locales ayudan a orientarte, pero conviene no tomar ninguna de ellas como una promesa cerrada de horarios, tarifas o accesibilidad completa.</p>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card">
+      <h2 class="text-3xl">Las rutas más consultadas</h2>
+      <ul class="guide-list mt-4">
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href="/desde-guanajuato/">Desde Guanajuato capital</a>.</li>
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href="/desde-leon/">Desde León</a>.</li>
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href="/en-coche/">En coche propio</a>.</li>
+        <li>Desde el aeropuerto del Bajío con taxi, traslado o conexión posterior.</li>
+      </ul>
+    </article>
+    <article class="guide-card">
+      <h2 class="text-3xl">Lo que conviene confirmar</h2>
+      <ul class="guide-list mt-4">
+        <li>Estado de la carretera y condiciones del <a class="underline decoration-[#a57637] underline-offset-2" href="/clima/">clima</a>.</li>
+        <li>Punto de descenso o <a class="underline decoration-[#a57637] underline-offset-2" href="/estacionamiento/">estacionamiento</a> disponible ese día.</li>
+        <li>Tiempo de regreso, sobre todo si dependes de terceros.</li>
+        <li>Si habrá <a class="underline decoration-[#a57637] underline-offset-2" href="/horarios-de-misa/">misas</a>, <a class="underline decoration-[#a57637] underline-offset-2" href="/peregrinaciones/">peregrinaciones</a> o afluencia extraordinaria.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card-dark">
+      <p class="eyebrow text-[#d2ad6c]">Referencias útiles</p>
+      <ul class="guide-list mt-4 text-white/76">
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href={govtTourismUrl} target="_blank" rel="noopener noreferrer">Orientación turística de Guanajuato</a>.</li>
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href={airportTransportUrl} target="_blank" rel="noopener noreferrer">Transporte terrestre del aeropuerto BJX</a>.</li>
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href={ecocubileteUrl} target="_blank" rel="noopener noreferrer">Referencia local de corridas al Cubilete</a>.</li>
+      </ul>
+    </article>
+    <article class="guide-card-dark">
+      <p class="eyebrow text-[#d2ad6c]">Dato reciente</p>
+      <h2 class="mt-3 text-3xl">Nuevo arco y explanada</h2>
+      <p class="mt-4 text-white/76">El <a class="underline decoration-[#a57637] underline-offset-2" href={accessWorksUrl} target="_blank" rel="noopener noreferrer">Gobierno de Guanajuato</a> informó la entrega de un nuevo arco de acceso y una explanada en agosto de 2026. También menciona un recorrido aproximado de 800 metros hacia el santuario.</p>
+    </article>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/desde-guanajuato/"><strong class="block text-2xl">Desde Guanajuato</strong><span class="mt-3 block text-sm text-[#5d564b]">Salida práctica para una excursión de un día.</span></a>
+      <a class="guide-card block" href="/desde-leon/"><strong class="block text-2xl">Desde León</strong><span class="mt-3 block text-sm text-[#5d564b]">Cómo organizar la ida y el regreso el mismo día.</span></a>
+      <a class="guide-card block" href="/en-coche/"><strong class="block text-2xl">En coche propio</strong><span class="mt-3 block text-sm text-[#5d564b]">Qué prever en una carretera de montaña.</span></a>
+    </div>
+  </section>
+</GuideLayout>

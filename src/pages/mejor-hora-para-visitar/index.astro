@@ -1,0 +1,68 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+import { mapsShareUrl } from '../../data/site';
+
+const title = '¿Cuál es la mejor hora para visitar el Cerro del Cubilete? | Cubilete Hill';
+const description = 'Depende de la temporada y de si buscas evitar aglomeraciones o niebla. Organiza la hora según el clima, la luz y tu tipo de visita.';
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/mejor-hora-para-visitar/"
+  eyebrow="Mejor momento"
+  heading="¿Cuál es la mejor hora para visitar el Cerro del Cubilete?"
+  intro="No hay una hora única perfecta: depende de la temporada, del clima del día y de lo que busques. En general, conviene organizar la subida para evitar las peores condiciones de luz, frío o aglomeración."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">Mañana temprano o tarde</h2>
+      <p class="mt-4 text-[#4a453b]">Muchos visitantes prefieren entrar pronto, cuando hay menos gente y la luz es suave. La tarde también puede dar buenas vistas, pero conviene prever el regreso con luz suficiente.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Qué vigilar</p>
+      <h2 class="mt-3 text-3xl">Niebla y frío de altura</h2>
+      <p class="mt-4 text-[#4a453b]">A 2.579 m, la <a class="underline decoration-[#a57637] underline-offset-2" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">montaña</a> puede estar nublada o fresca a cualquier hora. Revisa el pronóstico y no supongas cielo despejado por el mes del año.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Cómo elegir tu hora</h2>
+    <p>Si buscas <a class="underline decoration-[#a57637] underline-offset-2" href="/consejos-para-fotografiar/">fotografías</a> con buena luz, la luz dorada de la mañana o del atardecer suele ser la más favorecedora, siempre que la visibilidad lo permita. Si buscas calma, entrar entre semana y fuera de <a class="underline decoration-[#a57637] underline-offset-2" href="/peregrinaciones/">festividades religiosas</a> suele significar menos afluencia.</p>
+    <p>En <a class="underline decoration-[#a57637] underline-offset-2" href="/peregrinaciones/">peregrinaciones</a> o fechas señaladas, la hora importa menos que la organización: confirma accesos, <a class="underline decoration-[#a57637] underline-offset-2" href="/estacionamiento/">estacionamiento</a> y regreso. El horario del santuario (06:00–20:00 según su web) marca el marco general, pero no garantiza condiciones iguales todo el día.</p>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card">
+      <h2 class="text-3xl">Si viajas con <a class="underline decoration-[#a57637] underline-offset-2" href="/visita-en-familia/">familia</a> o <a class="underline decoration-[#a57637] underline-offset-2" href="/adultos-mayores/">adultos mayores</a></h2>
+      <ul class="guide-list mt-4">
+        <li>Evita las horas de más calor o de más frío extremo.</li>
+        <li>Deja margen para descansos y la caminata final.</li>
+        <li>Confirma el punto de descenso antes de subir.</li>
+      </ul>
+    </article>
+    <article class="guide-card">
+      <h2 class="text-3xl">Si vas a misa o peregrinación</h2>
+      <ul class="guide-list mt-4">
+        <li>Ajusta la hora a la celebración, no al turismo.</li>
+        <li>Consulta el <a class="underline decoration-[#a57637] underline-offset-2" href="/horarios-de-misa/">horario litúrgico</a> por separado.</li>
+        <li>Prevé mayor afluencia y tiempos de espera.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-card-dark">
+    <p class="eyebrow text-[#d2ad6c]">Antes de salir</p>
+    <h2 class="mt-3 text-3xl">El clima manda</h2>
+    <p class="mt-4 text-white/76">La mejor hora es la que coincide con buen pronóstico y un regreso cómodo. Revisa viento, lluvia y niebla del día; una estación no asegura condiciones fijas en la cima.</p>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/clima/"><strong class="block text-2xl">Clima</strong><span class="mt-3 block text-sm text-[#5d564b]">Qué llevar según la temporada y la altura.</span></a>
+      <a class="guide-card block" href="/ubicacion/"><strong class="block text-2xl">Ubicación</strong><span class="mt-3 block text-sm text-[#5d564b]">Guarda el mapa antes de organizar la hora.</span></a>
+      <a class="guide-card block" href="/horarios/"><strong class="block text-2xl">Horarios</strong><span class="mt-3 block text-sm text-[#5d564b]">El marco general del santuario es 06:00–20:00.</span></a>
+    </div>
+  </section>
+</GuideLayout>

@@ -1,0 +1,74 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+import { cityName, cityShort, coords, mapsShareUrl, stateName } from '../../data/site';
+
+const title = 'Mapa del Cerro del Cubilete y sus principales accesos | Cubilete Hill';
+const description = 'Guarda la ubicación correcta del cerro antes de salir y distingue el pin de la montaña del acceso al santuario.';
+const mapSrc = `https://www.google.com/maps?q=${coords.latitude},${coords.longitude}&z=15&output=embed`;
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/mapa/"
+  eyebrow="Mapa"
+  heading="Mapa del Cerro del Cubilete y sus principales accesos"
+  intro="El cerro está en Silao de la Victoria, Guanajuato, México. Antes de salir, guarda la ubicación correcta: el pin de la montaña en Google Maps no es lo mismo que la entrada al santuario ni un estacionamiento señalizado."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">Silao, Guanajuato</h2>
+      <p class="mt-4 text-[#4a453b]">El <a class="underline decoration-[#a57637] underline-offset-2" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">cerro en Google Maps</a> se sitúa en {cityName}, {stateName}. Usa esa referencia para orientarte, no como promesa de un acceso concreto para tu vehículo.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Coordenadas</p>
+      <h2 class="mt-3 text-3xl">{coords.latitude}, {coords.longitude}</h2>
+      <p class="mt-4 text-[#4a453b]">Estas coordenadas apuntan a la ficha general de la montaña. El acceso en vehículo puede terminar en un punto distinto según el día y las condiciones.</p>
+    </article>
+  </section>
+
+  <section class="mt-10">
+    <div class="map-wrap overflow-hidden border border-[#a57637]/35 bg-black/20">
+      <iframe src={mapSrc} title={`Mapa de ${cityShort}, ${stateName}`} allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="flex flex-wrap items-center justify-between gap-3 border-t border-[#a57637]/25 p-5 text-sm text-white/60">
+        <span>Ficha de la montaña · {cityShort}, {stateName}</span>
+        <a class="font-bold text-[#d2ad6c] hover:text-white" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">Indicaciones en Google Maps →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Cómo usar el mapa sin confundirte</h2>
+    <p>El mapa sirve para dos cosas distintas: ubicar la montaña en la región y planear la ruta hasta el pie de la subida. Pero el último tramo hacia el <a class="underline decoration-[#a57637] underline-offset-2" href="/santuario/">santuario</a> depende de accesos que pueden cambiar, así que no trates el pin como una dirección exacta de llegada en auto.</p>
+    <p>Guarda la ubicación antes de perder señal en la sierra y compártela con tu conductor o grupo. En <a class="underline decoration-[#a57637] underline-offset-2" href="/peregrinaciones/">peregrinaciones</a> o fechas señaladas, la circulación puede desviarse y el punto de descenso cambiar.</p>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card">
+      <h2 class="text-3xl">Relación con otras ciudades</h2>
+      <ul class="guide-list mt-4">
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href="/desde-silao/">Silao</a>: el municipio donde se encuentra el cerro.</li>
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href="/desde-guanajuato/">Guanajuato capital</a>: a varios kilómetros, con ruta de montaña.</li>
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href="/desde-leon/">León</a>: otra salida común, conectando primero con Silao o el ascenso.</li>
+      </ul>
+    </article>
+    <article class="guide-card">
+      <h2 class="text-3xl">Lo que el mapa no garantiza</h2>
+      <ul class="guide-list mt-4">
+        <li>Un estacionamiento frente al santuario.</li>
+        <li>Un acceso sin escalones o rampa continua.</li>
+        <li>El mismo punto de bajada en toda fecha.</li>
+        <li>Condiciones de la carretera ese día.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/ubicacion/"><strong class="block text-2xl">Ubicación</strong><span class="mt-3 block text-sm text-[#5d564b]">País, estado y municipio correctos.</span></a>
+      <a class="guide-card block" href="/como-llegar/"><strong class="block text-2xl">Cómo llegar</strong><span class="mt-3 block text-sm text-[#5d564b]">Organiza el trayecto completo.</span></a>
+      <a class="guide-card block" href="/miradores/"><strong class="block text-2xl">Miradores</strong><span class="mt-3 block text-sm text-[#5d564b]">Qué esperar de las vistas en la cima.</span></a>
+    </div>
+  </section>
+</GuideLayout>

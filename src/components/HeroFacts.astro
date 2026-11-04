@@ -1,0 +1,55 @@
+---
+import {
+  attractionFullName,
+  attractionShortName,
+  cityShort,
+  stateName,
+  mapsShareUrl,
+  sanctuaryUrl,
+  heroTagline,
+  ratingValue,
+  ratingCount,
+  ratingSourceDate,
+  sanctuaryHours
+} from '../data/site';
+---
+
+<section class="hero-facts" aria-label="Ficha rápida del Cerro del Cubilete">
+  <div class="container-shell">
+    <dl class="hero-facts-grid">
+      <div class="hero-fact">
+        <dt>Nombre</dt>
+        <dd>
+          {attractionFullName}
+          <span class="hero-fact-alt">({attractionShortName})</span>
+        </dd>
+      </div>
+      <div class="hero-fact">
+        <dt>Qué es</dt>
+        <dd>{heroTagline}</dd>
+      </div>
+      <div class="hero-fact">
+        <dt>Valoración</dt>
+        <dd>
+          <span class="hero-fact-value">{ratingValue}</span>
+          <a class="hero-fact-link" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">{ratingCount} en Google Maps</a>
+          <span class="hero-fact-note">Dato de terceros, no una reseña de esta guía. Consulta: {ratingSourceDate}.</span>
+        </dd>
+      </div>
+      <div class="hero-fact">
+        <dt>Horario del santuario</dt>
+        <dd>
+          <span class="hero-fact-value">{sanctuaryHours}</span>
+          <span class="hero-fact-note">Publicado por la <a class="hero-fact-link" href={sanctuaryUrl} target="_blank" rel="noopener noreferrer">web del santuario</a>; confirma antes de salir. No garantiza el acceso a toda la montaña.</span>
+        </dd>
+      </div>
+      <div class="hero-fact">
+        <dt>Ubicación</dt>
+        <dd>
+          {cityShort}, {stateName}
+          <a class="hero-fact-location" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">Ver ubicación en Google Maps →</a>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>

@@ -5,3 +5,9 @@ Fuente consultada el 29 de octubre de 2026: [Camino al Cerro del Cubilete 2020 0
 Se sirve `cerro-cubilete-camino.webp`, reducido y comprimido desde el original, sin recorte del archivo. La versión conserva CC BY-SA 4.0 y muestra crédito, fuente, licencia, fecha y cambios junto a la imagen. No demuestra las condiciones actuales ni un servicio de transporte vigente.
 
 Las fotos del monumento con visitantes de primer plano fueron retiradas, incluidos sus usos de portada y datos estructurados. Véase `IMAGE-SOURCES-NOTE.md` para el alcance de la revisión de sujetos y la ilustración original de reemplazo.
+
+## Álbum de la ficha pública de Google Maps
+
+El álbum añadido a la portada sirve doce archivos `.jpg` alojados en `public/images/`, procedentes de la ficha pública de Google Maps del cerro. No se documenta autoría, fecha de captura, licencia ni autorizaciones de imagen de esas fotografías, y esta guía no reclama derechos sobre ellas. Los títulos son numerados y neutrales: no se identifica el contenido de cada toma. Las imágenes no se presentan como prueba del estado actual de accesos, carretera o servicios, y se enlazan a la ficha de Google Maps para que cada visitante consulte el original.
+
+Esta sección es independiente de la fotografía histórica de Wikimedia descrita arriba, que conserva su crédito y licencia CC BY-SA 4.0.

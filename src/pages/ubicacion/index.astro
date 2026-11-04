@@ -1,0 +1,61 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+import { cityName, coords, countryName, mapsShareUrl, stateName } from '../../data/site';
+
+const title = 'Dónde está el Cerro del Cubilete | Ubicación y mapa';
+const description = 'Ubicación del Cerro del Cubilete en Silao de la Victoria, Guanajuato, con mapa, referencia geográfica y contexto para organizar la visita.';
+const mapEmbed = `https://www.google.com/maps?q=${coords.latitude},${coords.longitude}&z=14&output=embed`;
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/ubicacion/"
+  eyebrow="Ubicación"
+  heading="Dónde está el Cerro del Cubilete"
+  intro="El Cerro del Cubilete está en el municipio de Silao de la Victoria, en Guanajuato, México. Si buscas el lugar para viajar, lo más útil es guardar la referencia geográfica correcta y no confundir el cerro con un acceso específico, un estacionamiento o una puerta exacta."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">{cityName}, {stateName}</h2>
+      <p class="mt-4 text-[#4a453b]">La montaña se ubica en {cityName}, estado de {stateName}, {countryName}. En búsquedas turísticas también aparece con el nombre en inglés <strong>Cubilete Hill</strong>.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Mapa</p>
+      <h2 class="mt-3 text-3xl">Guarda la referencia</h2>
+      <p class="mt-4 text-[#4a453b]">La ficha más práctica para navegación cotidiana es <a class="underline decoration-[#a57637] underline-offset-2" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">Google Maps</a>. Úsala como punto de partida para la ruta, no como garantía de un punto final accesible en vehículo.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <div class="guide-card">
+      <h2 class="text-3xl">Relación con otras ciudades</h2>
+      <ul class="guide-list mt-4">
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href="/desde-silao/">Silao</a> es la referencia municipal y logística más directa.</li>
+        <li><a class="underline decoration-[#a57637] underline-offset-2" href="/desde-guanajuato/">Guanajuato capital</a> y <a class="underline decoration-[#a57637] underline-offset-2" href="/desde-leon/">León</a> suelen ser las salidas más consultadas.</li>
+        <li>El aeropuerto del Bajío se encuentra también en la zona de Silao.</li>
+      </ul>
+    </div>
+    <div class="map-wrap overflow-hidden border border-[#a57637]/35 bg-black/10">
+      <iframe src={mapEmbed} title="Mapa del Cerro del Cubilete en Silao, Guanajuato" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="border-t border-[#a57637]/25 p-5 text-sm text-[#5d564b]">
+        Coordenadas de referencia: {coords.latitude}, {coords.longitude}
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Qué responde realmente esta página</h2>
+    <p>Cuando alguien pregunta <em>dónde está el Cerro del Cubilete</em>, casi siempre quiere una respuesta geográfica simple: en qué municipio está, en qué estado se ubica y qué <a class="underline decoration-[#a57637] underline-offset-2" href="/mapa/">mapa</a> debe guardar para llegar. Esa es la función principal de esta guía.</p>
+    <p>Otra pregunta distinta es dónde <a class="underline decoration-[#a57637] underline-offset-2" href="/estacionamiento/">dejar el coche</a>, dónde empieza la caminata o qué <a class="underline decoration-[#a57637] underline-offset-2" href="/carretera-y-acceso/">acceso</a> estará operativo el día de la visita. Eso depende de la operación del momento y conviene resolverlo con la ruta y las fuentes del santuario.</p>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/como-llegar/"><strong class="block text-2xl">Cómo llegar</strong><span class="mt-3 block text-sm text-[#5d564b]">Convierte la ubicación en una ruta útil.</span></a>
+      <a class="guide-card block" href="/altitud/"><strong class="block text-2xl">Altitud</strong><span class="mt-3 block text-sm text-[#5d564b]">Entiende la altura del cerro y cómo afecta la visita.</span></a>
+      <a class="guide-card block" href="/horarios/"><strong class="block text-2xl">Horarios</strong><span class="mt-3 block text-sm text-[#5d564b]">Comprueba qué parte del sitio debes confirmar antes de salir.</span></a>
+    </div>
+  </section>
+</GuideLayout>

@@ -1,0 +1,59 @@
+---
+import GuideLayout from '../../components/GuideLayout.astro';
+import { mapsShareUrl } from '../../data/site';
+
+const title = 'Cerro del Cubilete y Guanajuato: ruta de un día | Cubilete Hill';
+const description = 'Une la capital del estado con el Cubilete en una excursión de un día, con tiempos realistas y margen para el regreso.';
+---
+<GuideLayout
+  title={title}
+  description={description}
+  path="/ruta-guanajuato/"
+  eyebrow="Ruta regional"
+  heading="Cerro del Cubilete y Guanajuato: ruta de un día"
+  intro="Desde la ciudad de Guanajuato, el Cubilete queda a varios kilómetros con tramo de montaña. Una excursión de un día es cómoda si defines la hora de regreso antes de salir y dejas margen para el clima y la afluencia."
+>
+  <section class="guide-grid guide-grid-2">
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Respuesta corta</p>
+      <h2 class="mt-3 text-3xl">Capital → cerro → capital</h2>
+      <p class="mt-4 text-[#4a453b]">La ruta desde <a class="underline decoration-[#a57637] underline-offset-2" href="/desde-guanajuato/">Guanajuato</a> combina carretera de valle y tramo de sierra. Guarda la <a class="underline decoration-[#a57637] underline-offset-2" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">ubicación del cerro</a> antes de perder señal en la montaña.</p>
+    </article>
+    <article class="guide-card">
+      <p class="eyebrow bronze-text">Tiempo realista</p>
+      <h2 class="mt-3 text-3xl">Define el regreso primero</h2>
+      <p class="mt-4 text-[#4a453b]">Al fijar la vuelta antes de salir, todo lo demás encaja. Suma ida, visita en la cima y vuelta, con descansos. Unas dos horas en el cerro son una base razonable, sin contar el transporte.</p>
+    </article>
+  </section>
+
+  <section class="mt-10 guide-prose">
+    <h2 class="text-4xl">Cómo armar el día completo</h2>
+    <p>Empieza por la hora de regreso. Luego reparte el tiempo: traslado desde Guanajuato, ascenso, visita a la explanada y el recinto, y vuelta. Si quieres añadir la ciudad de Guanajuato misma, trátala como una parada aparte, no como algo que cabe sin margen.</p>
+    <p>En <a class="underline decoration-[#a57637] underline-offset-2" href="/peregrinaciones/">peregrinaciones</a> o festividades, la carretera y el <a class="underline decoration-[#a57637] underline-offset-2" href="/estacionamiento/">estacionamiento</a> pueden demorar. Confirmar accesos y llevar agua y abrigo hace la diferencia entre un día agradable y uno apurado.</p>
+  </section>
+
+  <section class="mt-10 guide-grid guide-grid-2">
+    <article class="guide-card">
+      <h2 class="text-3xl">Recomendaciones</h2>
+      <ul class="guide-list mt-4">
+        <li>Define la hora de regreso antes de salir.</li>
+        <li>Deja margen para clima y afluencia.</li>
+        <li>Confirma <a class="underline decoration-[#a57637] underline-offset-2" href="/carretera-y-acceso/">acceso</a> y <a class="underline decoration-[#a57637] underline-offset-2" href="/estacionamiento/">estacionamiento</a> del día.</li>
+        <li>Lleva agua, capa y calzado adecuado.</li>
+      </ul>
+    </article>
+    <article class="guide-card">
+      <h2 class="text-3xl">Si prefieres salir de Silao</h2>
+      <p class="mt-4 text-[#4a453b]">Si conduces desde Guanajuato, puedes usar <a class="underline decoration-[#a57637] underline-offset-2" href="/desde-silao/">Silao</a> como base intermedia para comer y abastecerte. Eso acorta el tramo de montaña respecto a venir directo.</p>
+    </article>
+  </section>
+
+  <section class="mt-10">
+    <p class="eyebrow bronze-text">Sigue con</p>
+    <div class="guide-link-grid mt-4">
+      <a class="guide-card block" href="/desde-guanajuato/"><strong class="block text-2xl">Desde Guanajuato</strong><span class="mt-3 block text-sm text-[#5d564b]">La ruta concreta de salida.</span></a>
+      <a class="guide-card block" href="/un-dia-desde-guanajuato/"><strong class="block text-2xl">Un día desde Guanajuato</strong><span class="mt-3 block text-sm text-[#5d564b]">Excursión completa paso a paso.</span></a>
+      <a class="guide-card block" href="/lugares-cercanos/"><strong class="block text-2xl">Lugares cercanos</strong><span class="mt-3 block text-sm text-[#5d564b]">Más puntos para ampliar la ruta.</span></a>
+    </div>
+  </section>
+</GuideLayout>

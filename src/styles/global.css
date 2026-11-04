@@ -108,3 +108,151 @@ section[id] { scroll-margin-top:8rem; }
 
 .photo-gallery { max-width:64rem; margin-inline:auto; }
 .photo-gallery .photo-figure > img { height:auto; object-fit:contain; }
+
+.guide-hero {
+  padding: 9rem 0 4rem;
+  color: var(--bone);
+  background:
+    linear-gradient(180deg, rgba(17,16,13,.88) 0%, rgba(17,16,13,.92) 100%),
+    radial-gradient(circle at top left, rgba(165,118,55,.28), transparent 34%);
+}
+
+.guide-main {
+  background: var(--paper);
+  padding: 3rem 0 5rem;
+}
+
+.guide-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1rem;
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(242, 234, 220, .62);
+}
+
+.guide-prose {
+  display: grid;
+  gap: 1.5rem;
+  color: #38352d;
+  line-height: 1.8;
+}
+
+.guide-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.guide-grid-2 {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.guide-card {
+  border: 1px solid var(--line);
+  background: #fffdf8;
+  padding: 1.5rem;
+}
+
+.guide-card-dark {
+  border: 1px solid rgba(165, 118, 55, .28);
+  background: var(--ink);
+  color: var(--bone);
+  padding: 1.5rem;
+}
+
+.guide-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: .7rem;
+  color: #4a453b;
+}
+
+.guide-link-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .guide-grid-2,
+  .guide-link-grid { grid-template-columns: 1fr; }
+}
+
+/* Ficha rápida del Hero: nombre + descripción + valoración + horario + ubicación */
+.hero-facts {
+  border-top: 1px solid rgba(210, 173, 108, .35);
+  border-bottom: 1px solid rgba(210, 173, 108, .35);
+  background: rgba(17, 16, 13, .55);
+  color: var(--bone);
+  padding: 1.75rem 0;
+}
+.hero-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  background: rgba(210, 173, 108, .22);
+}
+.hero-fact {
+  min-width: 0;
+  background: #181713;
+  padding: 1.25rem 1.3rem;
+}
+.hero-fact dt {
+  font-size: .68rem;
+  font-weight: 760;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--bronze-light);
+}
+.hero-fact dd {
+  margin: .6rem 0 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.hero-fact-alt { display: block; font-size: .8rem; color: rgba(242, 234, 220, .6); }
+.hero-fact-value { display: block; font-size: 1.5rem; font-family: Georgia, serif; color: var(--bone); }
+.hero-fact-link { text-decoration: underline; text-underline-offset: 3px; color: var(--bronze-light); }
+.hero-fact-note { display: block; margin-top: .5rem; font-size: .75rem; line-height: 1.5; color: rgba(242, 234, 220, .6); }
+.hero-fact-location { display: block; margin-top: .6rem; font-size: .85rem; font-weight: 700; color: var(--bronze-light); text-decoration: underline; text-underline-offset: 3px; }
+.hero-fact-location:hover, .hero-fact-link:hover { color: #fff; }
+@media (max-width: 1024px) { .hero-facts-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .hero-facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 440px) { .hero-facts-grid { grid-template-columns: 1fr; } }
+
+/* Álbum de fotografías de la ficha pública de Google Maps */
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+.album-item {
+  margin: 0;
+  min-width: 0;
+  background: #28261f;
+  border: 1px solid rgba(210, 173, 108, .25);
+}
+.album-item > a { display: block; }
+.album-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: opacity .2s ease;
+}
+.album-item a:hover img { opacity: .82; }
+.album-item figcaption {
+  padding: .8rem 1rem;
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--bone);
+}
+.album-note { font-size: .82rem; line-height: 1.7; color: rgba(242, 234, 220, .65); }
+@media (max-width: 900px) { .album-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .album-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
